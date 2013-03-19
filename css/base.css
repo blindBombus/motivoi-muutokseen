@@ -1,0 +1,7 @@
+body{
+    font-family: arial, helvetica, sans-serif;
+}
+div.wrap{
+    max-width: 960px;
+    margin: 0px auto;
+}

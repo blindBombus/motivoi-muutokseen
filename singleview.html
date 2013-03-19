@@ -5,23 +5,42 @@
 <meta name="author" content="Ville Hämäläinen" />
 <title>Terveyspuu - Yksityiskohtainen tarkastelu</title>
 <link href="./css/base.css" rel="StyleSheet"/>
+<script type="text/javascript" src="http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael-min.js"></script>
 </head>
 <body>
    <nav>
+   
+      <!--Centering the content-->
       <div class="wrap">
          <ul>
-         <li><a href="./index.html">Yleisnäkymä</a></li><li><a href="./comparison.html">Terveyspuiden vertailu</li><li id="current">Yksittäiset terveyspuut</li>
+         <li><a href="./index.html">Yleisnäkymä</a></li><li><a href="./comparison.html">Terveyspuiden vertailu</a></li><li id="current">Yksittäiset terveyspuut</li>
          </ul>
       </div>
+      
    </nav>
+   <!--Centering the content-->
    <div class="wrap">
+   
+      <!--id for visualization drawing script-->
       <div id="main-tree"></div>
-      <div id="information-box"></div>
+      
+      <!--box for indicator information-->
+      <div id="information-box">
+      </div>
+      
    </div>
    <footer>
+   
+      <!--Centering the content-->
       <div class="wrap">
          <div id="comparison-list"></div>
       </div>
+      
    </footer>
+   
+   <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
+   <script type="text/javascript">
+      drawMainTree();
+   </script>
 </body>
 </html>
