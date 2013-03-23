@@ -1,83 +1,67 @@
 body{
     font-family: arial, helvetica, sans-serif;
 }
-
-div.wrap{
-    max-width: 1300px;
-    /*margin: 0px auto;*/
-    position: relative;
+.wrap{
+   max-width: 960px;
+   margin: 0px auto;
+   overflow: hidden;
+}
+#nav{
+   width: 100%;
+   background-color: #cccccc;
+   overflow: hidden;
 }
 
-ul
-{
-	color: #807F6E;
-	list-style-type:none;
-	margin: 0;
+#logo a{
+   display: block;
+   background:url('../pics/logo.png') no-repeat;
+   background-position: left top;
+   height: 150px;
+   width: 200px;
+   float: left;
+}
+ul.navlist{
+   list-style: none;
+   width: 600px;
+   margin-top: 130px;
+   margin-bottom: 0px;
+   padding-bottom: 0px;
+   float: right;
+}
+ul.navlist li{
+   display: block;
+   margin: 5px;
+   margin-bottom: 0px;
+   float: left;
+}
+ul.navlist li a{
+   display: block;
+   padding: 5px;
+   text-decoration: none;
+   background-color: green;
+}
+ul.navlist li#current{
+   background-color: white;
+   display: block;
+   padding: 5px;
+   float: left;
 }
 
-li
-{
-	display:inline;
+#main-tree{
+   width: 600px;
+   float: left;
 }
 
-#header
-{
-	padding-bottom: 20px;
+#information-box{
+   width: 340px;
+   height: 500px;
+   margin: 20px 0px;
+   padding: 5px;
+   float: right;
+   border: solid #dddddd;
 }
-
-#nav {
-    background-image: url("../images/nav_background.png");
-    background-origin: content-box;
-    background-position: -25px -8px;
-    background-repeat: no-repeat;
-    background-size: 570px 40px;
-    float: right;
-    height: 35px;
-    padding-top: 80px;
-    width: 530px;
-}
-
-#navlist
-{
-	float: right;
-	margin: 0;
-	padding-bottom: 19px;
-	padding-left: 0;
-}
-
-#logo {
-    background-image: url("../images/logo.png");
-    background-position: -18px -70px;
-    height: 152px;
-    left: 0;
-    position: relative;
-    top: 10px;
-    width: 275px;
-}
-
-#main-tree {
-    background: none repeat scroll 0 0 #DDDDDD;
-    border: 2px solid #A1A1A1;
-    border-radius: 25px 25px 25px 25px;
-    
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 10px 40px;
-
-    width: 380px;
-}
-
-#information-box {
-    background: none no-repeat scroll 0 0 #DDDDDD;
-    border: 2px solid #A1A1A1;
-    border-radius: 25px 25px 25px 25px;
-    
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 10px 40px;
-
-    width: 380px;
-    height: 500px;
+#footer{
+   margin-top: 20px;
+   height: 120px;
+   background-color: #cccccc;
 }
