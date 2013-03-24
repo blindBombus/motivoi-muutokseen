@@ -1,27 +1,43 @@
 //This js-file uses Raphaël.js so remember to include it to your webpage
 
-//Draw main health tree visualization
+//Draws main health tree visualization
 function drawMainTree(municipalityId){
-   var mainTree = Raphael("main-tree", 600,500);
-   drawBackground(mainTree, municipalityId);
-   var trunkStartpoints  = drawRoots(mainTree, municipalityId);
-   var branchStartpoints = drawTrunk(mainTree, municipalityId, trunkStartpoints);
-   drawBranches(mainTree, municipalityId, branchStartpoints);
+   var mainPaper = Raphael("main-tree", 600,500);
+   drawBackground(mainPaper, municipalityId);
+   var trunkStartpoints  = drawRoots(mainPaper, municipalityId);
+   var branchStartpoints = drawTrunk(mainPaper, municipalityId, trunkStartpoints);
+   drawBranches(mainPaper, municipalityId, branchStartpoints);
 
 }
-function drawBackground(mainTree, municipalityId){
+
+//Draws background elements and miscellaneous indicator visualizations
+//to mainPaper. Uses municipalityId to get the indicator data from
+//correct municipality.
+function drawBackground(mainPaper, municipalityId){
 
 }
-function drawRoots(mainTree, municipalityId){
-   var rect1 = mainTree.rect(20,30,100,12).attr({fill: "orange"});
+
+//Draws root visualizations and other indicator visualizations that
+//must be drawn with the roots to mainPaper. Uses municipalityId 
+//to get the indicator data from correct municipality.
+//Returns the coordinates of the points where the trunk-parts should
+//start.
+function drawRoots(mainPaper, municipalityId){
+   var rect1 = mainPaper.rect(20,30,100,12).attr({fill: "orange"});
    return 1;
 }
 
-function drawTrunk(mainTree, municipalityId, trunkStartpoints){
-   var rect1 = mainTree.rect(30,40,100,12).attr({fill: "orange"});
+//Draws trunk visualization to mainPaper. Uses municipalityId 
+//to get the indicator data from correct municipality.
+//Returns the coordinates of the points where the branch-parts should
+//start.
+function drawTrunk(mainPaper, municipalityId, trunkStartpoints){
+   var rect1 = mainPaper.rect(30,40,100,12).attr({fill: "orange"});
    return 1;
 }
 
-function drawBranches(mainTree, municipalityId, branchStartpoints){
-   var rect1 = mainTree.rect(40,50,100,12).attr({fill: "orange"});
+//Draws branch visualizations and leaves for every branch to mainPaper. 
+//Uses municipalityId to get the indicator data from correct municipality.
+function drawBranches(mainPaper, municipalityId, branchStartpoints){
+   var rect1 = mainPaper.rect(40,50,100,12).attr({fill: "orange"});
 }

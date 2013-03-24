@@ -22,15 +22,16 @@ body{
 }
 
 #logo a:hover{
-   background:url('../pics/logo2-highlight.png') no-repeat;
+   background-image:url('../pics/logo2-highlight.png');
 }
 
 ul.navlist{
    list-style: none;
-   width: 600px;
+   width: 660px;
    margin-top: 40px;
    margin-bottom: 0px;
    padding-bottom: 0px;
+   padding-left: 0px;
    float: right;
 }
 ul.navlist li{
@@ -41,15 +42,21 @@ ul.navlist li{
 }
 ul.navlist li a{
    display: block;
-   padding: 5px;
+   padding: 8px;
    text-decoration: none;
-   background-color: green;
+   color: #dddddd;
+   background-color: #777777;
+   font-weight: bold;
+}
+ul.navlist li a:hover{
+   background-color: #aaaaaa;
 }
 ul.navlist li#current{
    background-color: white;
    display: block;
-   padding: 5px;
+   padding: 8px;
    float: left;
+   font-weight: bold;
 }
 
 #main-tree{
