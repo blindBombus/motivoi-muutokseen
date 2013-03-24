@@ -14,16 +14,21 @@ body{
 
 #logo a{
    display: block;
-   background:url('../pics/logo.png') no-repeat;
+   background:url('../pics/logo2.png') no-repeat;
    background-position: left top;
-   height: 150px;
-   width: 200px;
+   height: 65px;
+   width: 240px;
    float: left;
 }
+
+#logo a:hover{
+   background:url('../pics/logo2-highlight.png') no-repeat;
+}
+
 ul.navlist{
    list-style: none;
    width: 600px;
-   margin-top: 130px;
+   margin-top: 40px;
    margin-bottom: 0px;
    padding-bottom: 0px;
    float: right;
