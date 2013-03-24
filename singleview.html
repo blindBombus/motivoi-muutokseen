@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="author" content="Ville Hämäläinen/Qutab" />
+<meta name="author" content="Ville Hämäläinen & Qutab" />
 <title>Terveyspuu - Yksityiskohtainen tarkastelu</title>
 <link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
 <link href="./css/base.css" rel="StyleSheet"/>
@@ -11,7 +11,7 @@
 <body>
    
       <div id = "nav" >
-      <!--Centering the content-->
+         <!--Centering the content-->
          <div class = "wrap">
             <div id = "logo"><a href="./index.html"></a></div>
             <ul class = "navlist">
@@ -44,7 +44,8 @@
    
    <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script type="text/javascript">
-      drawMainTree();
+      var municipalityId = 1; //TODO get municipality id
+      drawMainTree(municipalityId);
    </script>
 </body>
 </html>
