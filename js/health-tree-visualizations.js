@@ -14,7 +14,6 @@ function drawMainTree(municipalityId){
 //to mainPaper. Uses municipalityId to get the indicator data from
 //correct municipality.
 function drawBackground(mainPaper, municipalityId){
-
 }
 
 //Draws root visualizations and other indicator visualizations that
