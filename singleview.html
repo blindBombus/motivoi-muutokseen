@@ -27,7 +27,7 @@
    <div class="wrap">
    
       <!--id for visualization drawing script-->
-      <div id="main-tree">Draw Tree Here!</div>
+      <div id="main-tree"></div>
       
       <!--box for indicator information-->
       <div id="information-box">Information Box!</div>
@@ -45,7 +45,8 @@
    <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script type="text/javascript">
       var municipalityId = 1; //TODO get municipality id
-      drawMainTree(municipalityId);
+      var mainPaper = Raphael("main-tree", 600,500);
+      drawMainTree(municipalityId, mainPaper);
    </script>
 </body>
 </html>
