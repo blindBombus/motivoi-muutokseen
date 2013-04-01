@@ -45,14 +45,13 @@ function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
    var leafStartPoint = null;
    var indicator = null;
    var maxLength = generalBranch.getTotalLength();
-   //for (i=0; i<maxLength; i++){
-   //   leafStartPoint = generalBranch.getPointAtLength(maxLength-i);
-   //   indicator = getYoungIndicator(municipalityId, i);
-   //   if (indicator != null){
-   //      drawLeaf(mainPaper, leafStartPoint, indicator);
-   //   }
-   //}
-   //drawYoungLeaves(mainPaper, municipalityId, branchEndPoint);
+   for (i=0; i<maxLength; i++){
+      leafStartPoint = generalBranch.getPointAtLength(maxLength-i);
+      indicator = getYoungIndicator(municipalityId, i);
+      if (indicator != null){
+         drawLeaf(mainPaper, leafStartPoint, indicator);
+      }
+   }
 }
 
 //Draws young branch visualizations and leaves for it to mainPaper. 
@@ -69,6 +68,6 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
    //drawYoungLeaves(mainPaper, municipalityId, branchEndPoint);
 }
 
-function drawLeaf(mainPaper, startPoint, indicator){
+function drawLeaf(mainPaper, leafStartPoint, indicator){
    var leaf = mainPaper.path(startPoint+" l2,2");
 }
