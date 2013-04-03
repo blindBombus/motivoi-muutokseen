@@ -46,24 +46,29 @@ function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
    var leafStartPoint = null;
    var indicator = null;
    var maxLength = generalBranch.getTotalLength();
-   for (i=0; i<maxLength; i++){
-      branchPoint = generalBranch.getPointAtLength(maxLength-(i*15));
+   var i=0;
+   while (i<(maxLength-17)){
+      branchPoint = generalBranch.getPointAtLength(maxLength-(i));
       if(i==0){
-         leafStartPoint = ""+(branchPoint.x-10)+","+branchPoint.y;
-         drawLeaf(mainPaper, leafStartPoint, indicator, 290);
+         leafStartPoint = (branchPoint.x-10)+","+branchPoint.y;
+         indicator = getYoungIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 285);
       }
       else if(i%2==0){
-         leafStartPoint = ""+branchPoint.x+","+(branchPoint.y-10);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 20);
+         leafStartPoint = (branchPoint.x-16)+","+(branchPoint.y+6);
+         indicator = getYoungIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 220);
       }
       else{
-         leafStartPoint = ""+branchPoint.x+","+(branchPoint.y+10);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 210);
+         leafStartPoint = branchPoint.x+","+(branchPoint.y-10);
+         indicator = getYoungIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 350);
       }
-      indicator = getYoungIndicator(municipalityId, i);
+      
       if (indicator != null){
          return 0;
       }
+      i=i+15;
    }
 }
 
@@ -82,7 +87,7 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
 }
 
 function drawLeaf(mainPaper, leafStartPoint, indicator, leafAngle){
-   var leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -14,0 -14,-14 c0,0 0,-14 14,-35 c0,0 14,20 14,35 c0,0 0,14 -14,14 z");
+   var leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -14,0 -14,-14 c0,0 0,-14 14,-35 c0,0 14,20 14,35 c0,0 0,14 -14,14z");
    var leafcolor = "#1c460c";
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafcolor, fill:leafcolor});
