@@ -57,15 +57,13 @@
    <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script type="text/javascript" src="./js/indicator-functions.js"></script>   
    <script type="text/javascript">
-      
-      
-      function drawToMainPaper(){
-         var municipalityId = $('#select').val();
+      var municipalityId = 1;//$('#select').val();
       console.log(municipalityId);
       var mainPaper = Raphael("main-tree", 600,500);
+      function drawToMainPaper(){
          mainPaper.clear();
          drawMainTree(municipalityId, mainPaper);
-         //mainPaper.setViewBox(0,0,150,125,false);
+         mainPaper.setViewBox(0,0,1200,1000, false);
       }
    </script>
 </body>
