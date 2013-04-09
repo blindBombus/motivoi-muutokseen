@@ -1,7 +1,8 @@
 <?php
  $conn = new mysqli('127.0.0.1', 'root', '', 'terveyspuu');
 
- $query = "	SELECT `PrimaryValue` FROM `indicators`
+ //select primary value based on indicator id and municipality id
+ $query = "	SELECT `PrimaryValue` FROM `indicators`	
 	WHERE `IndicatorID` = ? and
 	`AreaName` =
 	(SELECT `AreaName` FROM `municipalities`
