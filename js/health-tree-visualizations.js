@@ -175,8 +175,6 @@ function setLeafColor(indicator, municipalityId)
                }
             });
 
-   //console.log(value);
-
    if (value > 80)
    {
       return "#002f00"; //dark green

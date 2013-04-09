@@ -1,4 +1,5 @@
 <?php
+   //Creates a Drop Down List Contating Names of Municipalities
    // Create connection
    $con=mysqli_connect("127.0.0.1","root","","terveyspuu");
 

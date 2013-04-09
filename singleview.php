@@ -62,7 +62,7 @@
          var municipalityId = $('#select').val();
          console.log(municipalityId);
          var mainPaper = Raphael("main-tree", 600,500);
-         mainPaper.clear();
+         mainPaper.clear();   //does not clear the paper :s
          drawMainTree(municipalityId, mainPaper);
          //mainPaper.setViewBox(0,0,1200,1000, false);
       }
