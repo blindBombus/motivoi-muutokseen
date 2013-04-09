@@ -140,6 +140,7 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
    }
 }
 
+<<<<<<< HEAD
 function drawLeaf(mainPaper, leafStartPoint, indicator, leafAngle, curved){
    var leaf = null;
    if (curved)
@@ -147,6 +148,58 @@ function drawLeaf(mainPaper, leafStartPoint, indicator, leafAngle, curved){
    else
       leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -9,0 -9,-9 c0,0 0,-9 9,-30 c0,0 9,15 9,30 c0,0 0,9 -9,9z");
    var leafcolor = "#1c460c";
+=======
+function drawLeaf(mainPaper, leafStartPoint, indicator, leafAngle){
+   var leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -9,0 -9,-9 c0,0 0,-9 9,-30 c0,0 9,15 9,30 c0,0 0,9 -9,9z");
+   var leafcolor = setLeafColor(indicator);//"#1c460c";
+>>>>>>> 62a8032ac0b99b0c9caeda30edf19b73027e94cf
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafcolor, fill:leafcolor});
+}
+
+
+function setLeafColor(indicator)
+{
+   var indicatorId = "3224";
+   var areaId = "020";
+   var value = 0;
+
+
+   $.ajax({
+               url: './php/get_indicator_value.php',
+               type: 'POST',
+               data: 'indicatorId=' + indicatorId + '&areaId=' + areaId,
+               async: false,
+               
+               success: function(result) {
+                  //$('#response').remove();
+                  //$('#container').append('<p id="response">' + result + '</p>');
+                  result.replace(",",".");
+                  value = parseInt(result);
+               }
+            });
+
+   console.log(value);
+
+   if (value > 80)
+   {
+      return "#000000"; //black
+   }
+   else if (value <81 && value >60 )
+   {
+      return "#FF0000"; //red
+   }
+   else if (value <61 && value > 40)
+   {
+      return "#00FF00"; //light green
+   }
+   else if (value <41 && value > 20)
+   {
+      return "#0000FF"; //blue
+
+   }
+   else
+   {
+      return "#FFFF00"; //yellow
+   }
 }

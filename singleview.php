@@ -57,12 +57,19 @@
    <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script type="text/javascript" src="./js/indicator-functions.js"></script>   
    <script type="text/javascript">
+<<<<<<< HEAD
       //TODO add municipality id of the selection from other page
       var municipalityId = 1;//$('#select').val();
       console.log(municipalityId);
       var mainPaper = Raphael("main-tree", 600,500);
       drawMainTree(municipalityId, mainPaper);
+=======
+      
+>>>>>>> 62a8032ac0b99b0c9caeda30edf19b73027e94cf
       function drawToMainPaper(){
+         var municipalityId = $('#select').val();
+         console.log(municipalityId);
+         var mainPaper = Raphael("main-tree", 600,500);
          mainPaper.clear();
          drawMainTree(municipalityId, mainPaper);
          //mainPaper.setViewBox(0,0,1200,1000, false);
