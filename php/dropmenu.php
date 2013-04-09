@@ -1,11 +1,11 @@
 <?php
    // Create connection
-   $con=mysqli_connect("127.0.0.1","root","","csv_db");
+   $con=mysqli_connect("127.0.0.1","root","","terveyspuu");
 
    // Check connection
    if (!mysqli_connect_errno($con)) {
 
-      $query="SELECT DISTINCT `Area Name` FROM `Table 2`";
+      $query="SELECT DISTINCT `AreaName` FROM `indicators`";
       $data=mysqli_query($con, $query);
    
       echo "<select id = \"select\">";
