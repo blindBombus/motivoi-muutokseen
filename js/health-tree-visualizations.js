@@ -51,17 +51,17 @@ function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
       if(i==0){
          leafStartPoint = (branchPoint.x-10)+","+branchPoint.y;
          indicator = getGeneralIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 285);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 285, false);
       }
       else if(i%2==0){
          leafStartPoint = (branchPoint.x-16)+","+(branchPoint.y+6);
          indicator = getGeneralIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 220);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 220, false);
       }
       else{
          leafStartPoint = branchPoint.x+","+(branchPoint.y-10);
          indicator = getGeneralIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 350);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 350, true);
       }
       
       if (indicator != null){
@@ -85,17 +85,17 @@ function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
       if(i==0){
          leafStartPoint = branchPoint.x+","+(branchPoint.y-6);
          indicator = getYoungIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 0);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 0, false);
       }
       else if(i%2==0){
          leafStartPoint = (branchPoint.x+12)+","+(branchPoint.y-19);
          indicator = getYoungIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 45);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 45, false);
       }
       else{
          leafStartPoint = (branchPoint.x-12)+","+(branchPoint.y-4);
          indicator = getYoungIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 320);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 320, false);
       }
       
       if (indicator != null){
@@ -120,17 +120,17 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
       if(i==0){
          leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y-3);
          indicator = getElderlyIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 75);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 75, false);
       }
       else if(i%2==0){
          leafStartPoint = (branchPoint.x)+","+(branchPoint.y+12);
          indicator = getElderlyIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 130);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 130, false);
       }
       else{
          leafStartPoint = branchPoint.x+","+(branchPoint.y-10);
          indicator = getElderlyIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 12);
+         drawLeaf(mainPaper, leafStartPoint, indicator, 12, false);
       }
       
       if (indicator != null){
@@ -140,8 +140,12 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
    }
 }
 
-function drawLeaf(mainPaper, leafStartPoint, indicator, leafAngle){
-   var leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -9,0 -9,-9 c0,0 0,-9 9,-30 c0,0 9,15 9,30 c0,0 0,9 -9,9z");
+function drawLeaf(mainPaper, leafStartPoint, indicator, leafAngle, curved){
+   var leaf = null;
+   if (curved)
+      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -9,0 -9,-9 c0,0 0,-15 25,-20 c0,0 -15,10 -8,20 c0,0 3,9 -9,9z");
+   else
+      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -9,0 -9,-9 c0,0 0,-9 9,-30 c0,0 9,15 9,30 c0,0 0,9 -9,9z");
    var leafcolor = "#1c460c";
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafcolor, fill:leafcolor});
