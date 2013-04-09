@@ -43,28 +43,28 @@ function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
    var generalBranch = mainPaper.path("M"+(300-trunkWidth)+" 325 c0,0 0,-20 -25 -25 l -125 -30").attr({stroke: '#524132', 'stroke-width': 8, 'stroke-linecap': 'round'});
    var branchPoint = null
    var leafStartPoint = null;
-   var indicator = null;
+   var indicator = 288;          //should take different value for each leaf
    var maxLength = generalBranch.getTotalLength();
    var i=0;
    while (i<(maxLength-27)){
       branchPoint = generalBranch.getPointAtLength(maxLength-(i));
       if(i==0){
          leafStartPoint = (branchPoint.x-10)+","+branchPoint.y;
-         indicator = getGeneralIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 285);
+         //indicator = getGeneralIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 285);
       }
       else if(i%2==0){
          leafStartPoint = (branchPoint.x-16)+","+(branchPoint.y+6);
-         indicator = getGeneralIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 220);
+         //indicator = getGeneralIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 220);
       }
       else{
          leafStartPoint = branchPoint.x+","+(branchPoint.y-10);
-         indicator = getGeneralIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 350);
+         //indicator = getGeneralIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 350);
       }
       
-      if (indicator != null){
+      if (indicator == null){
          return 0;
       }
       i=i+11;
@@ -77,28 +77,28 @@ function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
    var youngBranch = mainPaper.path("M300 305 l 0 -175").attr({stroke: '#524132', 'stroke-width': 8, 'stroke-linecap': 'round'});
    var branchPoint = null
    var leafStartPoint = null;
-   var indicator = null;
+   var indicator = 288;          //should take different value for each leaf
    var maxLength = youngBranch.getTotalLength();
    var i=0;
    while (i<(maxLength-54)){
       branchPoint = youngBranch.getPointAtLength(maxLength-(i));
       if(i==0){
          leafStartPoint = branchPoint.x+","+(branchPoint.y-6);
-         indicator = getYoungIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 0);
+         //indicator = getYoungIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 0);
       }
       else if(i%2==0){
          leafStartPoint = (branchPoint.x+12)+","+(branchPoint.y-19);
-         indicator = getYoungIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 45);
+         //indicator = getYoungIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 45);
       }
       else{
          leafStartPoint = (branchPoint.x-12)+","+(branchPoint.y-4);
-         indicator = getYoungIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 320);
+         //indicator = getYoungIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 320);
       }
       
-      if (indicator != null){
+      if (indicator == null){
          return 0;
       }
       i=i+13;
@@ -112,64 +112,62 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
    var elderlyBranch = mainPaper.path("M"+(300+trunkWidth)+" 275 c0,0 0,-20 25 -25 l 100 -25").attr({stroke: '#524132', 'stroke-width': 8, 'stroke-linecap': 'round'});
    var branchPoint = null
    var leafStartPoint = null;
-   var indicator = null;
+   var indicator = 288;          //should take different value for each leaf
    var maxLength = elderlyBranch.getTotalLength();
    var i=0;
    while (i<(maxLength-80)){
       branchPoint = elderlyBranch.getPointAtLength(maxLength-(i));
       if(i==0){
          leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y-3);
-         indicator = getElderlyIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 75);
+         //indicator = getElderlyIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 75);
       }
       else if(i%2==0){
          leafStartPoint = (branchPoint.x)+","+(branchPoint.y+12);
-         indicator = getElderlyIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 130);
+         //indicator = getElderlyIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 130);
       }
       else{
          leafStartPoint = branchPoint.x+","+(branchPoint.y-10);
-         indicator = getElderlyIndicator(municipalityId, i);
-         drawLeaf(mainPaper, leafStartPoint, indicator, 12);
+         //indicator = getElderlyIndicator(municipalityId, i);
+         drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 12);
       }
       
-      if (indicator != null){
+      if (indicator == null){
          return 0;
       }
       i=i+11;
    }
 }
 
-function drawLeaf(mainPaper, leafStartPoint, indicator, leafAngle){
+function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngle){
    var leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -9,0 -9,-9 c0,0 0,-9 9,-30 c0,0 9,15 9,30 c0,0 0,9 -9,9z");
-   var leafcolor = setLeafColor(indicator);//"#1c460c";
+   var leafcolor = setLeafColor(indicator, municipalityId);//"#1c460c";
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafcolor, fill:leafcolor});
 }
 
 
-function setLeafColor(indicator)
+function setLeafColor(indicator, municipalityId)
 {
-   var indicatorId = "3224";
-   var areaId = "020";
-   var value = 0;
+   var indicatorId = indicator.toString();
+   var areaNum = municipalityId.toString();
 
+   var value = 0.0;
 
    $.ajax({
                url: './php/get_indicator_value.php',
                type: 'POST',
-               data: 'indicatorId=' + indicatorId + '&areaId=' + areaId,
+               data: 'indicatorId=' + indicatorId + '&areaNum=' + areaNum,
                async: false,
                
                success: function(result) {
-                  //$('#response').remove();
-                  //$('#container').append('<p id="response">' + result + '</p>');
-                  result.replace(",",".");
-                  value = parseInt(result);
+                  console.log(result);
+                  value = parseFloat(result);
                }
             });
 
-   console.log(value);
+   //console.log(value);
 
    if (value > 80)
    {

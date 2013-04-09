@@ -64,7 +64,7 @@
          var mainPaper = Raphael("main-tree", 600,500);
          mainPaper.clear();
          drawMainTree(municipalityId, mainPaper);
-         mainPaper.setViewBox(0,0,1200,1000, false);
+         //mainPaper.setViewBox(0,0,1200,1000, false);
       }
    </script>
 </body>

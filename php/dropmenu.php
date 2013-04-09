@@ -12,7 +12,7 @@
       $id = 1;
       while($row=mysqli_fetch_row($data))
       {
-         echo "<option value=\"".$id."\">".$row[0]."</option>";
+         echo "<option value=\"".$id."\">".utf8_encode($row[0])."</option>";
          $id++;
       }
       echo "</select>";
