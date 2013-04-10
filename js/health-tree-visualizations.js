@@ -81,7 +81,7 @@ function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
 //Draws general branch visualizations and leaves for it to mainPaper. 
 //Uses municipalityId to get the indicator data from correct municipality.
 function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
-   var generalBranch = mainPaper.path("M300 305 l 0 -175").attr({stroke: '#524132'});
+   var generalBranch = mainPaper.path("M300 280 l 0 -175").attr({stroke: '#524132'});
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = 288;          //should take different value for each leaf
