@@ -82,6 +82,7 @@ function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
 //Uses municipalityId to get the indicator data from correct municipality.
 function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
    var generalBranch = mainPaper.path("M300 280 l 0,-40 c0,0 0,-10 5,-20 l60,-120").attr({stroke: '#524132'});
+   var generalBranchOutlines = mainPaper.path("M296 280 l 0,-40 c0,0 0,-10 5,-20 l64,-120 l-56,120 c0,0 -5,10 -5,20 l 0,40z").attr({stroke: '#524132', fill:'#524132'});
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = 288;          //should take different value for each leaf
@@ -112,16 +113,16 @@ function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
    drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 95);
    
    branchPoint = generalBranch.getPointAtLength(maxLength-120);
-   leafStartPoint = (branchPoint.x-15)+","+(branchPoint.y-30);
+   leafStartPoint = (branchPoint.x-15)+","+(branchPoint.y-25);
    drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 305);
    leafStartPoint = (branchPoint.x+25)+","+(branchPoint.y);
    drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 110);
 
    branchPoint = generalBranch.getPointAtLength(maxLength-130);
-   leafStartPoint = (branchPoint.x)+","+(branchPoint.y);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 320);
-   leafStartPoint = (branchPoint.x)+","+(branchPoint.y);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 125);
+   leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y-5);
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 285);
+   leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y+10);
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 130);
    
 }
 
