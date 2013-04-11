@@ -15,21 +15,21 @@ body{
 
 #logo a{
    display: block;
-   background:url('../pics/logo2.png') no-repeat;
+   background:url('../pics/logo_smaller.png') no-repeat;
    background-position: left top;
-   height: 65px;
-   width: 240px;
+   height: 50px;
+   width: 180px;
    float: left;
 }
 
 #logo a:hover{
-   background-image:url('../pics/logo2-highlight.png');
+   background-image:url('../pics/logo_smaller_highlight.png');
 }
 
 ul.navlist{
    list-style: none;
    width: 660px;
-   margin-top: 40px;
+   margin-top: 10px;
    margin-bottom: 0px;
    padding-bottom: 0px;
    padding-left: 0px;

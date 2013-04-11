@@ -22,9 +22,12 @@ function drawBackground(mainPaper, municipalityId){
 //Returns the distance between trunkparts.
 function drawTrunk(mainPaper, municipalityId){
    var trunkWidth = 15;
-   var trunkCenter = mainPaper.path("M300 380 l 0 -100").attr({stroke: '#524132', 'stroke-width': 8, 'stroke-linecap': 'round'});
-   var trunkLeft = mainPaper.path("M"+(300-trunkWidth)+" 375 l 0 -50").attr({stroke: '#524132', 'stroke-width': 8, 'stroke-linecap': 'round'});
-   var trunkRight = mainPaper.path("M"+(300+trunkWidth)+" 375 l 0 -50").attr({stroke: '#524132', 'stroke-width': 8, 'stroke-linecap': 'round'});
+   var trunkCenter = mainPaper.path("M300 380 l 0 -100").attr({stroke: '#524132'});
+   var trunkCenterOutlines = mainPaper.path("M296 380 l 0 -100 c0,0 4,-8 8,0 l0,100 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
+   var trunkLeft = mainPaper.path("M"+(300-trunkWidth)+" 375 l 0 -50").attr({stroke: '#524132'});
+   var trunkLeftOutlines = mainPaper.path("M"+(296-trunkWidth)+" 375 l 0,-50 c0,0 4,-8 8,0 l0,50 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
+   var trunkRight = mainPaper.path("M"+(296+trunkWidth)+" 375 l 0,-50 ").attr({stroke: '#524132'});
+   var trunkRightOutlines = mainPaper.path("M"+(296+trunkWidth)+" 375 l 0,-50 c0,0 4,-8 8,0 l0,50 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
    return trunkWidth;
 }
 
