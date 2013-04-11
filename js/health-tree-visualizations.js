@@ -44,6 +44,7 @@ function drawRoots(mainPaper, municipalityId, trunkWidth){
 //Uses municipalityId to get the indicator data from correct municipality.
 function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
    var youngBranch = mainPaper.path("M"+(300-trunkWidth)+" 325 c0,0 0,-20 -25 -25 l -125 -30").attr({stroke: '#524132'});
+   var generalBranchOutlines = mainPaper.path("M"+(296-trunkWidth)+" 325 c0,0 2,-18 -25 -23 l-122,-32 l130,28 c0,0 25,5 25 28 l-4,0z").attr({stroke: '#524132', fill: '#524132'});
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = 288;          //should take different value for each leaf
