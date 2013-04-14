@@ -24,10 +24,10 @@ function drawTrunk(mainPaper, municipalityId){
    var trunkWidth = 15;
    var trunkCenter = mainPaper.path("M300 380 l 0 -100").attr({stroke: '#524132'});
    var trunkCenterOutlines = mainPaper.path("M296 380 l 0 -100 c0,0 4,-8 8,0 l0,100 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
-   var trunkLeft = mainPaper.path("M"+(300-trunkWidth)+" 375 l 0 -50").attr({stroke: '#524132'});
-   var trunkLeftOutlines = mainPaper.path("M"+(296-trunkWidth)+" 375 l 0,-50 c0,0 4,-8 8,0 l0,50 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
-   var trunkRight = mainPaper.path("M"+(296+trunkWidth)+" 375 l 0,-50 ").attr({stroke: '#524132'});
-   var trunkRightOutlines = mainPaper.path("M"+(296+trunkWidth)+" 375 l 0,-50 c0,0 4,-8 8,0 l0,50 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
+   var trunkLeft = mainPaper.path("M"+(300-trunkWidth)+" 380 l 0 -50").attr({stroke: '#524132'});
+   var trunkLeftOutlines = mainPaper.path("M"+(296-trunkWidth)+" 380 l 0,-50 c0,0 4,-8 8,0 l0,50 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
+   var trunkRight = mainPaper.path("M"+(296+trunkWidth)+" 380 l 0,-50 ").attr({stroke: '#524132'});
+   var trunkRightOutlines = mainPaper.path("M"+(296+trunkWidth)+" 380 l 0,-50 c0,0 4,-8 8,0 l0,50 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
    return trunkWidth;
 }
 
@@ -43,8 +43,8 @@ function drawRoots(mainPaper, municipalityId, trunkWidth){
 //Draws young branch visualizations and leaves for it to mainPaper. 
 //Uses municipalityId to get the indicator data from correct municipality.
 function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
-   var youngBranch = mainPaper.path("M"+(300-trunkWidth)+" 325 c0,0 0,-20 -25 -25 l -125 -30").attr({stroke: '#524132'});
-   var generalBranchOutlines = mainPaper.path("M"+(296-trunkWidth)+" 325 c0,0 2,-18 -25 -23 l-122,-32 l130,28 c0,0 25,5 25 28 l-4,0z").attr({stroke: '#524132', fill: '#524132'});
+   var youngBranch = mainPaper.path("M"+(300-trunkWidth)+" 330 c0,0 0,-20 -25 -25 l -125 -30").attr({stroke: '#524132'});
+   var generalBranchOutlines = mainPaper.path("M"+(296-trunkWidth)+" 330 c0,0 2,-18 -25 -23 l-122,-32 l130,28 c0,0 25,5 25 28 l-4,0z").attr({stroke: '#524132', fill: '#524132'});
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = 288;          //should take different value for each leaf
@@ -85,8 +85,8 @@ function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
 //Draws general branch visualizations and leaves for it to mainPaper. 
 //Uses municipalityId to get the indicator data from correct municipality.
 function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
-   var generalBranch = mainPaper.path("M300 280 l 0,-40 c0,0 0,-10 5,-20 l60,-120").attr({stroke: '#524132'});
-   var generalBranchOutlines = mainPaper.path("M296 280 l 0,-40 c0,0 0,-10 5,-20 l64,-120 l-56,120 c0,0 -5,10 -5,20 l 0,40z").attr({stroke: '#524132', fill:'#524132'});
+   var generalBranch = mainPaper.path("M300 280 l 0,-40 c0,0 0,-10 5,-20 l80,-125").attr({stroke: '#524132'});
+   var generalBranchOutlines = mainPaper.path("M296 280 l 0,-40 c0,0 0,-10 5,-20 l84,-125 l-76,125 c0,0 -5,10 -5,20 l 0,40z").attr({stroke: '#524132', fill:'#524132'});
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = 288;          //should take different value for each leaf
@@ -133,7 +133,8 @@ function drawGeneralBranch(mainPaper, municipalityId, trunkWidth){
 //Draws elderly branch visualizations and leaves for it to mainPaper. 
 //Uses municipalityId to get the indicator data from correct municipality.
 function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
-   var elderlyBranch = mainPaper.path("M"+(300+trunkWidth)+" 325 c0,0 0,-20 25 -25 l 55 -10 ").attr({stroke: '#524132'});
+   var elderlyBranch = mainPaper.path("M"+(300+trunkWidth)+" 330 c0,0 0,-20 25 -25 l 55 -10 ").attr({stroke: '#524132'});
+   var elderlyBranchOutline = mainPaper.path("M"+(296+trunkWidth)+" 330 c0,0 0,-20 25 -25 l 59,-10 l-59,15 c0,0 -15,5 -17,20").attr({stroke: '#524132', fill:'#524132'});
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = 288;          //should take different value for each leaf
@@ -156,7 +157,7 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
 }
 
 function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngle){
-   var leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -15,0 -15,-25 c0,0 0,-15 15,-40 c0,0 15,25 15,40 c0,0 0,25 -15,25z");
+   var leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -28,0 -28,-28 c0,0 0,-28 28,-55 c0,0 28,28 28,55 c0,0 0,28 -28,28z");
    var leafcolor = setLeafColor(indicator, municipalityId);//"#1c460c";
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafcolor, fill:leafcolor});
@@ -201,6 +202,6 @@ function setLeafColor(indicator, municipalityId)
    }
    else
    {
-      return "#002f00"; //"#f9ebb3"; //dry leaf
+      return "#4a7d28"; //"#f9ebb3"; //dry leaf
    }
 }
