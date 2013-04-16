@@ -58,13 +58,13 @@ function drawYoungBranch(mainPaper, municipalityId, trunkWidth){
    leafStartPoint = (branchPoint.x-20)+","+(branchPoint.y-15);
    drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 300, 2, 4);
    leafStartPoint = (branchPoint.x-25)+","+(branchPoint.y+15);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 270, 2, 4);
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 270, 0, 0);
    
    branchPoint = youngBranch.getPointAtLength(maxLength-10);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-40);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 320, 2, 4);
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 320, 0, 1);
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+45);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 245, 2, 4);
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 245, 1, 2);
    
    branchPoint = youngBranch.getPointAtLength(maxLength-50);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-50);
@@ -140,17 +140,17 @@ function drawElderlyBranch(mainPaper, municipalityId, trunkWidth){
    
    branchPoint = elderlyBranch.getPointAtLength(maxLength);
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y-10);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 70, 0, 1);
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 70, 0, 0);
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y+15);
    drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 110, 0, 1);
    
    branchPoint = elderlyBranch.getPointAtLength(maxLength-25);
    leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y+25);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 135, 0, 1);
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 135, 1, 3);
    
    branchPoint = elderlyBranch.getPointAtLength(maxLength-55);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y+20);
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 155, 0, 1);  
+   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 155, 2, 4);  
 }
 
 function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngle, form, color){
@@ -161,10 +161,11 @@ function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngl
       leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 30,30 30,60 c0,0 0,30 -30,30z");
    }
    else if (form==1){
-      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 -15,30 15,40 c0,0 15,5 15,20 c0,0 0,30 -30,30z");
+      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z");
+      //leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 -15,30 15,40 c0,0 15,5 15,20 c0,0 0,30 -30,30z");
    }
    else{
-      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -26,0 -26,-25 c0,0 0,-10 6,-20 c0,0 20,-10 10,-20 c0,0 0,-20 20,-20 c0,0 -18,15 0,25 c0,0 8,5 10,25 c0,0 6,35 -22,35");
+      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35");
    }
    
    if (color == 0){
