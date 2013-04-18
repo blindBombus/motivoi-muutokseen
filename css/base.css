@@ -1,3 +1,10 @@
+/**
+      leafcolor="#004100";
+      leafcolor="#4a7d28";
+      leafcolor="#9eaa17";
+      leafcolor="#ddbc7d";
+      leafcolor="#f9ebb3";
+**/
 body{
     font-family: arial, helvetica, sans-serif;
     min-width: 960px;
@@ -27,6 +34,8 @@ body{
 }
 
 ul.navlist{
+   font-family: Verdana, Geneva, sans-serif;
+   font-size: 0.8em;
    list-style: none;
    width: 660px;
    margin-top: 10px;
@@ -44,10 +53,12 @@ ul.navlist li{
 ul.navlist li a{
    display: block;
    padding: 8px;
+   height: 20px;
    text-decoration: none;
-   color: #dddddd;
-   background-color: #777777;
-   font-weight: bold;
+   color: #f9ebb3;
+   background-color: #4a7d28;
+   font-weight: normal;
+   text-transform: uppercase;
 }
 ul.navlist li a:hover{
    background-color: #aaaaaa;
@@ -61,8 +72,15 @@ ul.navlist li#current{
 }
 
 #main-tree{
+   margin-top: 1em;
    width: 600px;
    float: left;
+}
+
+#dropdown{
+   width: 340px;
+   float: right;
+   margin-top: 1em;
 }
 
 #information-box{
@@ -71,6 +89,7 @@ ul.navlist li#current{
    margin: 20px 0px;
    padding: 5px;
    float: right;
+   clear: right;
    border: solid #dddddd;
 }
 #footer{
