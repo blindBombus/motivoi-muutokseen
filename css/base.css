@@ -8,6 +8,7 @@
 body{
     font-family: arial, helvetica, sans-serif;
     min-width: 960px;
+    background-color: #c0c0c0; 
 }
 .wrap{
    width: 960px;
@@ -16,8 +17,16 @@ body{
 }
 #nav{
    width: 100%;
-   background-color: #cccccc;
    overflow: hidden;
+   background-color: #202020;
+   
+}
+
+#nav .wrap{
+   margin-top: 10px;
+   background-color: #ffffff;
+   border-top: 4px groove #a3f06c;
+   border-radius: 10px 10px 0px 0px;
 }
 
 #logo a{
@@ -37,12 +46,13 @@ ul.navlist{
    font-family: Verdana, Geneva, sans-serif;
    font-size: 0.8em;
    list-style: none;
-   width: 660px;
-   margin-top: 10px;
-   margin-bottom: 0px;
+   width: 720px;
+   margin-top: 5px;
+   padding-top: 4px;
    padding-bottom: 0px;
    padding-left: 0px;
    float: right;
+   background: url('../pics/leaves.png') no-repeat 98% 0%; 
 }
 ul.navlist li{
    display: block;
@@ -50,27 +60,31 @@ ul.navlist li{
    margin-bottom: 0px;
    float: left;
 }
+
 ul.navlist li a{
    display: block;
    padding: 8px;
-   height: 20px;
    text-decoration: none;
-   color: #f9ebb3;
-   background-color: #4a7d28;
-   font-weight: normal;
    text-transform: uppercase;
+   color: #746659;
 }
 ul.navlist li a:hover{
-   background-color: #aaaaaa;
+   color: #ddbc7d;
 }
 ul.navlist li#current{
-   background-color: white;
    display: block;
    padding: 8px;
    float: left;
-   font-weight: bold;
+   color: #ffffff;
+   background-color: #8bb76e;
+   font-weight: normal;
+   text-transform: uppercase;
+   border-radius: 10px;
 }
-
+.content{
+   overflow: hidden;
+   background-color: #ffffff;
+}
 #main-tree{
    margin-top: 1em;
    width: 600px;
@@ -84,16 +98,15 @@ ul.navlist li#current{
 }
 
 #information-box{
-   width: 340px;
+   width: 320px;
    height: 500px;
-   margin: 20px 0px;
+   margin: 20px 10px;
    padding: 5px;
    float: right;
    clear: right;
    border: solid #dddddd;
 }
 #footer{
-   margin-top: 20px;
    height: 120px;
    background-color: #cccccc;
 }

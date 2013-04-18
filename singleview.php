@@ -29,9 +29,10 @@
    
    <!--Centering the content-->
    <div class="wrap">
+   <div class="content">
    
       <!--id for visualization drawing script-->
-      <div id="main-tree">Draw Tree Here!</div>
+      <div id="main-tree"></div>
 
       
       <div id = "dropdown">
@@ -41,7 +42,7 @@
    
       <!--box for indicator information-->
       <div id="information-box">Information Box!</div>
-
+   </div>
    </div>
 
 
@@ -58,14 +59,17 @@
    <script type="text/javascript" src="./js/indicator-functions.js"></script>   
    <script type="text/javascript">
       
-      function drawToMainPaper(){
-         var municipalityId = $('#select').val();
+         var municipalityId = 1;//$('#select').val();
          console.log(municipalityId);
-         var mainPaper = Raphael("main-tree", 600,500);
-         mainPaper.clear();   //does not clear the paper :s
+         var mainPaper = Raphael("main-tree", 600,550);
          drawMainTree(municipalityId, mainPaper);
-         //mainPaper.setViewBox(0,0,1200,1000, false);
-      }
+      function drawToMainPaper(){
+         var municipalityId = 1;//$('#select').val();
+         console.log(municipalityId);
+         mainPaper.clear();
+         drawMainTree(municipalityId, mainPaper);
+         //mainPaper.setViewBox(0,0,2400,2000, false);
+         }
    </script>
 </body>
 </html>
