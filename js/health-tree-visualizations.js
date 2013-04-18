@@ -14,7 +14,7 @@ function drawMainTree(municipalityId, mainPaper){
 //to mainPaper. Uses municipalityId to get the indicator data from
 //correct municipality.
 function drawBackground(mainPaper, municipalityId){
-   var ground = mainPaper.ellipse(325, 460, 150, 50).attr({fill: '#46a046', stroke: '#83a67f', 'stroke-width': 8});  
+   //var ground = mainPaper.ellipse(325, 460, 150, 50).attr({fill: '#46a046', stroke: '#83a67f', 'stroke-width': 8});  
 }
 
 //Draws trunk visualization to mainPaper. Uses municipalityId 
