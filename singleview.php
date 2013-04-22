@@ -41,7 +41,13 @@
       </div>
    
       <!--box for indicator information-->
-      <div id="information-box">Information Box!</div>
+      <div id="information-box"></div>
+      <script type="text/javascript">
+         $('#select').change(function(){
+            $('#info').remove();
+            $('#information-box').append('<p id="info">' +'Municipality: '+$('#select option:selected').text()+'</p>');
+         });
+      </script>
    </div>
    </div>
 
