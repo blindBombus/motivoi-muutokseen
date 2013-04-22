@@ -10,18 +10,16 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 </head>
 <body>
-   
-   
-   
+
    <div id = "nav" >
       <!--Centering the content-->
       <div class = "wrap">
-         <div id = "logo"><a href="./index.html"></a></div>
+         <div id = "logo"><a href="./index.php"></a></div>
          <ul class = "navlist">
-         <li><a href="./index.html">Yleisnäkymä</a></li>
-         <li><a href="./compareview.html">Terveyspuiden vertailu</a></li>
+         <li><a href="./index.php">Yleisnäkymä</a></li>
+         <li><a href="./compareview.php">Vertailunäkymä</a></li>
          <li id="current">Yksittäiset terveyspuut</li>
-         <li><a href="./contactform.html">Ota yhteyttä</a></li>
+         <li><a href="./infopage.php">Terveyspuusta</a></li>
          </ul>      
       </div>
    </div>
