@@ -8,7 +8,8 @@
 body{
     font-family: arial, helvetica, sans-serif;
     min-width: 960px;
-    background-color: #c0c0c0; 
+    background-color: #edf8ff;
+   
 }
 .wrap{
    width: 960px;
@@ -17,16 +18,41 @@ body{
 }
 #nav{
    width: 100%;
-   overflow: hidden;
-   background-color: #202020;
-   
+   z-index: -100;
+   padding-top: 10px;
+   border-bottom: ridge #CCFFFE;
+   background-color: #84dad9;
+background-image: linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+background-image: -o-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+background-image: -moz-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+background-image: -webkit-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+background-image: -ms-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, #CCFFFE),
+	color-stop(0.9, #8FE0E6)
+);
 }
 
 #nav .wrap{
-   margin-top: 10px;
+   position: relative;
+   top: 4px;
    background-color: #ffffff;
    border-top: 4px groove #a3f06c;
    border-radius: 10px 10px 0px 0px;
+}
+
+#biglogo {
+   display: block;
+   background:url('../pics/logo.png') no-repeat;
+   background-position: left top;
+   margin: 8px 0px;
+   height: 65px;
+   width: 240px;
+   float: left;
 }
 
 #logo a{
@@ -46,7 +72,7 @@ ul.navlist{
    font-family: Verdana, Geneva, sans-serif;
    font-size: 0.8em;
    list-style: none;
-   width: 720px;
+   width: 660px;
    margin-top: 5px;
    padding-top: 4px;
    padding-bottom: 0px;
@@ -54,6 +80,7 @@ ul.navlist{
    float: right;
    background: url('../pics/leaves.png') no-repeat 98% 0%; 
 }
+
 ul.navlist li{
    display: block;
    margin: 5px;
@@ -106,7 +133,16 @@ ul.navlist li#current{
    clear: right;
    border: solid #dddddd;
 }
-#footer{
-   height: 120px;
-   background-color: #cccccc;
+#footer{ 
+   height: 200px;
+   border-top: solid 1px #9ed678;
+   background-color: #cba787; /**#a4d981; **/
+   overflow: hidden;
+}
+#footer .wrap{ 
+   background-image: url('../pics/smalltree.png');
+   background-repeat: no-repeat;
+   overflow: hidden;
+   height: 200px;
+   background-position: 3% 3%;
 }
