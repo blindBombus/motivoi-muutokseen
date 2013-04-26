@@ -39,22 +39,27 @@
       </div>
    
       <!--box for indicator information-->
-      <div id="information-box"></div>
-      <script type="text/javascript">
+      <div id="comparison-list"></div>
+
+      <div class = "size" id="municipality-list">
+         <?php include '/php/municipality_list.php'; ?>
+      </div>
+
+   </div>
+   </div>
+
+   <script type="text/javascript">
          $('#select').change(function(){
             $('#info').remove();
             $('#information-box').append('<p id="info">' +'Municipality: '+$('#select option:selected').text()+'</p>');
          });
       </script>
-   </div>
-   </div>
-
 
    <div id="footer">
    
       <!--Centering the content-->
       <div class="wrap">
-         <div id="comparison-list">Comparison list here</div>
+         <div id="information-box">Information Box</div>
       </div>
       
    </div>

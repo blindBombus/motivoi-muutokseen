@@ -109,6 +109,7 @@ ul.navlist li#current{
    border-radius: 10px;
 }
 .content{
+   width: 100%;
    overflow: hidden;
    background-color: #ffffff;
 }
@@ -120,18 +121,20 @@ ul.navlist li#current{
 
 #dropdown{
    width: 340px;
-   float: right;
+   float: left;
    margin-top: 1em;
 }
 
-#information-box{
-   width: 320px;
-   height: 500px;
-   margin: 20px 10px;
-   padding: 5px;
+#comparison-list{
+   width: 280px;
+   height: 523px;
+   float: left;
+}
+#municipality-list{
+   width: 50px;
+   height: 523px;
    float: right;
-   clear: right;
-   border: solid #dddddd;
+   padding: none;
 }
 #footer{ 
    height: 200px;
@@ -146,3 +149,33 @@ ul.navlist li#current{
    height: 200px;
    background-position: 3% 3%;
 }
+#information-box{
+   border: solid #dddddd;
+   height: 150px;
+}
+
+ul.list
+{
+   padding: 0;
+   margin-left: 0;
+   list-style-type: none;
+   font-size: 10px;
+}
+
+.size>ul.list { 
+   z-index:999;
+   width:300px;
+   margin:0; list-style:none;
+   background:#fff; color:#333;
+   -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
+   -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
+}
+
+.size>ul.list li {
+   padding:4px;
+   border-bottom: solid 1px #ccc;
+}
+.size>ul.list li:hover {
+   background:#EC6603; color:#fff;
+}
+.size>ul.list li:last-child { border:none }
