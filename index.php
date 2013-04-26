@@ -17,9 +17,8 @@
          <div id = "biglogo"></div>
          <ul class = "navlist">
          <li id="current">Yleisnäkymä</li>
-         <li><a href="./compareview.php">Vertailunäkymä</a></li>
-         <li><a href="./singleview.php">Yksittäiset terveyspuut</a></li>
-         <li><a href="./infopage.php">Terveyspuusta</a></li>
+         <li><a href="./detailview.php">Terveyspuiden tarkastelu</a></li>
+         <li><a href="./infopage.php">Tietoja</a></li>
          </ul>      
       </div>
    </div>

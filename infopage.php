@@ -17,11 +17,16 @@
          <div id = "logo"><a href="./index.php"></a></div>
          <ul class = "navlist">
          <li><a href="./index.php">Yleisnäkymä</a></li>
-         <li><a href="./compareview.php">Vertailunäkymä</a></li>
-         <li><a href="./singleview.php">Yksittäiset terveyspuut</a></li>
-         <li id="current">Terveyspuusta</li>
+         <li><a href="./detailview.php">Terveyspuiden tarkastelu</a></li>
+         <li id="current">Tietoja</li>
          </ul>      
       </div>
+   </div>
+   
+   <div class="wrap">
+   <div class="content">
+         <p>Here will be some content...</p>
+   </div>
    </div>
    
 </body>
