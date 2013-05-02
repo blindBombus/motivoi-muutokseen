@@ -22,6 +22,20 @@
          </ul>      
       </div>
    </div>
+   <!--Centering the content-->
+   <div class="wrap">
+   <div class="content">
+   
+      <!--id for visualization drawing script-->
+      <div id = "pshp-map">
+         <ul>
+         </ul>
+      </div>
+
+      
+
+   </div>
+   </div>
    
 </body>
 </html>

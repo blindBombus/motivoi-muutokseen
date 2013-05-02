@@ -113,6 +113,11 @@ ul.navlist li#current{
    overflow: hidden;
    background-color: #ffffff;
 }
+#pshp-map{
+   height: 485px;
+   width: 660px;
+   background: #ffffff url('../pics/map.png') no-repeat left top;
+}
 #main-tree{
    margin-top: 1em;
    width: 600px;
@@ -120,11 +125,14 @@ ul.navlist li#current{
 }
 
 #dropdown{
-   width: 340px;
-   float: left;
+   position: absolute;
+   width: 280px;
+   margin: 10px;
    margin-top: 1em;
 }
-
+#dropdown #select{
+   width: 160px;
+}
 #comparison-list{
    width: 280px;
    height: 523px;
@@ -132,8 +140,8 @@ ul.navlist li#current{
 }
 #municipality-list{
    width: 50px;
-   height: 523px;
    float: right;
+   margin: 10px;
    padding: none;
 }
 #footer{ 
@@ -165,7 +173,8 @@ ul.list
 .size>ul.list { 
    z-index:999;
    width:300px;
-   margin:0; list-style:none;
+   margin:0; 
+   list-style:none;
    background:#fff; color:#333;
    -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
    -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
