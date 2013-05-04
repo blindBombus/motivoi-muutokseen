@@ -113,104 +113,7 @@ ul.navlist li#current{
    overflow: hidden;
    background-color: #ffffff;
 }
-ul#pshp-map{
-   height: 485px;
-   width: 660px;
-   background: #ffffff url('../pics/map.png') no-repeat left top;
-   position: relative;
-}
-#pshp-map li {
-    margin: 0; 
-    padding: 0; 
-    list-style: none;
-    position: absolute; 
-    top: 0;
-}
-#pshp-map li, #pshp-map a {
-    display: block;
-}
-#kih{
 
-}
-#vir{
-   top:5px;
-   left: 220px;
-   width:135px;
-   height: 90px;
-}
-#vir:hover{
-   top:5px
-   left: 220px;
-   width:140px;
-   height: 90px;
-   background: transparent url('../pics/map.png') -220px -2000px no-repeat;
-}
-#mv{
-
-}
-#jam{
-
-}
-#kuh{
-
-}
-#par{
-
-}
-#ylo{
-
-}
-#ruo{
-
-}
-#juu{
-
-}
-#ori{
-
-}
-#kan{
-
-}
-#pal{
-
-}
-#ika{
-
-}
-#ham{
-
-}
-#nok{
-
-}
-#tam{
-
-}
-#pir{
-
-}
-#lem{
-
-}
-#val{
-
-}
-#sas{
-
-}
-#ves{
-
-}
-#aka{
-
-}
-#pun{
-
-}
-#urj{
-
-}
 #main-tree{
    margin-top: 1em;
    width: 600px;
@@ -263,7 +166,7 @@ ul.list
    font-size: 10px;
 }
 
-.munlist>ul.list { 
+.size>ul.list { 
    z-index:999;
    width:300px;
    margin:0; 
@@ -273,26 +176,11 @@ ul.list
    -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
 }
 
-.munlist>ul.list li {
+.size>ul.list li {
    padding:4px;
    border-bottom: solid 1px #ccc;
 }
-.munlist>ul.list li:hover {
+.size>ul.list li:hover {
    background:#EC6603; color:#fff;
 }
-.munlist>ul.list li:last-child { border:none }
-
-div.munlist {
-    display: none;
-}
-
-a:hover + div.munlist {
-    display: block;
-}
-
-a#hover-anchor
-{
-   position: absolute;
-   right: 200px;
-   top: 300px;
-}
+.size>ul.list li:last-child { border:none }

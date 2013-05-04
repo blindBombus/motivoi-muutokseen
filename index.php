@@ -6,6 +6,7 @@
 <title>Terveyspuu</title>
 <link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
 <link href="./css/base.css" rel="StyleSheet"/>
+<link href="./css/map.css" rel="StyleSheet"/>
 <script type="text/javascript" src="http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael-min.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 </head>
