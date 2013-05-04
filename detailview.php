@@ -38,7 +38,14 @@
       </div>
    
       <!--box for indicator information-->
-      <div id="information-box"></div>
+      <div id="comparison-list"></div>
+
+      <a class = "hover-anchor" id = "hover-anchor">&lt;</a>
+
+      <div class = "munlist" id="municipality-list">
+         <?php include '/php/municipality_list.php'; ?>
+      </div>
+
       <script type="text/javascript">
          $('#select').change(function(){
             $('#info').remove();
@@ -53,7 +60,7 @@
    
       <!--Centering the content-->
       <div class="wrap">
-         <div id="comparison-list">Comparison list here</div>
+         <div id="information-box">Information Box</div>
       </div>
       
    </div>
@@ -67,7 +74,8 @@
          var mainPaper = Raphael("main-tree", 600,550);
          drawMainTree(municipalityId, mainPaper);
       function drawToMainPaper(){
-         var municipalityId = 1;//$('#select').val();
+         //var municipalityId = 1;
+         var municipalityId = $('#select').val();
          console.log(municipalityId);
          mainPaper.clear();
          drawMainTree(municipalityId, mainPaper);

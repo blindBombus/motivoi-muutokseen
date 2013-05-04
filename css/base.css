@@ -162,7 +162,7 @@ ul.list
    font-size: 10px;
 }
 
-.size>ul.list { 
+.munlist>ul.list { 
    z-index:999;
    width:300px;
    margin:0; list-style:none;
@@ -171,11 +171,26 @@ ul.list
    -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999
 }
 
-.size>ul.list li {
+.munlist>ul.list li {
    padding:4px;
    border-bottom: solid 1px #ccc;
 }
-.size>ul.list li:hover {
+.munlist>ul.list li:hover {
    background:#EC6603; color:#fff;
 }
-.size>ul.list li:last-child { border:none }
+.munlist>ul.list li:last-child { border:none }
+
+div.munlist {
+    display: none;
+}
+
+a:hover + div.munlist {
+    display: block;
+}
+
+a#hover-anchor
+{
+   position: absolute;
+   right: 200px;
+   top: 300px;
+}
