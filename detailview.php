@@ -33,6 +33,11 @@
 
       
       <div id = "dropdown">
+         <select id = "select">";
+       <!-- <option value="1">Testi 1</option>
+            <option value="2">Testi 2</option>
+            <option value="3">Testi 3</option>
+         </select> -->
          <?php include '/php/dropmenu.php'; ?>
          <input type = "submit" value = "Go!" onclick='drawToMainPaper()'/>
       </div>
@@ -40,10 +45,56 @@
       <!--box for indicator information-->
       <div id="comparison-list"></div>
 
-      <a class = "hover-anchor" id = "hover-anchor">&lt;</a>
-
       <div class = "munlist" id="municipality-list">
-         <?php include '/php/municipality_list.php'; ?>
+      <?php include '/php/municipality_list.php'; ?>
+      <!-- list made with php should look something like the following -->
+      <!-- <ul>
+            <li id="mun_1" value="1"><span class="short">Aka</span><span class="whole">Akaa</span></li>
+            <li id="mun_2" value="2"><span class="short">Häm</span><span class="whole">Hämeenkyrö</span></li>
+            <li id="mun_3" value="3"><span class="short">Ika</span><span class="whole">Ikaalinen</span></li>
+            <li id="mun_4" value="1"><span class="short">Juu</span><span class="whole">Juupajoki</span></li>
+            <li id="mun_5" value="2"><span class="short">Jäm</span><span class="whole">Jämsä</span></li>
+            <li id="mun_6" value="3"><span class="short">Kan</span><span class="whole">Kangasala</span></li>
+            <li id="mun_7" value="1"><span class="short">Kih</span><span class="whole">Kihniö</span></li>
+            <li id="mun_8" value="2"><span class="short">Kuh</span><span class="whole">Kuhmoinen</span></li>
+            <li id="mun_9" value="3"><span class="short">Lem</span><span class="whole">Lempäälä</span></li>
+            <li id="mun_10" value="1"><span class="short">M-V</span><span class="whole">Mänttä-Vilppula</span></li>
+            <li id="mun_11" value="2"><span class="short">Nok</span><span class="whole">Nokia</span></li>
+            <li id="mun_12" value="3"><span class="short">Ori</span><span class="whole">Orivesi</span></li>
+            <li id="mun_13" value="1"><span class="short">Par</span><span class="whole">Parkano</span></li>
+            <li id="mun_14" value="2"><span class="short">Pir</span><span class="whole">Pirkkala</span></li>
+            <li id="mun_15" value="3"><span class="short">Pun</span><span class="whole">Punkalaidun</span></li>
+            <li id="mun_16" value="1"><span class="short">Päl</span><span class="whole">Pälkäne</span></li>
+            <li id="mun_17" value="2"><span class="short">Ruo</span><span class="whole">Ruovesi</span></li>
+            <li id="mun_18" value="3"><span class="short">Sas</span><span class="whole">Sastamala</span></li>
+            <li id="mun_19" value="1"><span class="short">Tam</span><span class="whole">Tampere</span></li>
+            <li id="mun_20" value="2"><span class="short">Urj</span><span class="whole">Urjala</span></li>
+            <li id="mun_21" value="3"><span class="short">Val</span><span class="whole">Valkeakoski</span></li>
+            <li id="mun_22" value="1"><span class="short">Ves</span><span class="whole">Vesilahti</span></li>
+            <li id="mun_23" value="2"><span class="short">Vir</span><span class="whole">Virrat</span></li>
+            <li id="mun_24" value="3"><span class="short">Ylö</span><span class="whole">Ylöjärvi</span></li>
+            <li id="mun_25" value="1"><span class="short">PM</span><span class="whole">Pirkanmaa</span></li>
+            <li id="mun_26" value="2"><span class="short">Suo</span><span class="whole">Suomi</span></li>
+         </ul> -->
+         <script>
+            
+            $(document).ready(function () {
+               $("#municipality-list li").click(function () {
+                  if ($(this).hasClass("selected")){
+                     $(this).removeClass("selected");
+                  }
+                  else{
+                     $(this).addClass("selected");
+                  }
+               });
+            });
+            
+            $(document).ready(function () {
+            $("#municipality-list li.selected").click(function () {
+                  $(this).removeClass("selected");
+               });
+            });
+         </script>   
       </div>
 
       <script type="text/javascript">
