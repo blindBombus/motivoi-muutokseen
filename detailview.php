@@ -43,7 +43,20 @@
       </div>
    
       <!--box for indicator information-->
-      <div id="comparison-list"></div>
+      <div id="comparison-list">
+         <div class="comp_show" id="comp-list-info">
+            <p>Here was supposed to be some information, but I don't remember what...</p>
+         </div>
+         
+         <div class="comp_hidden" id="vis_1"><div id="comp-tree_1"></div></div>
+         <div class="comp_hidden" id="vis_2"><div id="comp-tree_2"></div></div>
+         <div class="comp_hidden" id="vis_3"><div id="comp-tree_3"></div></div>
+         <div class="comp_hidden" id="vis_4"><div id="comp-tree_4"></div></div>
+         <div class="comp_hidden" id="vis_5"><div id="comp-tree_5"></div></div>
+         <div class="comp_hidden" id="vis_6"><div id="comp-tree_6"></div></div>
+         <div class="comp_hidden" id="vis_7"><div id="comp-tree_7"></div></div>
+         <!-- This might be done with loop -->
+      </div>
 
       <div class = "munlist" id="municipality-list">
       <?php include '/php/municipality_list.php'; ?>
@@ -82,18 +95,19 @@
                $("#municipality-list li").click(function () {
                   if ($(this).hasClass("selected")){
                      $(this).removeClass("selected");
+
+                     console.log($(this).val());
+                     $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_show");
+                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_hidden");
                   }
                   else{
                      $(this).addClass("selected");
+                     $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_hidden");
+                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
                   }
                });
             });
-            
-            $(document).ready(function () {
-            $("#municipality-list li.selected").click(function () {
-                  $(this).removeClass("selected");
-               });
-            });
+
          </script>   
       </div>
 
@@ -124,13 +138,20 @@
          console.log(municipalityId);
          var mainPaper = Raphael("main-tree", 600,550);
          drawMainTree(municipalityId, mainPaper);
+         var i=1;
+         while(i<27){
+            setComparison(i);
+            i++;
+         }
+      function setComparison(municipalityId){
+         var paper = Raphael("comp-tree_"+municipalityId+"", 120,110);   
+         drawComparisonTree(municipalityId, paper);
+         }
       function drawToMainPaper(){
-         //var municipalityId = 1;
          var municipalityId = $('#select').val();
          console.log(municipalityId);
          mainPaper.clear();
          drawMainTree(municipalityId, mainPaper);
-         //mainPaper.setViewBox(0,0,2400,2000, false);
          }
    </script>
 </body>

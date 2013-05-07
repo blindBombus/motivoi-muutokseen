@@ -5,6 +5,14 @@ function drawMainTree(municipalityId, paper){
    drawBackground(paper, municipalityId);
    var trunkWidth  =  drawTrunk(paper, municipalityId);
    drawRoots(paper, municipalityId, trunkWidth);
+   //addIcons();
+}
+//Draws main health tree visualization
+function drawComparisonTree(municipalityId, paper){
+   drawBackground(paper, municipalityId);
+   var trunkWidth  =  drawTrunk(paper, municipalityId);
+   drawRoots(paper, municipalityId, trunkWidth);
+   paper.setViewBox(0,0,600,550, false);
 }
 
 //Draws background elements and miscellaneous indicator visualizations
