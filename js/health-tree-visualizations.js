@@ -187,32 +187,81 @@ function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngl
    else{
       leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35");
    }
-   
-   if (color == 0){
-      leafcolor="#004100";
-      leafline="#004100";
-   }
-   else if (color == 1){
-      leafcolor="#4a7d28";
-      leafline=="#4a7d28";
-   }
-   else if (color == 2){
-      leafcolor="#9eaa17";
-      leafline="#9eaa17";
-   }
-   else if (color == 3){
-      leafcolor="#ddbc7d";
-      leafline="#ddbc7d";
-   }
-   else {
-      leafcolor="#f9ebb3";
-      leafline="#d7ca97";
-   }
 
    leafcolor = colorAndForm[0];
    leafline = "#A0A0A0";
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafline, fill: leafcolor});
+
+   //take ids of the leaves and store them
+   //use these ids to see which leaf is clicked
+   //use the associated mun/ind Id to fetch data for that leaf
+   var newLeaf = new Leaf(leaf, municipalityId, indicator,leaf.id);
+   leafList.push(newLeaf);
+
+   leaf.node.onclick=function click () {
+      numOfTimesClicked++;
+
+      var result = $.grep(leafList, function(e){return e.leafId == leaf.id;});
+      result = result[0];
+      console.log(result);
+
+      var munId = result.municipalityId;  //pass to query database
+      var indId = result.indicatorId;
+
+      var indicatorName; //to display in header of information table
+
+      var value = 0.0;
+      //find indicator value
+      $.ajax({
+         url: './php/get_indicator_value.php',
+         type: 'POST',
+         data: 'indicatorId=' + indId + '&areaNum=' + munId,
+         async: false,
+
+         success: function (res) {
+            console.log(res);
+            value = parseFloat(res);
+         }
+
+      });
+
+      //find indicator name
+      $.ajax({
+         url: './php/get_indicator_name.php',
+         type: 'POST',
+         data: 'indicatorId=' + indId,
+         async: false,
+
+         success: function (data) {
+            console.log(data);
+            indicatorName = data;
+         }
+
+      });
+
+
+      console.log("Num of Times clicked:" + numOfTimesClicked);
+      
+
+      if (numOfTimesClicked%3 === 1)
+      {
+         $('#hdr_1').html(indicatorName);
+         $('#data_11').html(value);
+      }
+      else if (numOfTimesClicked%3 === 2)
+      {
+         $('#hdr_2').html(indicatorName);
+         $('#data_12').html(value);
+      }
+      else
+      {
+         $('#hdr_3').html(indicatorName);
+         $('#data_13').html(value);
+      }
+
+      
+   }
 }
 
 

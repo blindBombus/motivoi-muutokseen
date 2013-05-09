@@ -240,7 +240,7 @@ ul#pshp-map{
 #footer{ 
    height: 200px;
    border-top: solid 1px #9ed678;
-   background-color: #cba787; /**#a4d981; **/
+   background-color: #3A7A54; /**#a4d981; **/
    overflow: hidden;
 }
 #footer .wrap{ 
@@ -295,4 +295,22 @@ a#hover-anchor
    position: absolute;
    right: 200px;
    top: 300px;
+}
+
+table
+{
+width:100%;
+}
+th
+{
+   vertical-align: top;
+   text-align: center;
+   background-color: #9FEBBD       ;
+   height:50px;
+}
+td 
+{
+   text-align: center;
+   width: 33%;
+   background-color: #C3E3D0;
 }
