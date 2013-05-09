@@ -34,7 +34,7 @@
 
       
       <div id = "dropdown">
-         <?php include '/php/dropmenu.php'; ?>
+         <?php include './php/dropmenu.php'; ?>
          <input type = "submit" value = "Go!" onclick='drawToMainPaper()'/>
       </div>
    
@@ -42,7 +42,7 @@
       <div id="comparison-list"></div>
 
       <div class = "size" id="municipality-list">
-         <?php include '/php/municipality_list.php'; ?>
+         <?php include './php/municipality_list.php'; ?>
       </div>
 
    </div>

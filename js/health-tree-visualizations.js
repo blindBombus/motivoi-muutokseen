@@ -1,51 +1,98 @@
 //This js-file uses Raphaël.js so remember to include it to your webpage
 
 //Draws main health tree visualization
-function drawMainTree(municipalityId, mainPaper){
-   drawBackground(mainPaper, municipalityId);
-   var trunkWidth  =  drawTrunk(mainPaper, municipalityId);
-   drawRoots(mainPaper, municipalityId, trunkWidth);
+function drawMainTree(municipalityId, paper){
+   drawBackground(paper, municipalityId);
+   var trunkWidth  =  drawTrunk(paper, municipalityId);
+   drawRoots(paper, municipalityId, trunkWidth);
+   //drawAcorns();
+   //addIcons();
+   drawLegend(paper, 25, 500);
+}
+//Draws main health tree visualization
+function drawSmallTree(municipalityId, paper, xView, yView){
+   drawBackground(paper, municipalityId);
+   var trunkWidth  =  drawTrunk(paper, municipalityId);
+   drawRoots(paper, municipalityId, trunkWidth);
+   paper.setViewBox(0,0, xView, yView, false);
 }
 
 //Draws background elements and miscellaneous indicator visualizations
-//to mainPaper. Uses municipalityId to get the indicator data from
+//to paper. Uses municipalityId to get the indicator data from
 //correct municipality.
-function drawBackground(mainPaper, municipalityId){
-   //var ground = mainPaper.ellipse(325, 460, 150, 50).attr({fill: '#46a046', stroke: '#83a67f', 'stroke-width': 8});  
+function drawBackground(paper, municipalityId){
+   //var ground = paper.ellipse(325, 460, 150, 50).attr({fill: '#46a046', stroke: '#83a67f', 'stroke-width': 8});  
 }
 
-//Draws trunk visualization to mainPaper. Uses municipalityId 
+//Draws trunk visualization to paper. Uses municipalityId 
 //to get the indicator data from correct municipality.
 //Returns the distance between trunkparts.
-function drawTrunk(mainPaper, municipalityId){
+function drawTrunk(paper, municipalityId){
    var trunkWidth = 15;
-   var trunkCenter = mainPaper.path("M325 505 l 0 -225 l 0,-40 c0,0 0,-10 5,-20 l60,-120").attr({stroke: '#524132'});
-   var trunkCenterOutlines = mainPaper.path("M329 400 l0,30 c0,0 0,20 -4,75 c0,0 -4,-55 -4,-75 l0,-30 l 0 -120 l 0,-40 c0,0 0,-10 5,-20 l64,-120 l-56,120 c0,0 -5,10 -5,20 l 0,40 l0,120z").attr({stroke: '#524132', fill: '#524132'});
-   drawGeneralBranchLeaves(mainPaper, municipalityId, trunkCenter);
-   var trunkLeft = mainPaper.path("M"+(325-trunkWidth)+" 400 l 0 -60 c0,0 0,-20 -25 -25 l -125 -30").attr({stroke: '#524132'});
-   var trunkLeftOutlines = mainPaper.path("M"+(321-trunkWidth)+" 400 l 0,-60 c0,0 2,-18 -25 -23 l-122,-32 l130,28 c0,0 25,5 25 28 l0,60z").attr({stroke: '#524132', fill: '#524132'});
-   drawYoungBranchLeaves(mainPaper, municipalityId, trunkLeft);
-   var trunkRight = mainPaper.path("M"+(325+trunkWidth)+" 400 l 0,-60 c0,0 0,-20 25 -25 l 55 -10").attr({stroke: '#524132'});
-   var trunkRightOutlines = mainPaper.path("M"+(321+trunkWidth)+" 400 l 0,-60 c0,0 0,-20 25 -25 l 59,-10 l-59,15 c0,0 -15,5 -17,20 l0,60 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
-   drawElderlyBranchLeaves(mainPaper, municipalityId, trunkRight);
+   var trunkCenter = paper.path("M325 505 l 0 -225 l 0,-40 c0,0 0,-10 5,-20 l60,-120").attr({stroke: '#524132'});
+   var trunkCenterOutlines = paper.path("M329 400 l0,30 c0,0 0,20 -4,75 c0,0 -4,-55 -4,-75 l0,-30 l 0 -120 l 0,-40 c0,0 0,-10 5,-20 l64,-120 l-56,120 c0,0 -5,10 -5,20 l 0,40 l0,120z").attr({stroke: '#524132', fill: '#524132'});
+   drawGeneralBranchLeaves(paper, municipalityId, trunkCenter);
+   drawRootIndicators(paper, municipalityId, trunkCenter);
+
+   var trunkLeft = paper.path("M"+(325-trunkWidth)+" 400 l 0 -60 c0,0 0,-20 -25 -25 l -125 -30").attr({stroke: '#524132'});
+   var trunkLeftOutlines = paper.path("M"+(321-trunkWidth)+" 400 l 0,-60 c0,0 2,-18 -25 -23 l-122,-32 l130,28 c0,0 25,5 25 28 l0,60z").attr({stroke: '#524132', fill: '#524132'});
+   drawYoungBranchLeaves(paper, municipalityId, trunkLeft);
+   var trunkRight = paper.path("M"+(325+trunkWidth)+" 400 l 0,-60 c0,0 0,-20 25 -25 l 55 -10").attr({stroke: '#524132'});
+   var trunkRightOutlines = paper.path("M"+(321+trunkWidth)+" 400 l 0,-60 c0,0 0,-20 25 -25 l 59,-10 l-59,15 c0,0 -15,5 -17,20 l0,60 c0,0 -4,8 -8,0z").attr({stroke: '#524132', fill: '#524132'});
+   drawElderlyBranchLeaves(paper, municipalityId, trunkRight);
    return trunkWidth;
 }
 
 //Draws root visualizations and other indicator visualizations that
-//must be drawn with the roots to mainPaper. Uses municipalityId 
+//must be drawn with the roots to paper. Uses municipalityId 
 //to get the indicator data from correct municipality.
-function drawRoots(mainPaper, municipalityId, trunkWidth){
+function drawRoots(paper, municipalityId, trunkWidth){
    
-   var rootLeft = mainPaper.path("M"+(325-trunkWidth)+" 400 c0,0 0,15 -15,20 l-100,20").attr({stroke: '#524132'});
-   var rootLeftOutline = mainPaper.path("M"+(321-trunkWidth)+" 400 c0,0 0,14 -15,16 l-100,24 l100,-16 c0,0 23,0 23,-25z").attr({stroke: '#524132', fill:'#524132'});
+   var rootLeft = paper.path("M"+(325-trunkWidth)+" 400 c0,0 0,15 -15,20 l-100,20").attr({stroke: '#524132'});
+   var rootLeftOutline = paper.path("M"+(321-trunkWidth)+" 400 c0,0 0,14 -15,16 l-100,24 l100,-16 c0,0 23,0 23,-25z").attr({stroke: '#524132', fill:'#524132'});
    
-   var rootRight = mainPaper.path("M"+(325+trunkWidth)+" 400 c0,0 0,15 15,20 l100, 20").attr({stroke: '#524132'});
-   var rootRightOutline = mainPaper.path("M"+(329+trunkWidth)+" 400 c0,0 0,14 15,16 l100,24 l-100,-16 c0,0 -23,0 -23,-25z").attr({stroke: '#524132', fill:'#524132'});
+   var rootRight = paper.path("M"+(325+trunkWidth)+" 400 c0,0 0,15 15,20 l100, 20").attr({stroke: '#524132'});
+   var rootRightOutline = paper.path("M"+(329+trunkWidth)+" 400 c0,0 0,14 15,16 l100,24 l-100,-16 c0,0 -23,0 -23,-25z").attr({stroke: '#524132', fill:'#524132'});
 }
 
-//Draws young branch visualizations and leaves for it to mainPaper. 
+function drawRootIndicators(paper, municipalityId, mainRoot){
+   var rootPoint = null
+   var rootStartPoint = null;
+   var indicator = null;
+   
+   rootPoint = mainRoot.getPointAtLength(70);
+   rootStartPoint = (rootPoint.x-1)+","+(rootPoint.y);
+   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 100);
+   rootStartPoint = (rootPoint.x+1)+","+(rootPoint.y-2);
+   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 261);
+
+   rootPoint = mainRoot.getPointAtLength(50);
+   rootStartPoint = (rootPoint.x-1)+","+(rootPoint.y);
+   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 120);
+   rootStartPoint = (rootPoint.x+1)+","+(rootPoint.y-2);
+   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 241);
+   
+   
+}
+
+function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
+   var rootForm = setRootForm(indicator, municipalityId);
+   if (rootForm==0){
+      var root = paper.path("M"+rootStartPoint+" c0,0 -4,0 -4,-4 l2,-80 l4,80 c0,0 0,4 -4,4z");
+   }
+   else if (rootForm==1){
+      var root = paper.path("M"+rootStartPoint+" c0,0 -4,0 -4,-4 l2,-60 l4,60 c0,0 0,4 -4,4z");
+   }
+   else{
+      var root = paper.path("M"+rootStartPoint+" c0,0 -4,0 -4,-4 l2,-40 l4,40 c0,0 0,4 -4,4z");
+   }
+   root.transform("r"+angle+","+rootStartPoint);
+   root.attr({stroke: '#524132', fill:'#524132'});
+}
+
+//Draws young branch visualizations and leaves for it to paper. 
 //Uses municipalityId to get the indicator data from correct municipality.
-function drawYoungBranchLeaves(mainPaper, municipalityId, branch){
+function drawYoungBranchLeaves(paper, municipalityId, branch){
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = null;          //should take different value for each leaf
@@ -54,48 +101,48 @@ function drawYoungBranchLeaves(mainPaper, municipalityId, branch){
    branchPoint = branch.getPointAtLength(maxLength);
    leafStartPoint = (branchPoint.x-20)+","+(branchPoint.y-15);
    indicator = 288;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 300, 2, 4);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 300);
    leafStartPoint = (branchPoint.x-25)+","+(branchPoint.y+15);
    indicator = 242;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 270, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 270);
    
    branchPoint = branch.getPointAtLength(maxLength-10);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-40);
    indicator = 1245;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 320, 0, 1);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 320);
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+45);
    indicator = 289;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 245, 1, 2);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 245);
    
    branchPoint = branch.getPointAtLength(maxLength-50);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-50);
    indicator = 3219;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 335, 0, 1);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 335);
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+50);
    indicator = 189;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 230, 0, 1);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 230);
    
    branchPoint = branch.getPointAtLength(maxLength-90);
    leafStartPoint = branchPoint.x+","+(branchPoint.y-40);
    indicator = 3905;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 350, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 350);
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+30);
    indicator = 286;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 210, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 210);
    
    branchPoint = branch.getPointAtLength(maxLength-125);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-15);
    indicator = 288;                                                              //dummy indicator
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 360, 1, 2);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 360);
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+12);
    indicator = 242;                                                             //dummy indicator
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 190, 1, 3);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 190);
    
 }
 
-//Draws general branch visualizations and leaves for it to mainPaper. 
+//Draws general branch visualizations and leaves for it to paper. 
 //Uses municipalityId to get the indicator data from correct municipality.
-function drawGeneralBranchLeaves(mainPaper, municipalityId, branch){
+function drawGeneralBranchLeaves(paper, municipalityId, branch){
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = null;          //should take different value for each leaf
@@ -104,48 +151,48 @@ function drawGeneralBranchLeaves(mainPaper, municipalityId, branch){
    branchPoint = branch.getPointAtLength(maxLength);
    leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y-10);
    indicator = 306;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 15, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 15);
    leafStartPoint = (branchPoint.x+30)+","+(branchPoint.y+20);
    indicator = 3113;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 50, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 50);
    
    branchPoint = branch.getPointAtLength(maxLength-25);
    leafStartPoint = (branchPoint.x-16)+","+(branchPoint.y-25);
    indicator = 184;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 350, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 350);
    leafStartPoint = (branchPoint.x+40)+","+(branchPoint.y+25);
    indicator = 3224;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 75, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 75);
    
    branchPoint = branch.getPointAtLength(maxLength-60);
    leafStartPoint = (branchPoint.x-30)+","+(branchPoint.y-30);
    indicator = 1560;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 330, 1, 2);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 330);
    leafStartPoint = (branchPoint.x+50)+","+(branchPoint.y+30);
    indicator = 1259;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 95, 1, 2);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 95);
    
    branchPoint = branch.getPointAtLength(maxLength-110);
    leafStartPoint = (branchPoint.x-20)+","+(branchPoint.y-45);
    indicator = 306;                                                              //dummy indicator
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 305, 1, 3);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 305);
    leafStartPoint = (branchPoint.x+45)+","+(branchPoint.y+10);
    indicator = 3113;                                                              //dummy indicator
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 115, 1, 3);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 115);
    
    branchPoint = branch.getPointAtLength(maxLength-130);
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y-20);
    indicator = 184;                                                             //dummy indicator
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 290, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 290);
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y+15);
    indicator = 3224;                                                             //dummy indicator
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 140, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 140);
    
 }
 
-//Draws elderly branch visualizations and leaves for it to mainPaper. 
+//Draws elderly branch visualizations and leaves for it to paper. 
 //Uses municipalityId to get the indicator data from correct municipality.
-function drawElderlyBranchLeaves(mainPaper, municipalityId, branch){
+function drawElderlyBranchLeaves(paper, municipalityId, branch){
    var branchPoint = null
    var leafStartPoint = null;
    var indicator = null;          //should take different value for each leaf
@@ -154,23 +201,23 @@ function drawElderlyBranchLeaves(mainPaper, municipalityId, branch){
    branchPoint = branch.getPointAtLength(maxLength);
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y-10);
    indicator = 307;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 70, 0, 0);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 70);
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y+15);
    indicator = 690;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 110, 0, 1);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 110);
    
    branchPoint = branch.getPointAtLength(maxLength-25);
    leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y+25);
    indicator = 318;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 135, 1, 3);
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 135);
    
    branchPoint = branch.getPointAtLength(maxLength-55);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y+20);
    indicator = 1570;
-   drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, 155, 2, 4);  
+   drawLeaf(paper, leafStartPoint, indicator, municipalityId, 155);  
 }
 
-function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngle, form, color){
+function drawLeaf(paper, leafStartPoint, indicator, municipalityId, leafAngle){
    var leafcolor = null; //setLeafColor(indicator, municipalityId);//"#1c460c";
    var leafline = null;
    var leaf = null;
@@ -178,14 +225,14 @@ function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngl
    form = colorAndForm[1];
 
    if (form==0){
-      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 30,30 30,60 c0,0 0,30 -30,30z");
+      leaf = paper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 30,30 30,60 c0,0 0,30 -30,30z");
    }
    else if (form==1){
-      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z");
-      //leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 -15,30 15,40 c0,0 15,5 15,20 c0,0 0,30 -30,30z");
+      leaf = paper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z");
+      //leaf = paper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 -15,30 15,40 c0,0 15,5 15,20 c0,0 0,30 -30,30z");
    }
    else{
-      leaf = mainPaper.path("M"+leafStartPoint+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35");
+      leaf = paper.path("M"+leafStartPoint+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35");
    }
 
    leafcolor = colorAndForm[0];
@@ -264,6 +311,22 @@ function drawLeaf(mainPaper, leafStartPoint, indicator, municipalityId, leafAngl
    }
 }
 
+function drawLegend(paper, startX, startY){
+   var bestLeaf = paper.path("M"+startX+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 30,30 30,60 c0,0 0,30 -30,30z").transform("r25,"+startX+","+startY+"s0.3");
+   bestLeaf.attr({stroke: leafline, fill: leafcolor});
+   var secondBestLeaf = paper.path("M"+(startX+20)+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 30,30 30,60 c0,0 0,30 -30,30z").transform("r25,"+(startX+20)+","+startY+"s0.3");
+   secondBestLeaf.attr({stroke: leafline, fill: leafcolor});
+   var midleLeaf = paper.path("M"+(startX+40)+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z").transform("r25,"+(startX+40)+","+startY+"s0.3");
+   midleLeaf.attr({stroke: leafline, fill: leafcolor});
+   var badLeaf = paper.path("M"+(startX+60)+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z").transform("r25,"+(startX+60)+","+startY+"s0.3");
+   badLeaf.attr({stroke: leafline, fill: leafcolor});
+   var worstLeaf = paper.path("M"+(startX+80)+","+startY+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35").transform("r25,"+(startX+80)+","+startY+"s0.3");
+   worstLeaf.attr({stroke: leafline, fill: leafcolor});
+}
+
+function setRootForm(indicator, municipalityId){
+   return 0;
+}
 
 function setLeafColorAndForm(indicator, municipalityId)
 {
@@ -311,7 +374,7 @@ function setLeafColorAndForm(indicator, municipalityId)
    }
    else if (value == 1)
    {
-      color = "#f9ebb3"; //"#f9ebb3"; //dry leaf
+      color = "#f9ebb3"; //dry leaf
       form = 2;
    }
    else
