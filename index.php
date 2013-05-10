@@ -8,7 +8,7 @@
 <link href="./css/base.css" rel="StyleSheet"/>
 <link href="./css/map.css" rel="StyleSheet"/>
 <script type="text/javascript" src="http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael-min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="./js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 
