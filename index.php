@@ -58,11 +58,27 @@
    <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script type="text/javascript" src="./js/indicator-functions.js"></script> 
    <script>
+            var leafList = [];               //array of drawn leafs
+         var numOfTimesClicked = 0;       //number of times clicked on leafs
+         
+
+         //object for storing drawn leaf data
+         function Leaf(leaf, municipalityId, indicatorId, leafId)
+         {
+            this.leaf = leaf; 
+            this.municipalityId = municipalityId;
+            this.indicatorId = indicatorId;
+            this.leafId = leafId
+         };
+
+
       var i=1;
          while(i<25){
             drawMuniTree(i);
             i++;
          }
+
+
       function drawMuniTree(municipalityId){
          var paper = Raphael("small_"+municipalityId+"", 60,55);   
          drawSmallTree(municipalityId, paper, 600,550);
