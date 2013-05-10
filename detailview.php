@@ -8,7 +8,7 @@
 <link href="./css/base.css" rel="StyleSheet"/>
 <link href="./css/comparison.css" rel="StyleSheet"/>
 <script type="text/javascript" src="http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael-min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="./js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 
@@ -50,13 +50,13 @@
             <p>Here was supposed to be some information, but I don't remember what...</p>
          </div>
          
-         <div class="comp_hidden" id="vis_1"><div id="comp-tree_1"></div></div>
-         <div class="comp_hidden" id="vis_2"><div id="comp-tree_2"></div></div>
-         <div class="comp_hidden" id="vis_3"><div id="comp-tree_3"></div></div>
-         <div class="comp_hidden" id="vis_4"><div id="comp-tree_4"></div></div>
-         <div class="comp_hidden" id="vis_5"><div id="comp-tree_5"></div></div>
-         <div class="comp_hidden" id="vis_6"><div id="comp-tree_6"></div></div>
-         <div class="comp_hidden" id="vis_7"><div id="comp-tree_7"></div></div>
+         <div id="vis_1"><div id="comp-tree_1"></div></div>
+         <div id="vis_2"><div id="comp-tree_2"></div></div>
+         <div id="vis_3"><div id="comp-tree_3"></div></div>
+         <div id="vis_4"><div id="comp-tree_4"></div></div>
+         <div id="vis_5"><div id="comp-tree_5"></div></div>
+         <div id="vis_6"><div id="comp-tree_6"></div></div>
+         <div id="vis_7"><div id="comp-tree_7"></div></div>
          <!-- This might be done with loop -->
       </div>
       <div class = "munlist" id="municipality-list">
@@ -97,14 +97,20 @@
                $("#municipality-list li").click(function () {
                   if ($(this).hasClass("selected")){
                      $(this).removeClass("selected");
+                     $(this).addClass("hidden_tree");
 
                      console.log($(this).val());
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_show");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_hidden");
                   }
-                  else{
+                  else if ($(this).hasClass("hidden_tree")){
                      $(this).addClass("selected");
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_hidden");
+                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
+                  }
+                  else{
+                     setComparison($(this).val());
+                     $(this).addClass("selected");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
                   }
                });
@@ -194,11 +200,6 @@
             drawSmallTree(municipalityId, paper, 600, 500);
             }
          
-         var i=1;
-         while(i<27){
-            setComparison(i);
-            i++;
-         }
    </script>
 </body>
 </html>
