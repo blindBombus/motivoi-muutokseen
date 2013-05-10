@@ -176,7 +176,7 @@ ul.list
 .munlist>ul.list li:last-child { border:none }
 
 div.munlist {
-    display: none;
+    /*display: none;*/
 }
 
 a:hover + div.munlist {

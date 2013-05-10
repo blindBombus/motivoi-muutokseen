@@ -60,8 +60,8 @@
          <!-- This might be done with loop -->
       </div>
       <div class = "munlist" id="municipality-list">
-      <?php include './php/municipality_list.php'; ?>
-      <!-- Content of the municipality list should look something like this: 
+      <!--  <?php //include './php/municipality_list.php'; ?>  -->
+      <!-- Content of the municipality list should look something like this: -->
           <ul>
             <li id="mun_1" value="1"><span class="short">Aka</span><span class="whole">Akaa</span></li>
             <li id="mun_2" value="2"><span class="short">Häm</span><span class="whole">Hämeenkyrö</span></li>
@@ -90,7 +90,7 @@
             <li id="mun_25" value="25"><span class="short">PM</span><span class="whole">Pirkanmaa</span></li>
             <li id="mun_26" value="26"><span class="short">Suo</span><span class="whole">Suomi</span></li>
          </ul>
-         -->
+
          <script>
             
             $(document).ready(function () {
@@ -161,9 +161,11 @@
    
    <script type="text/javascript">
          
-         var leafList = [];
-         var numOfTimesClicked = 0;
+         var leafList = [];               //array of drawn leafs
+         var numOfTimesClicked = 0;       //number of times clicked on leafs
          
+
+         //object for storing drawn leaf data
          function Leaf(leaf, municipalityId, indicatorId, leafId)
          {
             this.leaf = leaf; 
@@ -172,28 +174,31 @@
             this.leafId = leafId
          };
 
+         //draws first municipality tree
          var municipalityId = 1;//$('#select').val();
          console.log(municipalityId);
          var mainPaper = Raphael("main-tree", 600,550);
-         drawMainTree(municipalityId, mainPaper);         
+         drawMainTree(municipalityId, mainPaper);
+
+         //draws main selected municipality
+         function drawToMainPaper(){
+            var municipalityId = $('#select').val();
+            console.log(municipalityId);
+            mainPaper.clear();
+            drawMainTree(municipalityId, mainPaper);
+         }
+
       
          function setComparison(municipalityId){
             var paper = Raphael("comp-tree_"+municipalityId+"", 120,110);   
             drawSmallTree(municipalityId, paper, 600, 500);
             }
          
-         function drawToMainPaper(){
-            var municipalityId = $('#select').val();
-            console.log(municipalityId);
-            mainPaper.clear();
-            drawMainTree(municipalityId, mainPaper);
-            }
-         
-            var i=1;
-            while(i<27){
-               setComparison(i);
-               i++;
-            }
+         var i=1;
+         while(i<27){
+            setComparison(i);
+            i++;
+         }
    </script>
 </body>
 </html>

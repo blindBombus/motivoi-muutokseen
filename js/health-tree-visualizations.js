@@ -312,14 +312,25 @@ function drawLeaf(paper, leafStartPoint, indicator, municipalityId, leafAngle){
 }
 
 function drawLegend(paper, startX, startY){
+   var leafline = "#A0A0A0";
+   var leafcolor = "#002f00";
+
    var bestLeaf = paper.path("M"+startX+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 30,30 30,60 c0,0 0,30 -30,30z").transform("r25,"+startX+","+startY+"s0.3");
    bestLeaf.attr({stroke: leafline, fill: leafcolor});
+   
+   leafcolor = "#4a7d28"; //light green
    var secondBestLeaf = paper.path("M"+(startX+20)+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 30,30 30,60 c0,0 0,30 -30,30z").transform("r25,"+(startX+20)+","+startY+"s0.3");
    secondBestLeaf.attr({stroke: leafline, fill: leafcolor});
+   
+   leafcolor = "#9eaa17"; // green
    var midleLeaf = paper.path("M"+(startX+40)+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z").transform("r25,"+(startX+40)+","+startY+"s0.3");
    midleLeaf.attr({stroke: leafline, fill: leafcolor});
+   
+   leafcolor = "#ddbc7d"; //brownish
    var badLeaf = paper.path("M"+(startX+60)+","+startY+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z").transform("r25,"+(startX+60)+","+startY+"s0.3");
    badLeaf.attr({stroke: leafline, fill: leafcolor});
+   
+   leafcolor = "#f9ebb3"; //dry leaf
    var worstLeaf = paper.path("M"+(startX+80)+","+startY+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35").transform("r25,"+(startX+80)+","+startY+"s0.3");
    worstLeaf.attr({stroke: leafline, fill: leafcolor});
 }
