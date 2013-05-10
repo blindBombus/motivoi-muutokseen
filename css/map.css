@@ -13,10 +13,6 @@
 #pshp-map li, #pshp-map a {
     display: block;
 }
-#pshp-map li a svg{
-    position: relative;
-    z-index: 900;
-}
 #kih{
    top:26px;
    left: 188px;
@@ -279,6 +275,13 @@
 
 
 /* Municipalities's health tree positions*/
+#pshp-map li a{
+    position: absolute;
+}
+#pshp-map li a svg{
+    position: relative;
+    z-index: 900;
+}
 
 #kih a svg{
    bottom:25px;
