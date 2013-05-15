@@ -229,7 +229,6 @@ function drawLeaf(paper, leafStartPoint, indicator, municipalityId, leafAngle){
    }
    else if (form==1){
       leaf = paper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-10 5,-20 c0,0 10,-10 15,-40 c0,0 5,25 20,35 c0,0 20,10 20,25 c0,0 0,30 -30,30z");
-      //leaf = paper.path("M"+leafStartPoint+" c0,0 -30,0 -30,-30 c0,0 0,-30 30,-60 c0,0 -15,30 15,40 c0,0 15,5 15,20 c0,0 0,30 -30,30z");
    }
    else{
       leaf = paper.path("M"+leafStartPoint+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35");
@@ -239,7 +238,14 @@ function drawLeaf(paper, leafStartPoint, indicator, municipalityId, leafAngle){
    leafline = "#A0A0A0";
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafline, fill: leafcolor});
-
+   var leafGlow = null; //leaf.glow({opacity: 1.0, color: "#b7f6ff", width: 2});
+   var mouseover = function (event) {  
+      this.leafGlow = this.glow({color: "#3673ff", width: 10});
+      }
+   var mouseout = function (event) {
+	   this.leafGlow.remove();
+      }
+   leaf.hover(mouseover, mouseout);
    //take ids of the leaves and store them
    //use these ids to see which leaf is clicked
    //use the associated mun/ind Id to fetch data for that leaf
