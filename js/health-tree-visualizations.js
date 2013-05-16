@@ -5,8 +5,8 @@ function drawMainTree(municipalityId, paper){
    drawBackground(paper, municipalityId);
    var trunkWidth  =  drawTrunk(paper, municipalityId);
    drawRoots(paper, municipalityId, trunkWidth);
-   //drawAcorns();
-   //addIcons();
+   //drawMushrooms();
+   addIcons(paper);
    drawLegend(paper, 25, 500);
 }
 //Draws main health tree visualization
@@ -62,9 +62,9 @@ function drawRootIndicators(paper, municipalityId, mainRoot){
    
    rootPoint = mainRoot.getPointAtLength(70);
    rootStartPoint = (rootPoint.x-1)+","+(rootPoint.y);
-   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 100);
+   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 105);
    rootStartPoint = (rootPoint.x+1)+","+(rootPoint.y-2);
-   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 261);
+   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 256);
 
    rootPoint = mainRoot.getPointAtLength(50);
    rootStartPoint = (rootPoint.x-1)+","+(rootPoint.y);
@@ -238,6 +238,7 @@ function drawLeaf(paper, leafStartPoint, indicator, municipalityId, leafAngle){
    leafline = "#A0A0A0";
    leaf.transform("r"+leafAngle+","+leafStartPoint);
    leaf.attr({stroke: leafline, fill: leafcolor});
+   
    var leafGlow = null; //leaf.glow({opacity: 1.0, color: "#b7f6ff", width: 2});
    var mouseover = function (event) {  
       this.leafGlow = this.glow({color: "#3673ff", width: 10});
@@ -246,6 +247,7 @@ function drawLeaf(paper, leafStartPoint, indicator, municipalityId, leafAngle){
 	   this.leafGlow.remove();
       }
    leaf.hover(mouseover, mouseout);
+   
    //take ids of the leaves and store them
    //use these ids to see which leaf is clicked
    //use the associated mun/ind Id to fetch data for that leaf
@@ -253,6 +255,12 @@ function drawLeaf(paper, leafStartPoint, indicator, municipalityId, leafAngle){
    leafList.push(newLeaf);
 
    leaf.node.onclick=function click () {
+   
+   var leafGlow = null; //leaf.glow({opacity: 1.0, color: "#b7f6ff", width: 2});
+
+
+   
+   
       numOfTimesClicked++;
 
       var result = $.grep(leafList, function(e){return e.leafId == leaf.id;});
@@ -340,6 +348,85 @@ function drawLegend(paper, startX, startY){
    var worstLeaf = paper.path("M"+(startX+80)+","+startY+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35").transform("r25,"+(startX+80)+","+startY+"s0.3");
    worstLeaf.attr({stroke: leafline, fill: leafcolor});
 }
+function addIcons(paper){
+   //setting icons manually to right places
+   var leafIcon1 = paper.image("./icons/vammat.png", 385, 45, 40, 40);
+   //leafIcon1.insertBefore(leafList[0]);
+   
+   var leafIcon2 = paper.image("./icons/dep_laake.png", 418, 82, 40, 40);
+   //leafIcon2.insertBefore(leafList[0]);
+   
+   var leafIcon3 = paper.image("./icons/vammat.png", 335, 54, 40, 40);
+   //leafIcon3.insertBefore(leafList[0]);
+   
+   var leafIcon4 = paper.image("./icons/vammat.png", 420, 120, 40, 40);
+   //leafIcon4.insertBefore(leafList[0]);
+   
+   var leafIcon5 = paper.image("./icons/vammat.png", 300, 83, 40, 40);
+   //leafIcon5.insertBefore(leafList[0]);
+   
+   var leafIcon6 = paper.image("./icons/vammat.png", 420, 165, 40, 40);
+   //leafIcon6.insertBefore(leafList[0]);
+   
+   var leafIcon7 = paper.image("./icons/vammat.png", 280, 120, 40, 40);
+   //leafIcon7.insertBefore(leafList[0]);
+   
+   var leafIcon8 = paper.image("./icons/vammat.png", 390, 195, 40, 40);
+   //leafIcon8.insertBefore(leafList[0]);
+   
+   var leafIcon9 = paper.image("./icons/vammat.png", 278, 168, 40, 40);
+   //leafIcon9.insertBefore(leafList[0]);
+   
+   var leafIcon10 = paper.image("./icons/vammat.png", 351, 231, 40, 40);
+   //leafIcon10.insertBefore(leafList[0]);
+   
+   //Young
+   
+   var leafIcon11 = paper.image("./icons/vammat.png", 95, 240, 40, 40);
+   //leafIcon11.insertBefore(leafList[0]);
+   
+   var leafIcon12 = paper.image("./icons/vammat.png", 90, 280, 40, 40);
+   //leafIcon12.insertBefore(leafList[0]);
+   
+   var leafIcon13 = paper.image("./icons/vammat.png", 132, 210, 40, 40);
+   //leafIcon13.insertBefore(leafList[0]);
+   
+   var leafIcon14 = paper.image("./icons/vammat.png", 115, 325, 40, 40);
+   //leafIcon14.insertBefore(leafList[0]);
+   
+   var leafIcon15 = paper.image("./icons/vammat.png", 175, 205, 40, 40);
+   //leafIcon15.insertBefore(leafList[0]);
+   
+   var leafIcon16 = paper.image("./icons/vammat.png", 158, 346, 40, 40);
+   //leafIcon16.insertBefore(leafList[0]);
+   
+   var leafIcon17 = paper.image("./icons/vammat.png", 220, 220, 40, 40);
+   //leafIcon17.insertBefore(leafList[0]);
+   
+   var leafIcon18 = paper.image("./icons/vammat.png", 205, 340, 40, 40);
+   //leafIcon18.insertBefore(leafList[0]);
+   
+   var leafIcon19 = paper.image("./icons/vammat.png", 260, 250, 40, 40);
+   //leafIcon19.insertBefore(leafList[0]);
+   
+   var leafIcon20 = paper.image("./icons/vammat.png", 250, 330, 40, 40);
+   //leafIcon20.insertBefore(leafList[0]);
+   
+   //Elderly
+   
+   var leafIcon21 = paper.image("./icons/vammat.png", 445, 265, 40, 40);
+   //leafIcon21.insertBefore(leafList[0]);
+   
+   var leafIcon22 = paper.image("./icons/vammat.png", 445, 308, 40, 40);
+   //leafIcon22.insertBefore(leafList[0]);
+   
+   var leafIcon23 = paper.image("./icons/vammat.png", 405, 334, 40, 40);
+   //leafIcon23.insertBefore(leafList[0]);
+   
+   var leafIcon24 = paper.image("./icons/vammat.png", 358, 336, 40, 40);
+   //leafIcon24.insertBefore(leafList[0]);
+}
+
 
 function setRootForm(indicator, municipalityId){
    return 0;
