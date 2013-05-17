@@ -198,13 +198,16 @@ th
 {
    vertical-align: top;
    text-align: center;
-   background-color: #9FEBBD       ;
+   background-color: #9FEBBD;
    height:50px;
 }
 td 
 {
    text-align: center;
-   width: 33%;
+   width: 25%;
    background-color: #C3E3D0;
 }
-
+.icon-background
+{
+   background-image: url('../pics/leaves.png');
+}

@@ -7,10 +7,23 @@
 <link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
 <link href="./css/base.css" rel="StyleSheet"/>
 <link href="./css/comparison.css" rel="StyleSheet"/>
-<script type="text/javascript" src="http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael-min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./js/raphael-min.js"></script>
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+
+<script src="./js/jquery.dd.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./css/dd.css" />
+
 </head>
 <body>
+   <script language="javascript">
+      $(document).ready(function(e) {
+         try {
+            $("body select").msDropDown();
+         } catch(e) {
+         alert(e.message);
+         }
+      });
+   </script>
 
    <div id = "nav" >
       <!--Centering the content-->
@@ -40,24 +53,33 @@
             <option value="2">Testi 2</option>
             <option value="3">Testi 3</option>
          </select> -->
-         <input type = "submit" value = "Go!" onclick='drawToMainPaper()'/>
+         
+         <!-- <input type = "submit" value = "Go!" onclick='drawToMainPaper()'/> -->
       </div>
    
       <!--box for indicator information-->
       <div id="comparison-list">
       
          <div class="comp_show" id="comp-list-info">
-            <p>Here was supposed to be some information, but I don't remember what...</p>
+            <p>Please select municiplaties on right for comparison</p>
          </div>
-         
-         <div class="comp_hidden" id="vis_1"><div id="comp-tree_1"></div></div>
-         <div class="comp_hidden" id="vis_2"><div id="comp-tree_2"></div></div>
-         <div class="comp_hidden" id="vis_3"><div id="comp-tree_3"></div></div>
-         <div class="comp_hidden" id="vis_4"><div id="comp-tree_4"></div></div>
-         <div class="comp_hidden" id="vis_5"><div id="comp-tree_5"></div></div>
-         <div class="comp_hidden" id="vis_6"><div id="comp-tree_6"></div></div>
-         <div class="comp_hidden" id="vis_7"><div id="comp-tree_7"></div></div>
-         <!-- This might be done with loop -->
+
+         <script>
+         for (var i =1 ; i <=26; i++)
+         {
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute("class","comp_hidden");
+            newDiv.setAttribute("id", "vis_"+i);
+
+            var insideDiv = document.createElement("div");
+            insideDiv.setAttribute("id", "comp-tree_"+i);
+            newDiv.appendChild(insideDiv);
+
+            var parentDiv = document.getElementById("comparison-list");
+            parentDiv.appendChild(newDiv);
+         }
+         </script>
+         <!-- This might be done with loop : done with the loop-->
       </div>
       <div class = "munlist" id="municipality-list">
       <!--  <?php //include './php/municipality_list.php'; ?>  -->
@@ -92,6 +114,7 @@
          </ul>
 
          <script>
+         var selectedMunId = [];
             
             $(document).ready(function () {
                $("#municipality-list li").click(function () {
@@ -101,11 +124,19 @@
                      console.log($(this).val());
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_show");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_hidden");
+
+                     var ind = selectedMunId.indexOf($(this).val());
+                     selectedMunId.splice(ind,1);
+                     console.log(selectedMunId);
+
                   }
                   else{
                      $(this).addClass("selected");
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_hidden");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
+
+                     selectedMunId.push($(this).val());
+                     console.log(selectedMunId);
                   }
                });
             });
@@ -130,24 +161,34 @@
          <div id="information-box">
             <table border="0">
                <tr id="table_header">
+                  <th id="hdr_mun">Municipality</th>
                   <th id="hdr_1">Indicator One</th>
                   <th id="hdr_2">Indicator Two</th>
                   <th id="hdr_3">Indicator Three</th>
                </tr>
                <tr id="row_1">
-                  <td id= "data_11">Mun 1 Value 1</td>
-                  <td id= "data_12">Mun 2 Value 2</td>
-                  <td id= "data_13">Mun 3 Value 3</td>
+                  <td id= "data_10">Mun Main Name</td>
+                  <td id= "data_11">Mun Main Value 1</td>
+                  <td id= "data_12">Mun Main Value 2</td>
+                  <td id= "data_13">Mun Main Value 3</td>
                </tr>
                <tr id="row_2">
+                  <td id= "data_20">Mun 2 Name</td>
                   <td id= "data_21">Mun 1 Value 1</td>
-                  <td id= "data_22">Mun 2 Value 2</td>
-                  <td id= "data_23">Mun 3 Value 3</td>
+                  <td id= "data_22">Mun 1 Value 2</td>
+                  <td id= "data_23">Mun 1 Value 3</td>
                </tr>
                <tr id="row_3">
-                  <td id= "data_31">Mun 1 Value 1</td>
+                  <td id= "data_30">Mun 3 Name</td>
+                  <td id= "data_31">Mun 2 Value 1</td>
                   <td id= "data_32">Mun 2 Value 2</td>
-                  <td id= "data_33">Mun 3 Value 3</td>
+                  <td id= "data_33">Mun 2 Value 3</td>
+               </tr>
+               <tr id = "row_4">
+                  <td id= "data_40">Mun 4 Name</td>
+                  <td id= "data_41">Mun 4 Value 1</td>
+                  <td id= "data_42">Mun 4 Value 2</td>
+                  <td id= "data_43">Mun 4 Value 3</td>
                </tr>
             </table>
 
@@ -175,7 +216,7 @@
          };
 
          //draws first municipality tree
-         var municipalityId = 1;//$('#select').val();
+         var municipalityId = $('#select').val();
          console.log(municipalityId);
          var mainPaper = Raphael("main-tree", 600,550);
          drawMainTree(municipalityId, mainPaper);
@@ -194,11 +235,27 @@
             drawSmallTree(municipalityId, paper, 600, 500);
             }
          
-         var i=1;
+         /*var i=1;
          while(i<27){
             setComparison(i);
             i++;
-         }
+         }*/
+
+         //$('document').on('change', '#select', drawToMainPaper());
    </script>
+   <div>
+      <a href="https://twitter.com/SirGloatALot" class="twitter-follow-button" data-show-count="false">Follow @SirGloatALot</a>
+      <script>!function(d,s,id)
+      {
+         var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+         if(!d.getElementById(id))
+            {
+               js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+               fjs.parentNode.insertBefore(js,fjs);
+            }
+      }
+      (document, 'script', 'twitter-wjs');
+      </script>
+   </div>
 </body>
 </html>
