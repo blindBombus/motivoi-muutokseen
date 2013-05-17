@@ -13,16 +13,11 @@
 #pshp-map li, #pshp-map a {
     display: block;
 }
-#pshp-map li a svg{
-    position: relative;
-    z-index: 900;
-}
 #kih{
    top:26px;
    left: 188px;
    width:54px;
    height: 52px;
-   z-index: 100;
 }
 #kih:hover{
    background: transparent url('../pics/map.png') -188px -1526px no-repeat;
@@ -41,7 +36,6 @@
    left: 338px;
    width:108px;
    height: 80px;
-   z-index: 100;
    -webkit-border-radius: 0px 0px 0px 60px;
    -moz-border-radius: 0px 0px 0px 60px;
    border-radius: 0px 0px 0px 60px;
@@ -54,7 +48,7 @@
    left: 420px;
    width:166px;
    height: 152px;
-   z-index: 100;
+
    -webkit-border-radius: 0px 60px 0px 80px;
    -moz-border-radius: 0px 60px 0px 80px;
    border-radius: 0px 60px 0px 80px;
@@ -67,7 +61,6 @@
    left: 468px;
    width:130px;
    height: 100px;
-   z-index: 100;
 }
 #kuh:hover{
    background: transparent url('../pics/map.png') -468px -2168px no-repeat;
@@ -96,7 +89,7 @@
    left: 282px;
    width:118px;
    height: 98px;
-   z-index: 200;
+
    -webkit-border-radius: 0px 60px 0px 40px;
    -moz-border-radius: 0px 60px 0px 40px;
    border-radius: 0px 60px 0px 40px;
@@ -279,6 +272,14 @@
 
 
 /* Municipalities's health tree positions*/
+#pshp-map li a{
+    position: absolute;
+    z-index: 900;
+}
+#pshp-map li a svg{
+    position: relative;
+    z-index: 999;
+}
 
 #kih a svg{
    bottom:25px;

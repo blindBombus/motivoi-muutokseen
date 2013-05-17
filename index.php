@@ -8,7 +8,7 @@
 <link href="./css/base.css" rel="StyleSheet"/>
 <link href="./css/map.css" rel="StyleSheet"/>
 <script type="text/javascript" src="http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael-min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="./js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 
@@ -58,30 +58,35 @@
    <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script type="text/javascript" src="./js/indicator-functions.js"></script> 
    <script>
-            var leafList = [];               //array of drawn leafs
+         var treeList = [];               //array of drawn leafs
          var numOfTimesClicked = 0;       //number of times clicked on leafs
+         var municipalities = [7,23,10,5,8,13,24,17,4,12,6,16,3,2,11,19,14,9,21,18,22,1,15,20];
+
          
+         function chunk(array, process, context){
+            var items = array.concat();   //clone the array
+            setTimeout(function(){
+               var item = items.shift();
+               process.call(context, item);
 
-         //object for storing drawn leaf data
-         function Leaf(leaf, municipalityId, indicatorId, leafId)
-         {
-            this.leaf = leaf; 
-            this.municipalityId = municipalityId;
-            this.indicatorId = indicatorId;
-            this.leafId = leafId
-         };
-
-
-      var i=1;
-         while(i<25){
-            drawMuniTree(i);
-            i++;
+               if (items.length > 0){
+               setTimeout(arguments.callee, 50);
+               }
+            }, 50);
          }
+
+      $(window).bind("load", function() {
+         chunk(municipalities, drawMuniTree);
+         
+      });
 
 
       function drawMuniTree(municipalityId){
+         var leafList = [];
+         var tree = new Tree(municipalityId, leafList); 
          var paper = Raphael("small_"+municipalityId+"", 60,55);   
-         drawSmallTree(municipalityId, paper, 600,550);
+         drawSmallTree(municipalityId, paper, tree, treeList, 600,550);
+         treeList.push(tree);
          }
    </script>
    

@@ -22,13 +22,13 @@ body{
    padding-top: 10px;
    border-bottom: ridge #CCFFFE;
    background-color: #84dad9;
-background-image: linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
-background-image: -o-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
-background-image: -moz-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
-background-image: -webkit-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
-background-image: -ms-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+   background-image: linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+   background-image: -o-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+   background-image: -moz-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+   background-image: -webkit-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
+   background-image: -ms-linear-gradient(bottom, #CCFFFE 0%, #8FE0E6 90%);
 
-background-image: -webkit-gradient(
+   background-image: -webkit-gradient(
 	linear,
 	left bottom,
 	left top,
@@ -144,7 +144,7 @@ ul.navlist li#current{
    background-position: 3% 3%;
 }
 #information-box{
-   border: solid #dddddd;
+   /*border: solid #dddddd;*/
    height: 150px;
 }
 

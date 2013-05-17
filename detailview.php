@@ -7,6 +7,7 @@
 <link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
 <link href="./css/base.css" rel="StyleSheet"/>
 <link href="./css/comparison.css" rel="StyleSheet"/>
+
 <script type="text/javascript" src="./js/raphael-min.js"></script>
 <script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
 
@@ -47,14 +48,7 @@
 
       
       <div id = "dropdown">
-      <?php include './php/dropmenu.php'; ?>
-      <!--   <select id = "select">
-            <option value="1">Testi 1</option>
-            <option value="2">Testi 2</option>
-            <option value="3">Testi 3</option>
-         </select> -->
-         
-         <!-- <input type = "submit" value = "Go!" onclick='drawToMainPaper()'/> -->
+         <?php include './php/dropmenu.php'; ?>
       </div>
    
       <!--box for indicator information-->
@@ -68,7 +62,7 @@
          for (var i =1 ; i <=26; i++)
          {
             var newDiv = document.createElement("div");
-            newDiv.setAttribute("class","comp_hidden");
+            //newDiv.setAttribute("class","comp_hidden");
             newDiv.setAttribute("id", "vis_"+i);
 
             var insideDiv = document.createElement("div");
@@ -78,6 +72,17 @@
             var parentDiv = document.getElementById("comparison-list");
             parentDiv.appendChild(newDiv);
          }
+         </script>
+
+         <script>
+         /*   var content = "";
+            var i=1;
+            while (i<27){
+               content = content + "<div id=\"vis_"+i+"\"><div id=\"comp-tree_"+i+"\"></div></div>";
+               i++;
+            }
+            document.getElementById("comp-list-info").innerHTML=content;
+            */
          </script>
          <!-- This might be done with loop : done with the loop-->
       </div>
@@ -120,6 +125,7 @@
                $("#municipality-list li").click(function () {
                   if ($(this).hasClass("selected")){
                      $(this).removeClass("selected");
+                     $(this).addClass("hidden_tree");
 
                      console.log($(this).val());
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_show");
@@ -130,11 +136,18 @@
                      console.log(selectedMunId);
 
                   }
-                  else{
+                  else if ($(this).hasClass("hidden_tree")){
                      $(this).addClass("selected");
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_hidden");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
 
+                     selectedMunId.push($(this).val());
+                     console.log(selectedMunId);
+                  }
+                  else{
+                     setComparison($(this).val());
+                     $(this).addClass("selected");
+                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
                      selectedMunId.push($(this).val());
                      console.log(selectedMunId);
                   }
@@ -159,36 +172,36 @@
       <!--Centering the content-->
       <div class="wrap">
          <div id="information-box">
-            <table border="0">
+            <table id = "information-table" border="0">
                <tr id="table_header">
-                  <th id="hdr_mun">Municipality</th>
-                  <th id="hdr_1">Indicator One</th>
-                  <th id="hdr_2">Indicator Two</th>
-                  <th id="hdr_3">Indicator Three</th>
+                  <th id="hdr_mun"></th>
+                  <th id="hdr_1"></th>
+                  <th id="hdr_2"></th>
+                  <th id="hdr_3"></th>
                </tr>
                <tr id="row_1">
-                  <td id= "data_10">Mun Main Name</td>
-                  <td id= "data_11">Mun Main Value 1</td>
-                  <td id= "data_12">Mun Main Value 2</td>
-                  <td id= "data_13">Mun Main Value 3</td>
+                  <td id= "data_10"></td>
+                  <td id= "data_11"></td>
+                  <td id= "data_12"></td>
+                  <td id= "data_13"></td>
                </tr>
                <tr id="row_2">
-                  <td id= "data_20">Mun 2 Name</td>
-                  <td id= "data_21">Mun 1 Value 1</td>
-                  <td id= "data_22">Mun 1 Value 2</td>
-                  <td id= "data_23">Mun 1 Value 3</td>
+                  <td id= "data_20"></td>
+                  <td id= "data_21"></td>
+                  <td id= "data_22"></td>
+                  <td id= "data_23"></td>
                </tr>
                <tr id="row_3">
-                  <td id= "data_30">Mun 3 Name</td>
-                  <td id= "data_31">Mun 2 Value 1</td>
-                  <td id= "data_32">Mun 2 Value 2</td>
-                  <td id= "data_33">Mun 2 Value 3</td>
+                  <td id= "data_30"></td>
+                  <td id= "data_31"></td>
+                  <td id= "data_32"></td>
+                  <td id= "data_33"></td>
                </tr>
                <tr id = "row_4">
-                  <td id= "data_40">Mun 4 Name</td>
-                  <td id= "data_41">Mun 4 Value 1</td>
-                  <td id= "data_42">Mun 4 Value 2</td>
-                  <td id= "data_43">Mun 4 Value 3</td>
+                  <td id= "data_40"></td>
+                  <td id= "data_41"></td>
+                  <td id= "data_42"></td>
+                  <td id= "data_43"></td>
                </tr>
             </table>
 
@@ -200,48 +213,37 @@
    <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script type="text/javascript" src="./js/indicator-functions.js"></script>
    
-   <script type="text/javascript">
+   <script type="text/javascript"> 
          
-         var leafList = [];               //array of drawn leafs
+         var treeList = [];
          var numOfTimesClicked = 0;       //number of times clicked on leafs
          
 
-         //object for storing drawn leaf data
-         function Leaf(leaf, municipalityId, indicatorId, leafId)
-         {
-            this.leaf = leaf; 
-            this.municipalityId = municipalityId;
-            this.indicatorId = indicatorId;
-            this.leafId = leafId
-         };
-
-         //draws first municipality tree
+         //draws first selected municipality tree
          var municipalityId = $('#select').val();
          console.log(municipalityId);
+         var mainLeafList = [];
+         var mainTree = new Tree(municipalityId, mainLeafList)
          var mainPaper = Raphael("main-tree", 600,550);
-         drawMainTree(municipalityId, mainPaper);
+         drawMainTree(municipalityId, mainPaper, mainTree, treeList);
 
          //draws main selected municipality
          function drawToMainPaper(){
             var municipalityId = $('#select').val();
-            console.log(municipalityId);
+            mainTree.municipalityId = municipalityId;
+            mainTree.leafList = [];
             mainPaper.clear();
-            drawMainTree(municipalityId, mainPaper);
+            drawMainTree(municipalityId, mainPaper, mainTree, treeList);
          }
 
       
          function setComparison(municipalityId){
-            var paper = Raphael("comp-tree_"+municipalityId+"", 120,110);   
-            drawSmallTree(municipalityId, paper, 600, 500);
-            }
-         
-         /*var i=1;
-         while(i<27){
-            setComparison(i);
-            i++;
-         }*/
-
-         //$('document').on('change', '#select', drawToMainPaper());
+            var leafList = [];
+            var tree = new Tree(municipalityId, leafList); 
+            var paper = Raphael("comp-tree_"+municipalityId+"", 120,110); 
+            drawSmallTree(municipalityId, paper, tree, treeList, 600, 500);
+            treeList.push(tree);
+         }
    </script>
    <div>
       <a href="https://twitter.com/SirGloatALot" class="twitter-follow-button" data-show-count="false">Follow @SirGloatALot</a>
