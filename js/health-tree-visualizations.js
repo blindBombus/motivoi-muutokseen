@@ -9,12 +9,11 @@ function drawMainTree(municipalityId, paper, mainTree, treeList){
    drawRoots(paper, municipalityId, trunkWidth);
    //drawMushrooms();
    addIcons(paper, mainTree);
-   drawLegend(paper, 25, 500);
+   drawLegend(paper, 25, 110);
    selectedTrees = treeList;
 }
 //Draws main health tree visualization
 function drawSmallTree(municipalityId, paper, tree, treeList, xView, yView){
-   drawBackground(paper, municipalityId);
    var trunkWidth  =  drawTrunk(paper, municipalityId, tree);
    drawRoots(paper, municipalityId, trunkWidth);
    paper.setViewBox(0,0, xView, yView, false);
@@ -25,7 +24,7 @@ function drawSmallTree(municipalityId, paper, tree, treeList, xView, yView){
 //to paper. Uses municipalityId to get the indicator data from
 //correct municipality.
 function drawBackground(paper, municipalityId){
-   //var ground = paper.ellipse(325, 460, 150, 50).attr({fill: '#46a046', stroke: '#83a67f', 'stroke-width': 8});  
+   var trunkNames = paper.image("./pics/names2.png", 90, 130, 508, 161);  
 }
 
 //Draws trunk visualization to paper. Uses municipalityId 
@@ -392,7 +391,7 @@ function drawLegend(paper, startX, startY){
    badLeaf.attr({stroke: leafline, fill: leafcolor});
    
    leafcolor = "#f9ebb3"; //dry leaf
-   var worstLeaf = paper.path("M"+(startX+80)+","+startY+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35").transform("r25,"+(startX+80)+","+startY+"s0.3");
+   var worstLeaf = paper.path("M"+(startX+81)+","+(startY-1)+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35").transform("r25,"+(startX+81)+","+(startY-1)+"s0.3");
    worstLeaf.attr({stroke: leafline, fill: leafcolor});
 }
 
@@ -406,7 +405,7 @@ function addIcons(paper, tree){
    var leafIcon2 = paper.image("./icons/tyottomat.png", 418, 82, 40, 40);
    leafIcon2.insertAfter(tree.leafList[1].leaf);
    
-   var leafIcon3 = paper.image("./icons/diabetes.png", 335, 54, 40, 40);
+   var leafIcon3 = paper.image("./icons/diabetes.png", 338, 50, 40, 40);
    leafIcon3.insertAfter(tree.leafList[2].leaf);
    
    var leafIcon4 = paper.image("./icons/tyokyvyttomyyselake.png", 420, 120, 40, 40);
