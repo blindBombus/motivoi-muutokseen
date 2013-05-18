@@ -403,77 +403,77 @@ function addIcons(paper, tree){
    var leafIcon1 = paper.image("./icons/vammat.png", 385, 45, 40, 40);
    leafIcon1.insertAfter(tree.leafList[0].leaf);
    
-   var leafIcon2 = paper.image("./icons/dep_laake.png", 418, 82, 40, 40);
+   var leafIcon2 = paper.image("./icons/tyottomat.png", 418, 82, 40, 40);
    leafIcon2.insertAfter(tree.leafList[1].leaf);
    
-   var leafIcon3 = paper.image("./icons/alkoholivammat.png", 335, 54, 40, 40);
+   var leafIcon3 = paper.image("./icons/diabetes.png", 335, 54, 40, 40);
    leafIcon3.insertAfter(tree.leafList[2].leaf);
    
-   var leafIcon4 = paper.image("./icons/laakekorvaus.png", 420, 120, 40, 40);
+   var leafIcon4 = paper.image("./icons/tyokyvyttomyyselake.png", 420, 120, 40, 40);
    leafIcon4.insertAfter(tree.leafList[3].leaf);
    
-   var leafIcon5 = paper.image("./icons/elake2.png", 300, 83, 40, 40);
+   var leafIcon5 = paper.image("./icons/koulukiusaaminen.png", 300, 83, 40, 40); //violence
    leafIcon5.insertAfter(tree.leafList[4].leaf);
    
-   var leafIcon6 = paper.image("./icons/elake.png", 420, 165, 40, 40);
+   var leafIcon6 = paper.image("./icons/sairastavuus.png", 420, 165, 40, 40);
    leafIcon6.insertAfter(tree.leafList[5].leaf);
    
-   var leafIcon7 = paper.image("./icons/terveydenedistaminen.png", 280, 120, 40, 40);
+   var leafIcon7 = paper.image("./icons/sydanlaakekorvaus.png", 280, 120, 40, 40);
    leafIcon7.insertAfter(tree.leafList[6].leaf);
    
-   var leafIcon8 = paper.image("./icons/sairastavuus.png", 390, 195, 40, 40);
+   var leafIcon8 = paper.image("./icons/dep_laake.png", 390, 195, 40, 40);
    leafIcon8.insertAfter(tree.leafList[7].leaf);
    
-   var leafIcon9 = paper.image("./icons/tyottomat.png", 278, 168, 40, 40);
+   var leafIcon9 = paper.image("./icons/sydanlaakekorvaus.png", 278, 168, 40, 40);
    leafIcon9.insertAfter(tree.leafList[8].leaf);
    
-   var leafIcon10 = paper.image("./icons/tyokyvyttomyyselake.png", 351, 231, 40, 40);
+   var leafIcon10 = paper.image("./icons/tosihumala.png", 351, 231, 40, 40);
    leafIcon10.insertAfter(tree.leafList[9].leaf);
    
    //Young
    
-   var leafIcon11 = paper.image("./icons/lastensuojelu.png", 95, 240, 40, 40);
+   var leafIcon11 = paper.image("./icons/tupakointi.png", 95, 240, 40, 40);
    leafIcon11.insertAfter(tree.leafList[10].leaf);
    
-   var leafIcon12 = paper.image("./icons/tosihumala.png", 90, 280, 40, 40);
+   var leafIcon12 = paper.image("./icons/masennus.png", 90, 280, 40, 40);
    leafIcon12.insertAfter(tree.leafList[11].leaf);
    
-   var leafIcon13 = paper.image("./icons/koulukiusaaminen.png", 132, 210, 40, 40);
+   var leafIcon13 = paper.image("./icons/lastensuojelu.png", 132, 210, 40, 40);
    leafIcon13.insertAfter(tree.leafList[12].leaf);
    
-   var leafIcon14 = paper.image("./icons/kouluruoka.png", 115, 325, 40, 40);
+   var leafIcon14 = paper.image("./icons/tosihumala.png", 115, 325, 40, 40);
    leafIcon14.insertAfter(tree.leafList[13].leaf);
    
-   var leafIcon15 = paper.image("./icons/liikunta.png", 175, 205, 40, 40);
+   var leafIcon15 = paper.image("./icons/tyokyvyttomyyselake.png", 175, 205, 40, 40);
    leafIcon15.insertAfter(tree.leafList[14].leaf);
    
-   var leafIcon16 = paper.image("./icons/masennus.png", 158, 346, 40, 40);
+   var leafIcon16 = paper.image("./icons/tyottomat.png", 158, 346, 40, 40);
    leafIcon16.insertAfter(tree.leafList[15].leaf);
    
-   var leafIcon17 = paper.image("./icons/tupakointi.png", 220, 220, 40, 40);
+   var leafIcon17 = paper.image("./icons/kouluruoka.png", 220, 220, 40, 40);
    leafIcon17.insertAfter(tree.leafList[16].leaf);
    
-   var leafIcon18 = paper.image("./icons/vammat.png", 205, 340, 40, 40);
+   var leafIcon18 = paper.image("./icons/liikunta.png", 205, 340, 40, 40);
    leafIcon18.insertAfter(tree.leafList[17].leaf);
    
-   var leafIcon19 = paper.image("./icons/alkoholivammat.png", 260, 250, 40, 40);
+   var leafIcon19 = paper.image("./icons/sairastavuus.png", 260, 250, 40, 40);
    leafIcon19.insertAfter(tree.leafList[18].leaf);
    
-   var leafIcon20 = paper.image("./icons/sairastavuus.png", 250, 330, 40, 40);
+   var leafIcon20 = paper.image("./icons/koulukiusaaminen.png", 250, 330, 40, 40);
    leafIcon20.insertAfter(tree.leafList[19].leaf);
    
    //Elderly
    
-   var leafIcon21 = paper.image("./icons/sydanlaakekorvaus.png", 445, 265, 40, 40);
+   var leafIcon21 = paper.image("./icons/elake.png", 445, 265, 40, 40);
    leafIcon21.insertAfter(tree.leafList[20].leaf);
    
-   var leafIcon22 = paper.image("./icons/kotona.png", 445, 308, 40, 40);
+   var leafIcon22 = paper.image("./icons/dep_laake.png", 445, 308, 40, 40);
    leafIcon22.insertAfter(tree.leafList[21].leaf);
    
-   var leafIcon23 = paper.image("./icons/diabetes.png", 405, 334, 40, 40);
+   var leafIcon23 = paper.image("./icons/vammat.png", 405, 334, 40, 40);
    leafIcon23.insertAfter(tree.leafList[22].leaf);
    
-   var leafIcon24 = paper.image("./icons/sydanlaakekorvaus.png", 358, 336, 40, 40);
+   var leafIcon24 = paper.image("./icons/kotona.png", 358, 336, 40, 40);
    leafIcon24.insertAfter(tree.leafList[23].leaf);
    
    // setting hover effects
