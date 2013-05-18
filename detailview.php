@@ -48,7 +48,9 @@
 
       
       <div id = "dropdown">
-         <?php include './php/dropmenu.php'; ?>
+         <?php 
+         error_reporting(~0); ini_set('display_errors', 1);
+         include './php/dropmenu.php'; ?>
       </div>
    
       <!--box for indicator information-->

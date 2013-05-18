@@ -1,3 +1,9 @@
+button{
+   border: none;
+   background: none;
+   text-decoration: underline;
+   text-align: left;
+}
 #pshp-map{
    height: 485px;
    width: 660px;
@@ -5,11 +11,37 @@
    position: relative;
 }
 #pshp-map li {
-    margin: 0; 
-    padding: 0; 
-    list-style: none;
-    position: absolute;
+   margin: 0; 
+   padding: 0; 
+   list-style: none;
+   position: absolute;
 }
+
+#pshp-map li div.infobox{
+   display: none;
+}
+#pshp-map li div.clicked{
+   position: relative;
+   width: 180px;
+   display: block;
+   border: solid;
+   top: 30%;
+   left: 60%;
+   background-color: #B8FF70;
+   -webkit-border-radius: 0px 20px 20px 20px;
+   -moz-border-radius: 0px 20px 20px 20px;
+   border-radius: 0px 20px 20px 20px;
+   z-index: 1000;
+}
+#pshp-map li div.clicked h2{
+   font-size: 14px;
+   margin: 4px;
+}
+#pshp-map li div.clicked p{
+   font-size: 14px;
+   margin: 4px;
+}
+
 #pshp-map li, #pshp-map a {
     display: block;
 }
@@ -70,7 +102,7 @@
    left: 105px;
    width:135px;
    height: 90px;
-   z-index:50;
+
 }
 #par:hover{
    background: transparent url('../pics/map.png') -105px -535px no-repeat;
@@ -102,7 +134,7 @@
    left: 364px;
    width:73px;
    height: 52px;
-   z-index: 100;
+
    -webkit-border-radius: 20px 10px 10px 45px;
    -moz-border-radius: 20px 10px 10px 45px;
    border-radius: 20px 10px 10px 45px;
@@ -274,11 +306,11 @@
 /* Municipalities's health tree positions*/
 #pshp-map li a{
     position: absolute;
-    z-index: 900;
+    z-index: 800;
 }
 #pshp-map li a svg{
     position: relative;
-    z-index: 999;
+    z-index: 888;
 }
 
 #kih a svg{
