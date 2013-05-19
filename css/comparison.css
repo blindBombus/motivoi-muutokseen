@@ -1,10 +1,25 @@
 #comparison-list{
+   position: static;
    width: 280px;
    height: 523px;
    float: left;
 }
+#comparison-list div{
+   display: block;
+   overflow: hidden;
+   
+}
+#comparison-list div div{
+   float: left;
+   clear: left;
+}
+#comparison-list div h2{
+   font-size: 1.1em;
+
+}
+#comparison-list
 .comp_show{
-   display:inline;
+   display: block;
 }
 .comp_hidden{
    display: none;
@@ -48,7 +63,7 @@
    left: -70px;
    z-index: 200;
    border-style: solid;
-   background: color:#fff;
+   background-color:#ffffff;
 }
 .munlist ul li.selected{
    position: relative;
