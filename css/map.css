@@ -3,6 +3,7 @@ button{
    background: none;
    text-decoration: underline;
    text-align: left;
+   margin: 5px;
 }
 #pshp-map{
    height: 485px;
@@ -22,11 +23,10 @@ button{
 }
 #pshp-map li div.clicked{
    position: relative;
-   width: 180px;
+   width: 200px;
    display: block;
+   padding:5px;
    border: solid;
-   top: 30%;
-   left: 60%;
    background-color: #B8FF70;
    -webkit-border-radius: 0px 20px 20px 20px;
    -moz-border-radius: 0px 20px 20px 20px;
@@ -37,10 +37,9 @@ button{
    font-size: 14px;
    margin: 4px;
 }
-#pshp-map li div.clicked p{
-   font-size: 14px;
-   margin: 4px;
-}
+
+
+
 
 #pshp-map li, #pshp-map a {
     display: block;
@@ -205,7 +204,7 @@ button{
 #tam{
    top:148px;
    left: 236px;
-   width:102px;
+   width:104px;
    height: 122px;
    -webkit-border-radius: 80px 20px 50px 40px;
    -moz-border-radius: 80px 20px 50px 40px;
@@ -302,8 +301,9 @@ button{
    background: transparent url('../pics/map.png') -145px -1848px no-repeat;
 }
 
-
-/* Municipalities's health tree positions*/
+/********************************************************/
+/*  Municipalities's health tree and infobox positions  */
+/********************************************************/
 #pshp-map li a{
     position: absolute;
     z-index: 800;
@@ -317,115 +317,207 @@ button{
    bottom:25px;
    right: 10px;
 }
+#pshp-map li div.clicked#mun_7{
+   top: 25px;
+   left: 30px;
+}
 
 #vir a svg{
   left: 50px;
   bottom: 15px;
+}
+#pshp-map li div.clicked#mun_23{
+   top: 35px;
+   left: 92px;
 }
 
 #mv a svg{
    left: 45px;
    bottom: 10px;
 }
+#pshp-map li div.clicked#mun_10{
+   top: 40px;
+   left: 90px;
+}
 
 #jam a svg{
    left: 50px;
    bottom: 10px;
+}
+#pshp-map li div.clicked#mun_5{
+   top: 40px;
+   left: 90px;
 }
 
 #kuh a svg{
   left: 70px;
   bottom: 5px;
 }
+#pshp-map li div.clicked#mun_8{
+   top: 45px;
+   left: 110px;
+}
 
 #par a svg{
    left: 20px;
    bottom:10px;
 }
+#pshp-map li div.clicked#mun_13{
+   top: 40px;
+   left: 60px;
+}
 
 #ylo a svg{
    left:40px;
-
+}
+#pshp-map li div.clicked#mun_24{
+   top: 45px;
+   left: 80px;
 }
 
 #ruo a svg{
    bottom: 15px;
+}
+#pshp-map li div.clicked#mun_17{
+   top: 30px;
+   left: 40px;
 }
 
 #juu a svg{
    left: 15px;
    bottom: 30px;
 }
+#pshp-map li div.clicked#mun_4{
+   top: 20px;
+   left: 50px;
+}
 
 #ori a svg{
    left: 60px;
    top: 20px;
+}
+#pshp-map li div.clicked#mun_12{
+   top: 70px;
+   left: 100px;
 }
 
 #kan a svg{
    left: 50px;
    bottom: 10px;
 }
+#pshp-map li div.clicked#mun_6{
+   top: 40px;
+   left: 90px;
+}
 
 #pal a svg{
    left: 80px;
+}
+#pshp-map li div.clicked#mun_16{
+   top: 50px;
+   left: 120px;
 }
 
 #ika a svg{
    left: 70px;
    bottom: 5px;
 }
+#pshp-map li div.clicked#mun_3{
+   top: 45px;
+   left: 115px;
+}
 
 #ham a svg{
    bottom: 25px;
+}
+#pshp-map li div.clicked#mun_2{
+   top: 25px;
+   left: 40px;
 }
 
 #nok a svg{
    right: 10px;
    top: 5px;
 }
+#pshp-map li div.clicked#mun_11{
+   top: 55px;
+   left: 30px;
+}
 
 #tam a svg{
    left: 40px;
+}
+#pshp-map li div.clicked#mun_19{
+   top: 47px;
+   left: 80px;
 }
 
 #pir a svg{
    bottom:35px;
    left: 8px;
 }
+#pshp-map li div.clicked#mun_14{
+   top: 12px;
+   left: 45px;
+}
 
 #lem a svg{
    bottom: 20px;
-   left: 20px;
+   left: 25px;
+}
+#pshp-map li div.clicked#mun_9{
+   top: 30px;
+   left: 65px;
 }
 
 #val a svg{
    left: 10px;
    bottom: 5px;
 }
+#pshp-map li div.clicked#mun_21{
+   top: 45px;
+   left: 50px;
+}
 
 #sas a svg{
    top: 30px;
    left: 20px;
+}
+#pshp-map li div.clicked#mun_18{
+   top: 80px;
+   left: 60px;
 }
 
 #ves a svg{
    left: 45px;
    bottom: 5px;
 }
+#pshp-map li div.clicked#mun_22{
+   top: 40px;
+   left: 85px;
+}
 
 #aka a svg{
  right: 8px;
  bottom: 8px;
 }
-
+#pshp-map li div.clicked#mun_1{
+   top: 40px;
+   left: 40px;
+}
 
 #pun a svg{
    bottom: 15px;
 }
-
-#urj a svg{
-   top: 30px;
+#pshp-map li div.clicked#mun_15{
+   top: 35px;
+   left: 40px;
 }
 
-
+#urj a svg{
+   top: 20px;
+}
+#pshp-map li div.clicked#mun_20{
+   top: 60px;
+   left: 50px;
+}
