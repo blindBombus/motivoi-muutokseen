@@ -17,11 +17,10 @@
    font-size: 1.1em;
 
 }
-#comparison-list
 .comp_show{
    display: block;
 }
-.comp_hidden{
+#comparison-list div.comp_hidden{
    display: none;
 }
 
