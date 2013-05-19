@@ -48,9 +48,7 @@
 
       
       <div id = "dropdown">
-         <?php 
-         error_reporting(~0); ini_set('display_errors', 1);
-         include './php/dropmenu.php'; ?>
+         <?php include './php/dropmenu.php'; ?>
       </div>
    
       <!--box for indicator information-->
@@ -150,6 +148,7 @@
                      setComparison($(this).val());
                      $(this).addClass("selected");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
+                     $("#comparison-list div#vis_"+($(this).val())).append("<h2>"+$("#mun_"+($(this).val())+" .whole").html()+"</h2>");
                      selectedMunId.push($(this).val());
                      console.log(selectedMunId);
                   }

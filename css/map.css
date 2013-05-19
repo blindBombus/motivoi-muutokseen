@@ -5,9 +5,20 @@ button{
    text-align: left;
    margin: 5px;
 }
+#intro{
+   width: 240px;
+   padding: 10px;
+   float: right;
+   
+}
+#intro p{
+   font-size: 1.3em;
+   color: #777777;
+}
 #pshp-map{
    height: 485px;
    width: 660px;
+   float: left;
    background:url('../pics/map.png') top left no-repeat;
    position: relative;
 }
@@ -26,7 +37,7 @@ button{
    width: 200px;
    display: block;
    padding:5px;
-   border: solid;
+   border: ridge 1px #b7f46e;
    background-color: #B8FF70;
    -webkit-border-radius: 0px 20px 20px 20px;
    -moz-border-radius: 0px 20px 20px 20px;
@@ -37,7 +48,17 @@ button{
    font-size: 14px;
    margin: 4px;
 }
-
+p.close_x{
+   float: right;
+   font-family: monospace;
+   font-size: 16px;
+   font-weight: bold;
+   color: #669325;
+   text-shadow: 1px 0px #D6FE9D;
+   margin: 0px;
+   padding: 5px;
+   padding-top: 0px;
+}
 
 
 

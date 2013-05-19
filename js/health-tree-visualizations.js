@@ -7,7 +7,7 @@ function drawMainTree(municipalityId, paper, mainTree, treeList){
    drawBackground(paper, municipalityId);
    var trunkWidth  =  drawTrunk(paper, municipalityId, mainTree);
    drawRoots(paper, municipalityId, trunkWidth);
-   //drawMushrooms();
+   drawMushrooms(paper);
    addIcons(paper, mainTree);
    drawLegend(paper, 25, 110);
    selectedTrees = treeList;
@@ -96,6 +96,24 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
    }
    root.transform("r"+angle+","+rootStartPoint);
    root.attr({stroke: '#524132', fill:'#524132'});
+}
+
+function drawMushrooms(paper){
+   drawMushroom(paper, 110, 455, "#AB7200");
+   var t1 = paper.text(110, 500, "PTH").attr({'font-weight': 'bold'});
+   drawMushroom(paper, 50, 495, "#AB7200");
+   var t2 = paper.text(50, 540, "ESH").attr({'font-weight': 'bold'});
+   drawMushroom(paper, 200, 495, "#AB7200");
+   var t3 = paper.text(200, 540, "SESH").attr({'font-weight': 'bold'});
+   drawMushroom(paper, 480, 460, "#AB7200");
+   drawMushroom(paper, 550, 500, "#AB7200");
+}
+
+function drawMushroom(paper, x, y, capcolor){
+   var foot = paper.rect(x-15, y, 30, 35, 15);
+   foot.attr({fill: '#EBEF83', stroke:'#8B7616'});
+   var cap = paper.path("M"+x+","+(y+10)+"c0,0 -40,0 -40,-10 c0,0 0,-30 40,-30 c0,0 40,0 40,30 c0,0 0,10 -40,10z");
+   cap.attr({fill: capcolor, stroke: '#442D00'});
 }
 
 //Draws young branch visualizations and leaves for it to paper. 
@@ -399,7 +417,7 @@ function addIcons(paper, tree){
 
    //General
    
-   var leafIcon1 = paper.image("./icons/vammat.png", 385, 45, 40, 40);
+   var leafIcon1 = paper.image("./icons/terveydenedistaminen.png", 385, 45, 40, 40);
    leafIcon1.insertAfter(tree.leafList[0].leaf);
    
    var leafIcon2 = paper.image("./icons/tyottomat.png", 418, 82, 40, 40);
