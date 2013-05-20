@@ -137,7 +137,6 @@ ul.navlist li#current{
    overflow: hidden;
 }
 #footer .wrap{ 
-   background-image: url('../pics/smalltree.png');
    background-repeat: no-repeat;
    overflow: hidden;
    height: 200px;

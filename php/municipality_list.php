@@ -1,7 +1,7 @@
 <?php
    //Creates a Drop Down List Contating Names of Municipalities
    // Create connection
-   $con=mysqli_connect("127.0.0.1","root","","terveyspuu");
+   $con=mysqli_connect("127.0.0.1","root","O1muVie53viR-42","terveyspuu");
 
    // Check connection
    if (!mysqli_connect_errno($con)) {
