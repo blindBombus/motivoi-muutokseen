@@ -423,6 +423,7 @@ function addIcons(paper, tree){
    var leafIcon2 = paper.image("./icons/tyottomat.png", 418, 82, 40, 40);
    leafIcon2.insertAfter(tree.leafList[1].leaf);
    
+   
    var leafIcon3 = paper.image("./icons/diabetes.png", 338, 50, 40, 40);
    leafIcon3.insertAfter(tree.leafList[2].leaf);
    
@@ -494,6 +495,7 @@ function addIcons(paper, tree){
    leafIcon24.insertAfter(tree.leafList[23].leaf);
    
    // setting hover effects
+   //var clickHandler = 
    var leafGlow = null;
    var mouseover = function (event) {     
       this.leafGlow = this.prev.glow({color: "#3673ff", width: 10});
@@ -502,29 +504,53 @@ function addIcons(paper, tree){
 	   this.leafGlow.remove();
       }
    leafIcon1.hover(mouseover, mouseout);
+   leafIcon1.click(function(){ tree.leafList[0].leaf.node.onclick(); });
    leafIcon2.hover(mouseover, mouseout);
+   leafIcon2.click(function(){ tree.leafList[1].leaf.node.onclick(); });
    leafIcon3.hover(mouseover, mouseout);
+   leafIcon3.click(function(){ tree.leafList[2].leaf.node.onclick(); });
    leafIcon4.hover(mouseover, mouseout);
+   leafIcon4.click(function(){ tree.leafList[3].leaf.node.onclick(); });
    leafIcon5.hover(mouseover, mouseout);
+   leafIcon5.click(function(){ tree.leafList[4].leaf.node.onclick(); });
    leafIcon6.hover(mouseover, mouseout);
+   leafIcon6.click(function(){ tree.leafList[5].leaf.node.onclick(); });
    leafIcon7.hover(mouseover, mouseout);
+   leafIcon7.click(function(){ tree.leafList[6].leaf.node.onclick(); });
    leafIcon8.hover(mouseover, mouseout);
+   leafIcon8.click(function(){ tree.leafList[7].leaf.node.onclick(); });
    leafIcon9.hover(mouseover, mouseout);
+   leafIcon9.click(function(){ tree.leafList[8].leaf.node.onclick(); });
    leafIcon10.hover(mouseover, mouseout);
+   leafIcon10.click(function(){ tree.leafList[9].leaf.node.onclick(); });
    leafIcon11.hover(mouseover, mouseout);
+   leafIcon11.click(function(){ tree.leafList[10].leaf.node.onclick(); });
    leafIcon12.hover(mouseover, mouseout);
+   leafIcon12.click(function(){ tree.leafList[11].leaf.node.onclick(); });
    leafIcon13.hover(mouseover, mouseout);
+   leafIcon13.click(function(){ tree.leafList[12].leaf.node.onclick(); });
    leafIcon14.hover(mouseover, mouseout);
+   leafIcon14.click(function(){ tree.leafList[13].leaf.node.onclick(); });
    leafIcon15.hover(mouseover, mouseout);
+   leafIcon15.click(function(){ tree.leafList[14].leaf.node.onclick(); });
    leafIcon16.hover(mouseover, mouseout);
+   leafIcon16.click(function(){ tree.leafList[15].leaf.node.onclick(); });
    leafIcon17.hover(mouseover, mouseout);
+   leafIcon17.click(function(){ tree.leafList[16].leaf.node.onclick(); });
    leafIcon18.hover(mouseover, mouseout);
+   leafIcon18.click(function(){ tree.leafList[17].leaf.node.onclick(); });
    leafIcon19.hover(mouseover, mouseout);
+   leafIcon19.click(function(){ tree.leafList[18].leaf.node.onclick(); });
    leafIcon20.hover(mouseover, mouseout);
+   leafIcon20.click(function(){ tree.leafList[19].leaf.node.onclick(); });
    leafIcon21.hover(mouseover, mouseout);
+   leafIcon21.click(function(){ tree.leafList[20].leaf.node.onclick(); });
    leafIcon22.hover(mouseover, mouseout);
+   leafIcon22.click(function(){ tree.leafList[21].leaf.node.onclick(); });
    leafIcon23.hover(mouseover, mouseout);
+   leafIcon23.click(function(){ tree.leafList[22].leaf.node.onclick(); });
    leafIcon24.hover(mouseover, mouseout);
+   leafIcon24.click(function(){ tree.leafList[23].leaf.node.onclick(); });
 }
 
 
