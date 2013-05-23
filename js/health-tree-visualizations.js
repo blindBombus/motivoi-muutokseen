@@ -252,7 +252,8 @@ function Leaf(leaf, municipalityId, indicatorId, leafId)
       this.leaf = leaf; 
       this.municipalityId = municipalityId;
       this.indicatorId = indicatorId;
-      this.leafId = leafId      
+      this.leafId = leafId
+      this.selected = false;
    }
 function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAngle){
    var leafcolor = null; //setLeafColor(indicator, municipalityId);//"#1c460c";
@@ -279,13 +280,25 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
    
 
    var leafGlow = null; //leaf.glow({opacity: 1.0, color: "#b7f6ff", width: 2});
+   var clickLeafGlow = null;
    var mouseover = function (event) {  
-      this.leafGlow = this.glow({color: "#3673ff", width: 10});
+      this.leafGlow = this.glow({color: "#3673ff", width: 5});
       }
    var mouseout = function (event) {
 	   this.leafGlow.remove();
       }
+   var clickGlow= function (event){
+      if (!this.selected){
+         this.clickLeafGlow = this.glow({color: "#3673ff", width: 10});
+         this.selected = true;
+      }
+      else{
+         this.clickLeafGlow.remove();
+         this.selected = false;
+      }
+      };
    leaf.hover(mouseover, mouseout);
+   leaf.click(clickGlow);
    
    //take ids of the leaves and store them
    //use these ids to see which leaf is clicked
@@ -295,7 +308,7 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
    tree.leafList.push(newLeaf);
 
    leaf.node.onclick=function click () {
-   
+      if(leaf.selected){
       numOfTimesClicked++;
 
       var result = $.grep(tree.leafList, function(e){return e.leafId == leaf.id;});
@@ -386,6 +399,7 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
       }
 
    //on clicking of leaf   
+   }
    }
 }
 
