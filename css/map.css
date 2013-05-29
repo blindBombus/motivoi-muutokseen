@@ -6,17 +6,16 @@ button{
    margin: 5px;
 }
 #intro{
-   width: 240px;
-   padding: 10px;
+   width: 220px;
    float: right;
    
 }
 #intro p{
-   font-size: 1.3em;
+   font-size: 1.2em;
    color: #777777;
 }
 #pshp-map{
-   height: 485px;
+   height: 500px;
    width: 660px;
    float: left;
    background:url('../pics/map.png') top left no-repeat;

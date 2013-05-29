@@ -11,6 +11,18 @@ body{
     background-color: #edf8ff;
    
 }
+h1, h2{
+   color: #524132;
+}
+p{
+   margin: 10px 20px 10px 20px;
+}
+ul{
+   margin: 0px 20px 0px 20px;
+}
+a.small{
+   font-size: 0.7em;
+}
 .wrap{
    width: 960px;
    margin: 0px auto;
@@ -110,6 +122,7 @@ ul.navlist li#current{
 }
 .content{
    width: 100%;
+   padding: 10px;
    overflow: hidden;
    background-color: #ffffff;
 }
