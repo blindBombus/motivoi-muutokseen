@@ -2,6 +2,43 @@
 
 var selectedTrees = null;
 
+// Tree object that keeps municipality ID and array of leaves of the tree.
+function Tree(municipalityId, leafList){
+   this.municipalityId = municipalityId;
+   this.leafList = leafList;
+}
+
+// Leaf object that keeps the variables and functions that will help
+// to access indicator data and create visual effects for highlighting
+// leaves.
+function Leaf(leaf, municipalityId, indicatorId, leafId){
+   this.leaf = leaf; 
+   this.municipalityId = municipalityId;
+   this.indicatorId = indicatorId;
+   this.leafId = leafId;
+   this.clickGlow = null;
+   this.selected = false;
+      
+   var mouseover = function (event) {  
+      this.hoverGlow = leaf.glow({color: "red", width: 5});
+   };
+   var mouseout = function (event) {
+      this.hoverGlow.remove();
+   };
+   this.clickLeaf = function (event){
+      if (!this.selected){
+         this.clickGlow = leaf.glow({color: "blue", width: 5});
+         this.selected = true;
+      }
+      else{
+         this.clickGlow.remove();
+         this.selected = false;
+         this.clickGlow = null;
+      }
+   };
+   this.leaf.hover(mouseover, mouseout);  
+}
+
 //Draws main health tree visualization
 function drawMainTree(municipalityId, paper, mainTree, treeList){
    drawBackground(paper, municipalityId);
@@ -96,6 +133,7 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
    }
    root.transform("r"+angle+","+rootStartPoint);
    root.attr({stroke: '#524132', fill:'#524132'});
+   addTooltip(root);
 }
 
 function drawMushrooms(paper){
@@ -131,56 +169,56 @@ function drawYoungBranchLeaves(paper, municipalityId, branch, tree){
    leafStartPoint = (branchPoint.x-20)+","+(branchPoint.y-15);
    indicator = 288;
    var leaf11 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 300);
-   leaf11.click(function(){tree.leafList[10].leaf.node.onclick(); tree.leafList[10].clickLeaf();});
+   leaf11.click(function(){clickLeafNode(tree, tree.leafList[10].leaf, tree.leafList[10].selected); tree.leafList[10].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-25)+","+(branchPoint.y+15);
    indicator = 242;
    var leaf12 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 270);
-   leaf12.click(function(){tree.leafList[11].leaf.node.onclick(); tree.leafList[11].clickLeaf();});
+   leaf12.click(function(){clickLeafNode(tree, tree.leafList[11].leaf, tree.leafList[11].selected); tree.leafList[11].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-10);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-40);
    indicator = 1245;
    var leaf13 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 320);
-   leaf13.click(function(){tree.leafList[12].leaf.node.onclick(); tree.leafList[12].clickLeaf();});
+   leaf13.click(function(){clickLeafNode(tree, tree.leafList[12].leaf, tree.leafList[12].selected); tree.leafList[12].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+45);
    indicator = 289;
    var leaf14 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 245);
-   leaf14.click(function(){tree.leafList[13].leaf.node.onclick(); tree.leafList[13].clickLeaf();});
+   leaf14.click(function(){clickLeafNode(tree, tree.leafList[13].leaf, tree.leafList[13].selected); tree.leafList[13].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-50);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-50);
    indicator = 3219;
    var leaf15 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 335);
-   leaf15.click(function(){tree.leafList[14].leaf.node.onclick(); tree.leafList[14].clickLeaf();});
+   leaf15.click(function(){clickLeafNode(tree, tree.leafList[14].leaf, tree.leafList[14].selected); tree.leafList[14].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+50);
    indicator = 189;
    var leaf16 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 230);
-   leaf16.click(function(){tree.leafList[15].leaf.node.onclick(); tree.leafList[15].clickLeaf();});
+   leaf16.click(function(){clickLeafNode(tree, tree.leafList[15].leaf, tree.leafList[15].selected); tree.leafList[15].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-90);
    leafStartPoint = branchPoint.x+","+(branchPoint.y-40);
    indicator = 3904;
    var leaf17 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 350);
-   leaf17.click(function(){tree.leafList[16].leaf.node.onclick(); tree.leafList[16].clickLeaf();});
+   leaf17.click(function(){clickLeafNode(tree, tree.leafList[16].leaf, tree.leafList[16].selected); tree.leafList[16].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+30);
    indicator = 3905;
    var leaf18 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 210);
-   leaf18.click(function(){tree.leafList[17].leaf.node.onclick(); tree.leafList[17].clickLeaf();});
+   leaf18.click(function(){clickLeafNode(tree, tree.leafList[17].leaf, tree.leafList[17].selected); tree.leafList[17].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-125);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-15);
    indicator = 286;                                                              //dummy indicator
    var leaf19 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 360);
-   leaf19.click(function(){tree.leafList[18].leaf.node.onclick(); tree.leafList[18].clickLeaf();});
+   leaf19.click(function(){clickLeafNode(tree, tree.leafList[18].leaf, tree.leafList[18].selected); tree.leafList[18].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+12);
    indicator = 1514;                                                             //dummy indicator
    var leaf20 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 190);
-   leaf20.click(function(){tree.leafList[19].leaf.node.onclick(); tree.leafList[19].clickLeaf();});  
+   leaf20.click(function(){clickLeafNode(tree, tree.leafList[19].leaf, tree.leafList[19].selected); tree.leafList[19].clickLeaf();});  
 }
 
 //Draws general branch visualizations and leaves for it to paper. 
@@ -195,57 +233,57 @@ function drawGeneralBranchLeaves(paper, municipalityId, branch, tree){
    leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y-10);
    indicator = 1988;
    var leaf1 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 15);
-   leaf1.click(function(){tree.leafList[0].leaf.node.onclick(); tree.leafList[0].clickLeaf();});
    
    leafStartPoint = (branchPoint.x+30)+","+(branchPoint.y+20);
    indicator = 181;
    var leaf2 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 50);
-   leaf2.click(function(){tree.leafList[1].leaf.node.onclick(); tree.leafList[1].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-25);
    leafStartPoint = (branchPoint.x-16)+","+(branchPoint.y-25);
    indicator = 1802;
    var leaf3 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 350);
-   leaf3.click(function(){tree.leafList[2].leaf.node.onclick(); tree.leafList[2].clickLeaf();});
    
    leafStartPoint = (branchPoint.x+40)+","+(branchPoint.y+25);
    indicator = 306;
    var leaf4 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 75);
-   leaf4.click(function(){tree.leafList[3].leaf.node.onclick(); tree.leafList[3].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-60);
    leafStartPoint = (branchPoint.x-30)+","+(branchPoint.y-30);
    indicator = 3113;
    var leaf5 =drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 330);
-   leaf5.click(function(){tree.leafList[4].leaf.node.onclick(); tree.leafList[4].clickLeaf();});
-   
+      
    leafStartPoint = (branchPoint.x+50)+","+(branchPoint.y+30);
    indicator = 184;
    var leaf6 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 95);
-   leaf6.click(function(){tree.leafList[5].leaf.node.onclick(); tree.leafList[5].clickLeaf();});
-   
+      
    branchPoint = branch.getPointAtLength(maxLength-110);
    leafStartPoint = (branchPoint.x-20)+","+(branchPoint.y-45);
-   indicator = 1823;                                                              //
+   indicator = 1823;                                                              
    var leaf7 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 305);
-   leaf7.click(function(){tree.leafList[6].leaf.node.onclick(); tree.leafList[6].clickLeaf();});
    
    leafStartPoint = (branchPoint.x+45)+","+(branchPoint.y+10);
-   indicator = 2356;                                                              //
+   indicator = 2356;                                                           
    var leaf8 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 115);
-   leaf8.click(function(){tree.leafList[7].leaf.node.onclick(); tree.leafList[7].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-130);
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y-20);
-   indicator = 1820;                                                             //
+   indicator = 1820;                                                         
    var leaf9 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 290);
-   leaf9.click(function(){tree.leafList[8].leaf.node.onclick(); tree.leafList[8].clickLeaf();});
    
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y+15);
-   indicator = 1278;                                                             //
+   indicator = 1278;                                                        
    var leaf10 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 140);
-   leaf10.click(function(){tree.leafList[9].leaf.node.onclick(); tree.leafList[9].clickLeaf();});
    
+   leaf1.click(function(){clickLeafNode(tree, tree.leafList[0].leaf, tree.leafList[0].selected); tree.leafList[0].clickLeaf();});
+   leaf2.click(function(){clickLeafNode(tree, tree.leafList[1].leaf, tree.leafList[1].selected); tree.leafList[1].clickLeaf();});
+   leaf3.click(function(){clickLeafNode(tree, tree.leafList[2].leaf, tree.leafList[2].selected); tree.leafList[2].clickLeaf();});
+   leaf4.click(function(){clickLeafNode(tree, tree.leafList[3].leaf, tree.leafList[3].selected); tree.leafList[3].clickLeaf();});
+   leaf5.click(function(){clickLeafNode(tree, tree.leafList[4].leaf, tree.leafList[4].selected); tree.leafList[4].clickLeaf();});
+   leaf6.click(function(){clickLeafNode(tree, tree.leafList[5].leaf, tree.leafList[5].selected); tree.leafList[5].clickLeaf();});
+   leaf7.click(function(){clickLeafNode(tree, tree.leafList[6].leaf, tree.leafList[6].selected); tree.leafList[6].clickLeaf();});
+   leaf8.click(function(){clickLeafNode(tree, tree.leafList[7].leaf, tree.leafList[7].selected); tree.leafList[7].clickLeaf();});
+   leaf9.click(function(){clickLeafNode(tree, tree.leafList[8].leaf, tree.leafList[8].selected); tree.leafList[8].clickLeaf();});
+   leaf10.click(function(){clickLeafNode(tree, tree.leafList[9].leaf, tree.leafList[9].selected); tree.leafList[9].clickLeaf();});
 }
 
 //Draws elderly branch visualizations and leaves for it to paper. 
@@ -260,60 +298,169 @@ function drawElderlyBranchLeaves(paper, municipalityId, branch, tree){
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y-10);
    indicator = 307;
    var leaf21 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 70);
-   leaf21.click(function(){tree.leafList[20].leaf.node.onclick(); tree.leafList[20].clickLeaf();});
+   leaf21.click(function(){clickLeafNode(tree, tree.leafList[20].leaf, tree.leafList[20].selected); tree.leafList[20].clickLeaf();});
    
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y+15);
    indicator = 690;
    var leaf22 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 110);
-   leaf22.click(function(){tree.leafList[21].leaf.node.onclick(); tree.leafList[21].clickLeaf();});
+   leaf22.click(function(){clickLeafNode(tree, tree.leafList[21].leaf, tree.leafList[21].selected); tree.leafList[21].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-25);
    leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y+25);
    indicator = 318;
    var leaf23 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 135);
-   leaf23.click(function(){tree.leafList[22].leaf.node.onclick(); tree.leafList[22].clickLeaf();});
+   leaf23.click(function(){clickLeafNode(tree, tree.leafList[22].leaf, tree.leafList[22].selected); tree.leafList[22].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-55);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y+20);
    indicator = 1570;
    var leaf24 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 155); 
-   leaf24.click(function(){tree.leafList[23].leaf.node.onclick(); tree.leafList[23].clickLeaf();}); 
-}
-function Tree(municipalityId, leafList){
-   this.municipalityId = municipalityId;
-   this.leafList = leafList;
+   leaf24.click(function(){clickLeafNode(tree, tree.leafList[23].leaf, tree.leafList[23].selected); tree.leafList[23].clickLeaf();}); 
 }
 
-function Leaf(leaf, municipalityId, indicatorId, leafId)
-   {
-      this.leaf = leaf; 
-      this.municipalityId = municipalityId;
-      this.indicatorId = indicatorId;
-      this.leafId = leafId;
-      this.clickGlow = null;
-      this.selected = false;
-      
-      var mouseover = function (event) {  
-         this.hoverGlow = leaf.glow({color: "red", width: 5});
-      };
-      var mouseout = function (event) {
-	      this.hoverGlow.remove();
-      };
-      this.clickLeaf = function (event){
-         if (!this.selected){
-            this.clickGlow = leaf.glow({color: "blue", width: 5});
-            this.selected = true;
-         }
-         else{
-            this.clickGlow.remove();
-            this.selected = false;
-            this.clickGlow = null;
-         }
-      };
-      this.leaf.hover(mouseover, mouseout);
-      
-      
-   }
+function addIcons(paper, tree){  
+
+   //General
+   
+   var leafIcon1 = paper.image("./icons/terveydenedistaminen.png", 385, 45, 40, 40);
+   leafIcon1.insertAfter(tree.leafList[0].leaf);
+   
+   var leafIcon2 = paper.image("./icons/tyottomat.png", 418, 82, 40, 40);
+   leafIcon2.insertAfter(tree.leafList[1].leaf);
+   
+   
+   var leafIcon3 = paper.image("./icons/diabetes.png", 338, 50, 40, 40);
+   leafIcon3.insertAfter(tree.leafList[2].leaf);
+   
+   var leafIcon4 = paper.image("./icons/tyokyvyttomyyselake.png", 420, 120, 40, 40);
+   leafIcon4.insertAfter(tree.leafList[3].leaf);
+   
+   var leafIcon5 = paper.image("./icons/koulukiusaaminen.png", 300, 83, 40, 40); //violence
+   leafIcon5.insertAfter(tree.leafList[4].leaf);
+   
+   var leafIcon6 = paper.image("./icons/sairastavuus.png", 420, 165, 40, 40);
+   leafIcon6.insertAfter(tree.leafList[5].leaf);
+   
+   var leafIcon7 = paper.image("./icons/sydanlaakekorvaus.png", 280, 120, 40, 40);
+   leafIcon7.insertAfter(tree.leafList[6].leaf);
+   
+   var leafIcon8 = paper.image("./icons/dep_laake.png", 390, 195, 40, 40);
+   leafIcon8.insertAfter(tree.leafList[7].leaf);
+   
+   var leafIcon9 = paper.image("./icons/sydanlaakekorvaus.png", 278, 168, 40, 40);
+   leafIcon9.insertAfter(tree.leafList[8].leaf);
+   
+   var leafIcon10 = paper.image("./icons/tosihumala.png", 351, 231, 40, 40);
+   leafIcon10.insertAfter(tree.leafList[9].leaf);
+   
+   //Young
+   
+   var leafIcon11 = paper.image("./icons/tupakointi.png", 95, 240, 40, 40);
+   leafIcon11.insertAfter(tree.leafList[10].leaf);
+   
+   var leafIcon12 = paper.image("./icons/masennus.png", 90, 280, 40, 40);
+   leafIcon12.insertAfter(tree.leafList[11].leaf);
+   
+   var leafIcon13 = paper.image("./icons/lastensuojelu.png", 132, 210, 40, 40);
+   leafIcon13.insertAfter(tree.leafList[12].leaf);
+   
+   var leafIcon14 = paper.image("./icons/tosihumala.png", 115, 325, 40, 40);
+   leafIcon14.insertAfter(tree.leafList[13].leaf);
+   
+   var leafIcon15 = paper.image("./icons/tyokyvyttomyyselake.png", 175, 205, 40, 40);
+   leafIcon15.insertAfter(tree.leafList[14].leaf);
+   
+   var leafIcon16 = paper.image("./icons/tyottomat.png", 158, 346, 40, 40);
+   leafIcon16.insertAfter(tree.leafList[15].leaf);
+   
+   var leafIcon17 = paper.image("./icons/kouluruoka.png", 220, 220, 40, 40);
+   leafIcon17.insertAfter(tree.leafList[16].leaf);
+   
+   var leafIcon18 = paper.image("./icons/liikunta.png", 205, 340, 40, 40);
+   leafIcon18.insertAfter(tree.leafList[17].leaf);
+   
+   var leafIcon19 = paper.image("./icons/sairastavuus.png", 260, 250, 40, 40);
+   leafIcon19.insertAfter(tree.leafList[18].leaf);
+   
+   var leafIcon20 = paper.image("./icons/koulukiusaaminen.png", 250, 330, 40, 40);
+   leafIcon20.insertAfter(tree.leafList[19].leaf);
+   
+   //Elderly
+   
+   var leafIcon21 = paper.image("./icons/elake.png", 445, 265, 40, 40);
+   leafIcon21.insertAfter(tree.leafList[20].leaf);
+   
+   var leafIcon22 = paper.image("./icons/dep_laake.png", 445, 308, 40, 40);
+   leafIcon22.insertAfter(tree.leafList[21].leaf);
+   
+   var leafIcon23 = paper.image("./icons/vammat.png", 405, 334, 40, 40);
+   leafIcon23.insertAfter(tree.leafList[22].leaf);
+   
+   var leafIcon24 = paper.image("./icons/kotona.png", 358, 336, 40, 40);
+   leafIcon24.insertAfter(tree.leafList[23].leaf);
+   
+   // setting hover effects
+   //var clickHandler = 
+   var leafGlow = null;
+   var mouseover = function (event) {     
+      this.leafGlow = this.prev.glow({color: "green", width: 5});
+      }
+   var mouseout = function (event) {
+	   this.leafGlow.remove();
+      }
+   leafIcon1.hover(mouseover, mouseout);
+   leafIcon1.click(function(){clickLeafNode(tree, tree.leafList[0].leaf, tree.leafList[0].selected); tree.leafList[0].clickLeaf();});
+   leafIcon2.hover(mouseover, mouseout);
+   leafIcon2.click(function(){clickLeafNode(tree, tree.leafList[1].leaf, tree.leafList[1].selected); tree.leafList[1].clickLeaf();});
+   leafIcon3.hover(mouseover, mouseout);
+   leafIcon3.click(function(){clickLeafNode(tree, tree.leafList[2].leaf, tree.leafList[2].selected); tree.leafList[2].clickLeaf();});
+   leafIcon4.hover(mouseover, mouseout);
+   leafIcon4.click(function(){clickLeafNode(tree, tree.leafList[3].leaf, tree.leafList[3].selected); tree.leafList[3].clickLeaf();});
+   leafIcon5.hover(mouseover, mouseout);
+   leafIcon5.click(function(){clickLeafNode(tree, tree.leafList[4].leaf, tree.leafList[4].selected); tree.leafList[4].clickLeaf();});
+   leafIcon6.hover(mouseover, mouseout);
+   leafIcon6.click(function(){clickLeafNode(tree, tree.leafList[5].leaf, tree.leafList[5].selected); tree.leafList[5].clickLeaf();});
+   leafIcon7.hover(mouseover, mouseout);
+   leafIcon7.click(function(){clickLeafNode(tree, tree.leafList[6].leaf, tree.leafList[6].selected); tree.leafList[6].clickLeaf();});
+   leafIcon8.hover(mouseover, mouseout);
+   leafIcon8.click(function(){clickLeafNode(tree, tree.leafList[7].leaf, tree.leafList[7].selected); tree.leafList[7].clickLeaf();});
+   leafIcon9.hover(mouseover, mouseout);
+   leafIcon9.click(function(){clickLeafNode(tree, tree.leafList[8].leaf, tree.leafList[8].selected); tree.leafList[8].clickLeaf();});
+   leafIcon10.hover(mouseover, mouseout);
+   leafIcon10.click(function(){clickLeafNode(tree, tree.leafList[9].leaf, tree.leafList[9].selected); tree.leafList[9].clickLeaf();});
+   leafIcon11.hover(mouseover, mouseout);
+   leafIcon11.click(function(){clickLeafNode(tree, tree.leafList[10].leaf, tree.leafList[10].selected); tree.leafList[10].clickLeaf();});
+   leafIcon12.hover(mouseover, mouseout);
+   leafIcon12.click(function(){clickLeafNode(tree, tree.leafList[11].leaf, tree.leafList[11].selected); tree.leafList[11].clickLeaf();});
+   leafIcon13.hover(mouseover, mouseout);
+   leafIcon13.click(function(){clickLeafNode(tree, tree.leafList[12].leaf, tree.leafList[12].selected); tree.leafList[12].clickLeaf();});
+   leafIcon14.hover(mouseover, mouseout);
+   leafIcon14.click(function(){clickLeafNode(tree, tree.leafList[13].leaf, tree.leafList[13].selected); tree.leafList[13].clickLeaf();});
+   leafIcon15.hover(mouseover, mouseout);
+   leafIcon15.click(function(){clickLeafNode(tree, tree.leafList[14].leaf, tree.leafList[14].selected); tree.leafList[14].clickLeaf();});
+   leafIcon16.hover(mouseover, mouseout);
+   leafIcon16.click(function(){clickLeafNode(tree, tree.leafList[15].leaf, tree.leafList[15].selected); tree.leafList[15].clickLeaf();});
+   leafIcon17.hover(mouseover, mouseout);
+   leafIcon17.click(function(){clickLeafNode(tree, tree.leafList[16].leaf, tree.leafList[16].selected); tree.leafList[16].clickLeaf();});
+   leafIcon18.hover(mouseover, mouseout);
+   leafIcon18.click(function(){clickLeafNode(tree, tree.leafList[17].leaf, tree.leafList[17].selected); tree.leafList[17].clickLeaf();});
+   leafIcon19.hover(mouseover, mouseout);
+   leafIcon19.click(function(){clickLeafNode(tree, tree.leafList[18].leaf, tree.leafList[18].selected); tree.leafList[18].clickLeaf();});
+   leafIcon20.hover(mouseover, mouseout);
+   leafIcon20.click(function(){clickLeafNode(tree, tree.leafList[19].leaf, tree.leafList[19].selected); tree.leafList[19].clickLeaf();});
+   leafIcon21.hover(mouseover, mouseout);
+   leafIcon21.click(function(){clickLeafNode(tree, tree.leafList[20].leaf, tree.leafList[20].selected); tree.leafList[20].clickLeaf();});
+   leafIcon22.hover(mouseover, mouseout);
+   leafIcon22.click(function(){clickLeafNode(tree, tree.leafList[21].leaf, tree.leafList[21].selected); tree.leafList[21].clickLeaf();});
+   leafIcon23.hover(mouseover, mouseout);
+   leafIcon23.click(function(){clickLeafNode(tree, tree.leafList[22].leaf, tree.leafList[22].selected); tree.leafList[22].clickLeaf();});
+   leafIcon24.hover(mouseover, mouseout);
+   leafIcon24.click(function(){clickLeafNode(tree, tree.leafList[23].leaf, tree.leafList[23].selected); tree.leafList[23].clickLeaf();});
+}
+
+
+// Draws leaf element to paper after getting the right color and form. Creates Leaf
+// object and adds it to leafList of the tree.
 function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAngle){
    var leafcolor = null; //setLeafColor(indicator, municipalityId);//"#1c460c";
    var leafline = null;
@@ -344,12 +491,13 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
    var newLeaf = new Leaf(leaf, municipalityId, indicator,leaf.id);
    tree.leafList.push(newLeaf);
    
-   leaf.node.onclick = function (){clickLeafNode(tree, leaf, newLeaf.selected);};
+   
    
    return leaf;
    }
    
 function clickLeafNode (tree, leaf, selected) {
+   alert(selected);
    if (!selected){      
       numOfTimesClicked++;
 
@@ -468,150 +616,21 @@ function drawLegend(paper, startX, startY){
    worstLeaf.attr({stroke: leafline, fill: leafcolor});
 }
 
-function addIcons(paper, tree){  
 
-   //General
-   
-   var leafIcon1 = paper.image("./icons/terveydenedistaminen.png", 385, 45, 40, 40);
-   leafIcon1.insertAfter(tree.leafList[0].leaf);
-   
-   var leafIcon2 = paper.image("./icons/tyottomat.png", 418, 82, 40, 40);
-   leafIcon2.insertAfter(tree.leafList[1].leaf);
-   
-   
-   var leafIcon3 = paper.image("./icons/diabetes.png", 338, 50, 40, 40);
-   leafIcon3.insertAfter(tree.leafList[2].leaf);
-   
-   var leafIcon4 = paper.image("./icons/tyokyvyttomyyselake.png", 420, 120, 40, 40);
-   leafIcon4.insertAfter(tree.leafList[3].leaf);
-   
-   var leafIcon5 = paper.image("./icons/koulukiusaaminen.png", 300, 83, 40, 40); //violence
-   leafIcon5.insertAfter(tree.leafList[4].leaf);
-   
-   var leafIcon6 = paper.image("./icons/sairastavuus.png", 420, 165, 40, 40);
-   leafIcon6.insertAfter(tree.leafList[5].leaf);
-   
-   var leafIcon7 = paper.image("./icons/sydanlaakekorvaus.png", 280, 120, 40, 40);
-   leafIcon7.insertAfter(tree.leafList[6].leaf);
-   
-   var leafIcon8 = paper.image("./icons/dep_laake.png", 390, 195, 40, 40);
-   leafIcon8.insertAfter(tree.leafList[7].leaf);
-   
-   var leafIcon9 = paper.image("./icons/sydanlaakekorvaus.png", 278, 168, 40, 40);
-   leafIcon9.insertAfter(tree.leafList[8].leaf);
-   
-   var leafIcon10 = paper.image("./icons/tosihumala.png", 351, 231, 40, 40);
-   leafIcon10.insertAfter(tree.leafList[9].leaf);
-   
-   //Young
-   
-   var leafIcon11 = paper.image("./icons/tupakointi.png", 95, 240, 40, 40);
-   leafIcon11.insertAfter(tree.leafList[10].leaf);
-   
-   var leafIcon12 = paper.image("./icons/masennus.png", 90, 280, 40, 40);
-   leafIcon12.insertAfter(tree.leafList[11].leaf);
-   
-   var leafIcon13 = paper.image("./icons/lastensuojelu.png", 132, 210, 40, 40);
-   leafIcon13.insertAfter(tree.leafList[12].leaf);
-   
-   var leafIcon14 = paper.image("./icons/tosihumala.png", 115, 325, 40, 40);
-   leafIcon14.insertAfter(tree.leafList[13].leaf);
-   
-   var leafIcon15 = paper.image("./icons/tyokyvyttomyyselake.png", 175, 205, 40, 40);
-   leafIcon15.insertAfter(tree.leafList[14].leaf);
-   
-   var leafIcon16 = paper.image("./icons/tyottomat.png", 158, 346, 40, 40);
-   leafIcon16.insertAfter(tree.leafList[15].leaf);
-   
-   var leafIcon17 = paper.image("./icons/kouluruoka.png", 220, 220, 40, 40);
-   leafIcon17.insertAfter(tree.leafList[16].leaf);
-   
-   var leafIcon18 = paper.image("./icons/liikunta.png", 205, 340, 40, 40);
-   leafIcon18.insertAfter(tree.leafList[17].leaf);
-   
-   var leafIcon19 = paper.image("./icons/sairastavuus.png", 260, 250, 40, 40);
-   leafIcon19.insertAfter(tree.leafList[18].leaf);
-   
-   var leafIcon20 = paper.image("./icons/koulukiusaaminen.png", 250, 330, 40, 40);
-   leafIcon20.insertAfter(tree.leafList[19].leaf);
-   
-   //Elderly
-   
-   var leafIcon21 = paper.image("./icons/elake.png", 445, 265, 40, 40);
-   leafIcon21.insertAfter(tree.leafList[20].leaf);
-   
-   var leafIcon22 = paper.image("./icons/dep_laake.png", 445, 308, 40, 40);
-   leafIcon22.insertAfter(tree.leafList[21].leaf);
-   
-   var leafIcon23 = paper.image("./icons/vammat.png", 405, 334, 40, 40);
-   leafIcon23.insertAfter(tree.leafList[22].leaf);
-   
-   var leafIcon24 = paper.image("./icons/kotona.png", 358, 336, 40, 40);
-   leafIcon24.insertAfter(tree.leafList[23].leaf);
-   
-   // setting hover effects
-   //var clickHandler = 
-   var leafGlow = null;
-   var mouseover = function (event) {     
-      this.leafGlow = this.prev.glow({color: "green", width: 5});
-      }
-   var mouseout = function (event) {
-	   this.leafGlow.remove();
-      }
-   leafIcon1.hover(mouseover, mouseout);
-   leafIcon1.click(function(){tree.leafList[0].leaf.node.onclick(); tree.leafList[0].clickLeaf();});
-   leafIcon2.hover(mouseover, mouseout);
-   leafIcon2.click(function(){tree.leafList[1].leaf.node.onclick(); tree.leafList[1].clickLeaf();});
-   leafIcon3.hover(mouseover, mouseout);
-   leafIcon3.click(function(){tree.leafList[2].leaf.node.onclick(); tree.leafList[2].clickLeaf();});
-   leafIcon4.hover(mouseover, mouseout);
-   leafIcon4.click(function(){ tree.leafList[3].leaf.node.onclick(); tree.leafList[3].clickLeaf();});
-   leafIcon5.hover(mouseover, mouseout);
-   leafIcon5.click(function(){ tree.leafList[4].leaf.node.onclick(); tree.leafList[4].clickLeaf();});
-   leafIcon6.hover(mouseover, mouseout);
-   leafIcon6.click(function(){ tree.leafList[5].leaf.node.onclick(); tree.leafList[5].clickLeaf();});
-   leafIcon7.hover(mouseover, mouseout);
-   leafIcon7.click(function(){ tree.leafList[6].leaf.node.onclick(); tree.leafList[6].clickLeaf();});
-   leafIcon8.hover(mouseover, mouseout);
-   leafIcon8.click(function(){ tree.leafList[7].leaf.node.onclick(); tree.leafList[7].clickLeaf();});
-   leafIcon9.hover(mouseover, mouseout);
-   leafIcon9.click(function(){ tree.leafList[8].leaf.node.onclick(); tree.leafList[8].clickLeaf();});
-   leafIcon10.hover(mouseover, mouseout);
-   leafIcon10.click(function(){ tree.leafList[9].leaf.node.onclick(); tree.leafList[9].clickLeaf();});
-   leafIcon11.hover(mouseover, mouseout);
-   leafIcon11.click(function(){ tree.leafList[10].leaf.node.onclick(); tree.leafList[10].clickLeaf();});
-   leafIcon12.hover(mouseover, mouseout);
-   leafIcon12.click(function(){ tree.leafList[11].leaf.node.onclick(); tree.leafList[11].clickLeaf();});
-   leafIcon13.hover(mouseover, mouseout);
-   leafIcon13.click(function(){ tree.leafList[12].leaf.node.onclick(); tree.leafList[12].clickLeaf();});
-   leafIcon14.hover(mouseover, mouseout);
-   leafIcon14.click(function(){ tree.leafList[13].leaf.node.onclick(); tree.leafList[13].clickLeaf();});
-   leafIcon15.hover(mouseover, mouseout);
-   leafIcon15.click(function(){ tree.leafList[14].leaf.node.onclick(); tree.leafList[14].clickLeaf();});
-   leafIcon16.hover(mouseover, mouseout);
-   leafIcon16.click(function(){ tree.leafList[15].leaf.node.onclick(); tree.leafList[15].clickLeaf();});
-   leafIcon17.hover(mouseover, mouseout);
-   leafIcon17.click(function(){ tree.leafList[16].leaf.node.onclick(); tree.leafList[16].clickLeaf();});
-   leafIcon18.hover(mouseover, mouseout);
-   leafIcon18.click(function(){ tree.leafList[17].leaf.node.onclick(); tree.leafList[17].clickLeaf();});
-   leafIcon19.hover(mouseover, mouseout);
-   leafIcon19.click(function(){ tree.leafList[18].leaf.node.onclick(); tree.leafList[18].clickLeaf();});
-   leafIcon20.hover(mouseover, mouseout);
-   leafIcon20.click(function(){ tree.leafList[19].leaf.node.onclick(); tree.leafList[19].clickLeaf();});
-   leafIcon21.hover(mouseover, mouseout);
-   leafIcon21.click(function(){ tree.leafList[20].leaf.node.onclick(); tree.leafList[20].clickLeaf();});
-   leafIcon22.hover(mouseover, mouseout);
-   leafIcon22.click(function(){ tree.leafList[21].leaf.node.onclick(); tree.leafList[21].clickLeaf();});
-   leafIcon23.hover(mouseover, mouseout);
-   leafIcon23.click(function(){ tree.leafList[22].leaf.node.onclick(); tree.leafList[22].clickLeaf();});
-   leafIcon24.hover(mouseover, mouseout);
-   leafIcon24.click(function(){ tree.leafList[23].leaf.node.onclick(); tree.leafList[23].clickLeaf();});
+
+function addTooltip(element){
+   $('path').qtip({
+   content: {
+		text: 'My common piece of text here'
+	},
+   show: 'mouseover',
+   hide: 'mouseout',
+   style: { 
+      name: 'green', // Inherit from preset style
+      tip: 'topLeft'
+   }
+   });
 }
-
-
-//function setRootForm(indicator, municipalityId){
-//   return 0;
-//}
 
 function setLeafColorAndForm(indicator, municipalityId)
 {
