@@ -246,6 +246,7 @@
             treeList.push(tree);
          }
    </script>
+   <!--
    <div>
       <a href="https://twitter.com/SirGloatALot" class="twitter-follow-button" data-show-count="false">Follow @SirGloatALot</a>
       <script>!function(d,s,id)
@@ -260,5 +261,6 @@
       (document, 'script', 'twitter-wjs');
       </script>
    </div>
+-->
 </body>
 </html>

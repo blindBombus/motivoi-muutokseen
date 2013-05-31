@@ -133,7 +133,7 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
    }
    root.transform("r"+angle+","+rootStartPoint);
    root.attr({stroke: '#524132', fill:'#524132'});
-   addTooltip(root);
+   //addTooltip(root);
 }
 
 function drawMushrooms(paper){
@@ -497,7 +497,7 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
    }
    
 function clickLeafNode (tree, leaf, selected) {
-   alert(selected);
+   //alert(selected);
    if (!selected){      
       numOfTimesClicked++;
 
@@ -618,7 +618,7 @@ function drawLegend(paper, startX, startY){
 
 
 
-function addTooltip(element){
+/*function addTooltip(element){
    $('path').qtip({
    content: {
 		text: 'My common piece of text here'
@@ -630,7 +630,7 @@ function addTooltip(element){
       tip: 'topLeft'
    }
    });
-}
+}*/
 
 function setLeafColorAndForm(indicator, municipalityId)
 {

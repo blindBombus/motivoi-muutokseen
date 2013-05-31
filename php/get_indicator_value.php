@@ -1,5 +1,5 @@
 <?php
- $conn = new mysqli('127.0.0.1', 'root', 'O1muVie53viR-42', 'terveyspuu');
+ $conn = new mysqli('127.0.0.1', 'root', '', 'terveyspuu');
  //$query = "INSERT into comments(name, email, comments) VALUES (?, ?, ?)";
   $query = "	SELECT `PrimaryValue`,`AreaName`,`IndicatorName` FROM `indicators`	
 	WHERE `IndicatorID` = ? and
