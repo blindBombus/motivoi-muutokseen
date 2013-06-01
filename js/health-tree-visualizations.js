@@ -20,14 +20,14 @@ function Leaf(leaf, municipalityId, indicatorId, leafId){
    this.selected = false;
       
    var mouseover = function (event) {  
-      this.hoverGlow = leaf.glow({color: "red", width: 5});
+      this.hoverGlow = leaf.glow({color: "#0003df", width: 8});
    };
    var mouseout = function (event) {
       this.hoverGlow.remove();
    };
    this.clickLeaf = function (event){
       if (!this.selected){
-         this.clickGlow = leaf.glow({color: "blue", width: 5});
+         this.clickGlow = leaf.glow({color: "#0003df", width: 8});
          this.selected = true;
       }
       else{
@@ -133,7 +133,6 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
    }
    root.transform("r"+angle+","+rootStartPoint);
    root.attr({stroke: '#524132', fill:'#524132'});
-   addTooltip(root);
 }
 
 function drawMushrooms(paper){
@@ -403,7 +402,7 @@ function addIcons(paper, tree){
    //var clickHandler = 
    var leafGlow = null;
    var mouseover = function (event) {     
-      this.leafGlow = this.prev.glow({color: "green", width: 5});
+      this.leafGlow = this.prev.glow({color: "#0003df", width: 8});
       }
    var mouseout = function (event) {
 	   this.leafGlow.remove();
@@ -497,7 +496,6 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
    }
    
 function clickLeafNode (tree, leaf, selected) {
-   alert(selected);
    if (!selected){      
       numOfTimesClicked++;
 
@@ -614,22 +612,6 @@ function drawLegend(paper, startX, startY){
    leafcolor = "#f9ebb3"; //dry leaf
    var worstLeaf = paper.path("M"+(startX+81)+","+(startY-1)+" c0,0 -26,10 -26,-30 c0,0 0,-10 6,-15 c0,0 15,-10 10,-20 c0,0 -5,-15 10,-20 c0,0 -12,15 10,25 c0,0 8,5 12,25 c0,0 6,35 -22,35").transform("r25,"+(startX+81)+","+(startY-1)+"s0.3");
    worstLeaf.attr({stroke: leafline, fill: leafcolor});
-}
-
-
-
-function addTooltip(element){
-   $('path').qtip({
-   content: {
-		text: 'My common piece of text here'
-	},
-   show: 'mouseover',
-   hide: 'mouseout',
-   style: { 
-      name: 'green', // Inherit from preset style
-      tip: 'topLeft'
-   }
-   });
 }
 
 function setLeafColorAndForm(indicator, municipalityId)

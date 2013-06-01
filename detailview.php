@@ -7,24 +7,12 @@
 <link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
 <link href="./css/base.css" rel="StyleSheet"/>
 <link href="./css/comparison.css" rel="StyleSheet"/>
-
-<script type="text/javascript" src="./js/raphael-min.js"></script>
-<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
-
-<script src="./js/jquery.dd.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="./css/dd.css" />
+<link type="text/css" rel="stylesheet" href="./css/jquery.qtip.css" />
 
 </head>
 <body>
-   <script language="javascript">
-      $(document).ready(function(e) {
-         try {
-            $("body select").msDropDown();
-         } catch(e) {
-         alert(e.message);
-         }
-      });
-   </script>
+   
 
    <div id = "nav" >
       <!--Centering the content-->
@@ -73,18 +61,6 @@
             parentDiv.appendChild(newDiv);
          }
          </script>
-
-         <script>
-         /*   var content = "";
-            var i=1;
-            while (i<27){
-               content = content + "<div id=\"vis_"+i+"\"><div id=\"comp-tree_"+i+"\"></div></div>";
-               i++;
-            }
-            document.getElementById("comp-list-info").innerHTML=content;
-            */
-         </script>
-         <!-- This might be done with loop : done with the loop-->
       </div>
       <div class = "munlist" id="municipality-list">
       <!--  <?php //include './php/municipality_list.php'; ?>  -->
@@ -117,53 +93,9 @@
             <li id="mun_25" value="25"><span class="short">PM</span><span class="whole">Pirkanmaa</span></li>
             <li id="mun_26" value="26"><span class="short">Suo</span><span class="whole">Suomi</span></li>
          </ul>
-
-         <script>
-         var selectedMunId = [];
-            
-            $(document).ready(function () {
-               $("#municipality-list li").click(function () {
-                  if ($(this).hasClass("selected")){
-                     $(this).removeClass("selected");
-                     $(this).addClass("hidden_tree");
-
-                     console.log($(this).val());
-                     $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_show");
-                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_hidden");
-
-                     var ind = selectedMunId.indexOf($(this).val());
-                     selectedMunId.splice(ind,1);
-                     console.log(selectedMunId);
-
-                  }
-                  else if ($(this).hasClass("hidden_tree")){
-                     $(this).addClass("selected");
-                     $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_hidden");
-                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
-
-                     selectedMunId.push($(this).val());
-                     console.log(selectedMunId);
-                  }
-                  else{
-                     setComparison($(this).val());
-                     $(this).addClass("selected");
-                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
-                     $("#comparison-list div#vis_"+($(this).val())).append("<h2>"+$("#mun_"+($(this).val())+" .whole").html()+"</h2>");
-                     selectedMunId.push($(this).val());
-                     console.log(selectedMunId);
-                  }
-               });
-            });
-
-         </script>   
+  
       </div>
 
-      <script type="text/javascript">
-         $('#select').change(function(){
-            $('#info').remove();
-            $('#information-box').append('<p id="info">' +'Municipality: '+$('#select option:selected').text()+'</p>');
-         });
-      </script>
    </div>
    </div>
 
@@ -210,11 +142,61 @@
       </div>
       
    </div>
-   
-   <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
-   <script type="text/javascript" src="./js/indicator-functions.js"></script>
-   
-   <script type="text/javascript"> 
+   <script type="text/javascript" src="./js/raphael-min.js"></script>
+   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+   <script type="text/javascript" src="./js/jquery.dd.min.js"></script>
+   <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>   
+   <script type="text/javascript">
+      
+      $(document).ready(function(e) {
+         try {
+            $("body select").msDropDown();
+         } catch(e) {
+         alert(e.message);
+         }
+      });
+      
+      var selectedMunId = [];
+            
+            $(document).ready(function () {
+               $("#municipality-list li").click(function () {
+                  if ($(this).hasClass("selected")){
+                     $(this).removeClass("selected");
+                     $(this).addClass("hidden_tree");
+
+                     console.log($(this).val());
+                     $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_show");
+                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_hidden");
+
+                     var ind = selectedMunId.indexOf($(this).val());
+                     selectedMunId.splice(ind,1);
+                     console.log(selectedMunId);
+
+                  }
+                  else if ($(this).hasClass("hidden_tree")){
+                     $(this).addClass("selected");
+                     $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_hidden");
+                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
+
+                     selectedMunId.push($(this).val());
+                     console.log(selectedMunId);
+                  }
+                  else{
+                     setComparison($(this).val());
+                     $(this).addClass("selected");
+                     $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
+                     $("#comparison-list div#vis_"+($(this).val())).append("<h2>"+$("#mun_"+($(this).val())+" .whole").html()+"</h2>");
+                     selectedMunId.push($(this).val());
+                     console.log(selectedMunId);
+                  }
+               });
+            });
+
+         $('#select').change(function(){
+            $('#info').remove();
+            $('#information-box').append('<p id="info">' +'Municipality: '+$('#select option:selected').text()+'</p>');
+         });
          
          var treeList = [];
          var numOfTimesClicked = 0;       //number of times clicked on leafs
@@ -245,20 +227,8 @@
             drawSmallTree(municipalityId, paper, tree, treeList, 600, 500);
             treeList.push(tree);
          }
+         
+         
    </script>
-   <div>
-      <a href="https://twitter.com/SirGloatALot" class="twitter-follow-button" data-show-count="false">Follow @SirGloatALot</a>
-      <script>!function(d,s,id)
-      {
-         var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-         if(!d.getElementById(id))
-            {
-               js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
-               fjs.parentNode.insertBefore(js,fjs);
-            }
-      }
-      (document, 'script', 'twitter-wjs');
-      </script>
-   </div>
 </body>
 </html>

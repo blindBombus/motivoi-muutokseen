@@ -7,8 +7,7 @@
 <link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
 <link href="./css/base.css" rel="StyleSheet"/>
 <link href="./css/map.css" rel="StyleSheet"/>
-<script type="text/javascript" src="./js/raphael-min.js"></script>
-<script src="./js/jquery-1.9.1.min.js"></script>
+
 </head>
 <body>
 
@@ -227,8 +226,16 @@
          <p><em>Mitä vihreämpi puu, sitä terveempi kunta!</em></p>
       </div>
    </div>
-   
+
+   </div>
+   <script type="text/javascript" src="./js/raphael-min.js"></script>
+   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+   <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
    <script>
+      var treeList = [];               //array of drawn leafs
+      var numOfTimesClicked = 0;       //number of times clicked on leafs
+      var municipalities = [7,23,10,5,8,13,24,17,4,12,6,16,3,2,11,19,14,9,21,18,22,1,15,20];
+      
       $(document).ready(function () {
          $("#pshp-map li").click(function() {
             var handler = $(this).find("div");
@@ -243,35 +250,20 @@
          });  
       });
       
-
-            
-   </script>
-   </div>
-   <script type="text/javascript" src="./js/health-tree-visualizations.js"></script>
-   <script type="text/javascript" src="./js/indicator-functions.js"></script>
-   <script>
-         var treeList = [];               //array of drawn leafs
-         var numOfTimesClicked = 0;       //number of times clicked on leafs
-         var municipalities = [7,23,10,5,8,13,24,17,4,12,6,16,3,2,11,19,14,9,21,18,22,1,15,20];
-
-         
-         function chunk(array, process, context){
-            var items = array.concat();   //clone the array
-            setTimeout(function(){
-               var item = items.shift();
-               process.call(context, item);
-
-               if (items.length > 0){
+      function chunk(array, process, context){
+         var items = array.concat();   //clone the array
+         setTimeout(function(){
+            var item = items.shift();
+            process.call(context, item);
+            if (items.length > 0){
                setTimeout(arguments.callee, 50);
-               }
-            }, 50);
-         }
+            }
+         }, 50);
+      }
 
       $(window).bind("load", function() {
-         chunk(municipalities, drawMuniTree);
-         
+         chunk(municipalities, drawMuniTree);    
       });
-
 
       function drawMuniTree(municipalityId){
          var leafList = [];
