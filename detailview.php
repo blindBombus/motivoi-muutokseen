@@ -223,7 +223,7 @@
          function setComparison(municipalityId){
             var leafList = [];
             var tree = new Tree(municipalityId, leafList); 
-            var paper = Raphael("comp-tree_"+municipalityId+"", 120,110); 
+            var paper = Raphael("comp-tree_"+municipalityId+"", 160,140); 
             drawSmallTree(municipalityId, paper, tree, treeList, 600, 500);
             treeList.push(tree);
          }
