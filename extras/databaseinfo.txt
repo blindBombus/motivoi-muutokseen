@@ -1,0 +1,4 @@
+$mysql_host = "mysql12.000webhost.com";
+$mysql_database = "a6474923_qutab";
+$mysql_user = "a6474923_qutab";
+$mysql_password = "terveyspuu1";
