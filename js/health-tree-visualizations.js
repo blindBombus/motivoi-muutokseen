@@ -12,14 +12,14 @@ function Tree(municipalityId, leafList, isComparisonView){
 // Leaf object that keeps the variables and functions that will help
 // to access indicator data and create visual effects for highlighting
 // leaves.
-function Leaf(leaf, municipalityId, indicatorId, leafId, glow){
+function Leaf(leaf, municipalityId, indicatorId, leafId, isComparisonView){
    this.leaf = leaf; 
    this.municipalityId = municipalityId;
    this.indicatorId = indicatorId;
    this.leafId = leafId;
    this.clickGlow = null;
    this.selected = false;
-   if(glow){
+   if(isComparisonView){
       var mouseover = function (event) {  
       this.hoverGlow = leaf.glow({color: "#0003df", width: 8});
       this.hoverGlow.insertBefore(leaf);
