@@ -1,42 +1,47 @@
-//This js-file uses Raphaël.js so remember to include it to your webpage
+//This js-file uses Raphaël.js, jQuery and jQuery-UI so remember to include them to your webpage
 
 var selectedTrees = null;
 
 // Tree object that keeps municipality ID and array of leaves of the tree.
-function Tree(municipalityId, leafList){
+function Tree(municipalityId, leafList, isComparisonView){
    this.municipalityId = municipalityId;
    this.leafList = leafList;
+   this.isComparisonView = isComparisonView;
 }
 
 // Leaf object that keeps the variables and functions that will help
 // to access indicator data and create visual effects for highlighting
 // leaves.
-function Leaf(leaf, municipalityId, indicatorId, leafId){
+function Leaf(leaf, municipalityId, indicatorId, leafId, glow){
    this.leaf = leaf; 
    this.municipalityId = municipalityId;
    this.indicatorId = indicatorId;
    this.leafId = leafId;
    this.clickGlow = null;
    this.selected = false;
-      
-   var mouseover = function (event) {  
+   if(glow){
+      var mouseover = function (event) {  
       this.hoverGlow = leaf.glow({color: "#0003df", width: 8});
-   };
-   var mouseout = function (event) {
-      this.hoverGlow.remove();
-   };
-   this.clickLeaf = function (event){
-      if (!this.selected){
-         this.clickGlow = leaf.glow({color: "#0003df", width: 8});
-         this.selected = true;
-      }
-      else{
-         this.clickGlow.remove();
-         this.selected = false;
-         this.clickGlow = null;
-      }
-   };
-   this.leaf.hover(mouseover, mouseout);  
+      this.hoverGlow.insertBefore(leaf);
+      };
+      var mouseout = function (event) {this.hoverGlow.remove();};
+      this.clickLeaf = function (event){
+         if (!this.selected){
+            this.clickGlow = leaf.glow({color: "#0003df", width: 8});
+            this.clickGlow.insertBefore(leaf);
+            this.selected = true;
+         }
+         else{
+            this.clickGlow.remove();
+            this.selected = false;
+            this.clickGlow = null;
+         }
+      };
+      this.leaf.hover(mouseover, mouseout);
+   }
+   else{
+      this.clickLeaf = function(){return 0;};
+   }
 }
 
 //Draws main health tree visualization
@@ -47,6 +52,7 @@ function drawMainTree(municipalityId, paper, mainTree, treeList){
    drawMushrooms(paper);
    addIcons(paper, mainTree);
    drawLegend(paper, 25, 110);
+   setTooltips();
    selectedTrees = treeList;
 }
 //Draws main health tree visualization
@@ -55,6 +61,13 @@ function drawSmallTree(municipalityId, paper, tree, treeList, xView, yView){
    drawRoots(paper, municipalityId, trunkWidth);
    paper.setViewBox(0,0, xView, yView, false);
    selectedTrees = treeList;
+}
+
+function setTooltips(){ 
+  $('#leaf1').tooltip({
+    content: 'I am a <b>tooltip</b>!',
+    items: 'path'
+  });
 }
 
 //Draws background elements and miscellaneous indicator visualizations
@@ -102,22 +115,22 @@ function drawRootIndicators(paper, municipalityId, mainRoot){
    
    rootPoint = mainRoot.getPointAtLength(70);
    rootStartPoint = (rootPoint.x-1)+","+(rootPoint.y);
-
    indicator = 1290;
-   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 105);
+   var root1 = drawRootInd(paper, rootStartPoint, indicator, municipalityId, 105);
+   root1.node.id = 'root1';
    rootStartPoint = (rootPoint.x+1)+","+(rootPoint.y-2);
    indicator = 1072;
-   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 256);
-
+   var root2 = drawRootInd(paper, rootStartPoint, indicator, municipalityId, 256);
+   root2.node.id = 'root2';
    rootPoint = mainRoot.getPointAtLength(50);
    rootStartPoint = (rootPoint.x-1)+","+(rootPoint.y);
    indicator = 1071;
-   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 120);
+   var root3 = drawRootInd(paper, rootStartPoint, indicator, municipalityId, 120);
+   root3.node.id = 'root3';
    rootStartPoint = (rootPoint.x+1)+","+(rootPoint.y-2);
    indicator = 1290;                      //dummy indicator
-   drawRootInd(paper, rootStartPoint, indicator, municipalityId, 241);
-   
-   
+   var root4 = drawRootInd(paper, rootStartPoint, indicator, municipalityId, 241);
+   root4.node.id = 'root4';
 }
 
 function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
@@ -133,17 +146,21 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
    }
    root.transform("r"+angle+","+rootStartPoint);
    root.attr({stroke: '#524132', fill:'#524132'});
+   return root;
 }
 
 function drawMushrooms(paper){
-   drawMushroom(paper, 110, 455, "#AB7200", 1);
+   var mush1 = drawMushroom(paper, 110, 455, "#AB7200", 1);
    var t1 = paper.text(110, 500, "PTH").attr({'font-weight': 'bold'});
-   drawMushroom(paper, 50, 495, "#AB7200", 0.4);
+   
+   var mush2 =drawMushroom(paper, 50, 495, "#AB7200", 0.4);
    var t2 = paper.text(50, 540, "ESH").attr({'font-weight': 'bold'});
-   drawMushroom(paper, 200, 495, "#AB7200", 0.6);
+   
+   var mush3 = drawMushroom(paper, 200, 495, "#AB7200", 0.6);
    var t3 = paper.text(200, 540, "SESH").attr({'font-weight': 'bold'});
-   drawMushroom(paper, 480, 460, "#AB7200", 0.8);
-   drawMushroom(paper, 550, 500, "#AB7200", 1);
+   
+   var mush4 = drawMushroom(paper, 480, 460, "#AB7200", 0.8);
+   var mush5 = drawMushroom(paper, 550, 500, "#AB7200", 1);
 }
 
 function drawMushroom(paper, x, y, capcolor, size){
@@ -154,6 +171,7 @@ function drawMushroom(paper, x, y, capcolor, size){
    var cap = paper.path("M"+x+","+(y+10)+"c0,0 -40,0 -40,-10 c0,0 0,-30 40,-30 c0,0 40,0 40,30 c0,0 0,10 -40,10z");
    cap.attr({fill: capcolor, stroke: '#442D00'});
    cap.transform('s'+size+'t0,'+moveY);
+   return cap;
 }
 
 //Draws young branch visualizations and leaves for it to paper. 
@@ -168,56 +186,67 @@ function drawYoungBranchLeaves(paper, municipalityId, branch, tree){
    leafStartPoint = (branchPoint.x-20)+","+(branchPoint.y-15);
    indicator = 288;
    var leaf11 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 300);
-   leaf11.click(function(){clickLeafNode(tree, tree.leafList[10].leaf, tree.leafList[10].selected); tree.leafList[10].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-25)+","+(branchPoint.y+15);
    indicator = 242;
    var leaf12 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 270);
-   leaf12.click(function(){clickLeafNode(tree, tree.leafList[11].leaf, tree.leafList[11].selected); tree.leafList[11].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-10);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-40);
    indicator = 1245;
    var leaf13 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 320);
-   leaf13.click(function(){clickLeafNode(tree, tree.leafList[12].leaf, tree.leafList[12].selected); tree.leafList[12].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+45);
    indicator = 289;
    var leaf14 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 245);
-   leaf14.click(function(){clickLeafNode(tree, tree.leafList[13].leaf, tree.leafList[13].selected); tree.leafList[13].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-50);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-50);
    indicator = 3219;
    var leaf15 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 335);
-   leaf15.click(function(){clickLeafNode(tree, tree.leafList[14].leaf, tree.leafList[14].selected); tree.leafList[14].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+50);
    indicator = 189;
    var leaf16 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 230);
-   leaf16.click(function(){clickLeafNode(tree, tree.leafList[15].leaf, tree.leafList[15].selected); tree.leafList[15].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-90);
    leafStartPoint = branchPoint.x+","+(branchPoint.y-40);
    indicator = 3904;
    var leaf17 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 350);
-   leaf17.click(function(){clickLeafNode(tree, tree.leafList[16].leaf, tree.leafList[16].selected); tree.leafList[16].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+30);
    indicator = 3905;
    var leaf18 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 210);
-   leaf18.click(function(){clickLeafNode(tree, tree.leafList[17].leaf, tree.leafList[17].selected); tree.leafList[17].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-125);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-15);
    indicator = 286;                                                              //dummy indicator
    var leaf19 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 360);
-   leaf19.click(function(){clickLeafNode(tree, tree.leafList[18].leaf, tree.leafList[18].selected); tree.leafList[18].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+12);
    indicator = 1514;                                                             //dummy indicator
    var leaf20 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 190);
-   leaf20.click(function(){clickLeafNode(tree, tree.leafList[19].leaf, tree.leafList[19].selected); tree.leafList[19].clickLeaf();});  
+   
+   leaf11.click(function(){clickLeafNode(tree, tree.leafList[10].leaf, tree.leafList[10].selected); tree.leafList[10].clickLeaf();});
+   leaf11.node.id = 'leaf11';
+   leaf12.click(function(){clickLeafNode(tree, tree.leafList[11].leaf, tree.leafList[11].selected); tree.leafList[11].clickLeaf();});
+   leaf12.node.id = 'leaf12';
+   leaf13.click(function(){clickLeafNode(tree, tree.leafList[12].leaf, tree.leafList[12].selected); tree.leafList[12].clickLeaf();});
+   leaf13.node.id = 'leaf13';
+   leaf14.click(function(){clickLeafNode(tree, tree.leafList[13].leaf, tree.leafList[13].selected); tree.leafList[13].clickLeaf();});
+   leaf14.node.id = 'leaf14';
+   leaf15.click(function(){clickLeafNode(tree, tree.leafList[14].leaf, tree.leafList[14].selected); tree.leafList[14].clickLeaf();});
+   leaf15.node.id = 'leaf15';
+   leaf16.click(function(){clickLeafNode(tree, tree.leafList[15].leaf, tree.leafList[15].selected); tree.leafList[15].clickLeaf();});
+   leaf16.node.id = 'leaf16';
+   leaf17.click(function(){clickLeafNode(tree, tree.leafList[16].leaf, tree.leafList[16].selected); tree.leafList[16].clickLeaf();});
+   leaf17.node.id = 'leaf17';
+   leaf18.click(function(){clickLeafNode(tree, tree.leafList[17].leaf, tree.leafList[17].selected); tree.leafList[17].clickLeaf();});
+   leaf18.node.id = 'leaf18';
+   leaf19.click(function(){clickLeafNode(tree, tree.leafList[18].leaf, tree.leafList[18].selected); tree.leafList[18].clickLeaf();});
+   leaf19.node.id = 'leaf19';
+   leaf20.click(function(){clickLeafNode(tree, tree.leafList[19].leaf, tree.leafList[19].selected); tree.leafList[19].clickLeaf();}); 
+   leaf20.node.id = 'leaf20';
 }
 
 //Draws general branch visualizations and leaves for it to paper. 
@@ -274,15 +303,25 @@ function drawGeneralBranchLeaves(paper, municipalityId, branch, tree){
    var leaf10 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 140);
    
    leaf1.click(function(){clickLeafNode(tree, tree.leafList[0].leaf, tree.leafList[0].selected); tree.leafList[0].clickLeaf();});
+   leaf1.node.id = 'leaf1';
    leaf2.click(function(){clickLeafNode(tree, tree.leafList[1].leaf, tree.leafList[1].selected); tree.leafList[1].clickLeaf();});
+   leaf2.node.id = 'leaf2';
    leaf3.click(function(){clickLeafNode(tree, tree.leafList[2].leaf, tree.leafList[2].selected); tree.leafList[2].clickLeaf();});
+   leaf3.node.id = 'leaf3';
    leaf4.click(function(){clickLeafNode(tree, tree.leafList[3].leaf, tree.leafList[3].selected); tree.leafList[3].clickLeaf();});
+   leaf4.node.id = 'leaf4';
    leaf5.click(function(){clickLeafNode(tree, tree.leafList[4].leaf, tree.leafList[4].selected); tree.leafList[4].clickLeaf();});
+   leaf5.node.id = 'leaf5';
    leaf6.click(function(){clickLeafNode(tree, tree.leafList[5].leaf, tree.leafList[5].selected); tree.leafList[5].clickLeaf();});
+   leaf6.node.id = 'leaf6';
    leaf7.click(function(){clickLeafNode(tree, tree.leafList[6].leaf, tree.leafList[6].selected); tree.leafList[6].clickLeaf();});
+   leaf7.node.id = 'leaf7';
    leaf8.click(function(){clickLeafNode(tree, tree.leafList[7].leaf, tree.leafList[7].selected); tree.leafList[7].clickLeaf();});
+   leaf8.node.id = 'leaf8';
    leaf9.click(function(){clickLeafNode(tree, tree.leafList[8].leaf, tree.leafList[8].selected); tree.leafList[8].clickLeaf();});
+   leaf9.node.id = 'leaf9';
    leaf10.click(function(){clickLeafNode(tree, tree.leafList[9].leaf, tree.leafList[9].selected); tree.leafList[9].clickLeaf();});
+   leaf10.node.id = 'leaf10';
 }
 
 //Draws elderly branch visualizations and leaves for it to paper. 
@@ -297,24 +336,30 @@ function drawElderlyBranchLeaves(paper, municipalityId, branch, tree){
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y-10);
    indicator = 307;
    var leaf21 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 70);
-   leaf21.click(function(){clickLeafNode(tree, tree.leafList[20].leaf, tree.leafList[20].selected); tree.leafList[20].clickLeaf();});
    
    leafStartPoint = (branchPoint.x+20)+","+(branchPoint.y+15);
    indicator = 690;
    var leaf22 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 110);
-   leaf22.click(function(){clickLeafNode(tree, tree.leafList[21].leaf, tree.leafList[21].selected); tree.leafList[21].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-25);
    leafStartPoint = (branchPoint.x+10)+","+(branchPoint.y+25);
    indicator = 318;
    var leaf23 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 135);
-   leaf23.click(function(){clickLeafNode(tree, tree.leafList[22].leaf, tree.leafList[22].selected); tree.leafList[22].clickLeaf();});
    
    branchPoint = branch.getPointAtLength(maxLength-55);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y+20);
    indicator = 1570;
    var leaf24 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 155); 
-   leaf24.click(function(){clickLeafNode(tree, tree.leafList[23].leaf, tree.leafList[23].selected); tree.leafList[23].clickLeaf();}); 
+   
+   leaf21.click(function(){clickLeafNode(tree, tree.leafList[20].leaf, tree.leafList[20].selected); tree.leafList[20].clickLeaf();});
+   leaf21.node.id = 'leaf21';
+   leaf22.click(function(){clickLeafNode(tree, tree.leafList[21].leaf, tree.leafList[21].selected); tree.leafList[21].clickLeaf();});
+   leaf22.node.id = 'leaf22';
+   leaf23.click(function(){clickLeafNode(tree, tree.leafList[22].leaf, tree.leafList[22].selected); tree.leafList[22].clickLeaf();});
+   leaf23.node.id = 'leaf23';
+   leaf24.click(function(){clickLeafNode(tree, tree.leafList[23].leaf, tree.leafList[23].selected); tree.leafList[23].clickLeaf();});
+   leaf24.node.id = 'leaf24';
+   
 }
 
 function addIcons(paper, tree){  
@@ -403,6 +448,7 @@ function addIcons(paper, tree){
    var leafGlow = null;
    var mouseover = function (event) {     
       this.leafGlow = this.prev.glow({color: "#0003df", width: 8});
+      this.leafGlow.insertBefore(this.prev);
       }
    var mouseout = function (event) {
 	   this.leafGlow.remove();
@@ -461,7 +507,7 @@ function addIcons(paper, tree){
 // Draws leaf element to paper after getting the right color and form. Creates Leaf
 // object and adds it to leafList of the tree.
 function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAngle){
-   var leafcolor = null; //setLeafColor(indicator, municipalityId);//"#1c460c";
+   var leafcolor = null;
    var leafline = null;
    var leaf = null;
    var colorAndForm = setLeafColorAndForm(indicator, municipalityId);
@@ -487,18 +533,16 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
    //use these ids to see which leaf is clicked
    //use the associated mun/ind Id to fetch data for that leaf
 
-   var newLeaf = new Leaf(leaf, municipalityId, indicator,leaf.id);
+   var newLeaf = new Leaf(leaf, municipalityId, indicator,leaf.id, tree.isComparisonView);
    tree.leafList.push(newLeaf);
-   
-   
    
    return leaf;
    }
    
 function clickLeafNode (tree, leaf, selected) {
-   if (!selected){      
+   if (!selected && tree.isComparisonView){      
       numOfTimesClicked++;
-
+      alert(leaf.node.id);
       var result = $.grep(tree.leafList, function(e){return e.leafId == leaf.id;});
       result = result[0];
       console.log(result);

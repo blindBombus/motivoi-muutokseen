@@ -4,11 +4,11 @@
 <meta charset="utf-8" />
 <meta name="author" content="Ville Hämäläinen & Qutab" />
 <title>Terveyspuu - Terveyspuiden tarkastelu</title>
-<link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
-<link href="./css/base.css" rel="StyleSheet"/>
-<link href="./css/comparison.css" rel="StyleSheet"/>
-<link rel="stylesheet" type="text/css" href="./css/dd.css" />
-<link type="text/css" rel="stylesheet" href="./css/jquery.qtip.css" />
+<link type="text/css" rel="StyleSheet" href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" />
+<link type="text/css" rel="StyleSheet" href="./css/base.css" />
+<link type="text/css" rel="StyleSheet" href="./css/comparison.css" />
+<link type="text/css" rel="stylesheet" href="./css/dd.css" />
+
 
 </head>
 <body>
@@ -50,7 +50,6 @@
          for (var i =1 ; i <=26; i++)
          {
             var newDiv = document.createElement("div");
-            //newDiv.setAttribute("class","comp_hidden");
             newDiv.setAttribute("id", "vis_"+i);
 
             var insideDiv = document.createElement("div");
@@ -155,7 +154,9 @@
          } catch(e) {
          alert(e.message);
          }
+         
       });
+      $( document ).tooltip();
       
       var selectedMunId = [];
             
@@ -206,7 +207,7 @@
          var municipalityId = $('#select').val();
          console.log(municipalityId);
          var mainLeafList = [];
-         var mainTree = new Tree(municipalityId, mainLeafList)
+         var mainTree = new Tree(municipalityId, mainLeafList, true)
          var mainPaper = Raphael("main-tree", 600,550);
          drawMainTree(municipalityId, mainPaper, mainTree, treeList);
 
@@ -222,7 +223,7 @@
       
          function setComparison(municipalityId){
             var leafList = [];
-            var tree = new Tree(municipalityId, leafList); 
+            var tree = new Tree(municipalityId, leafList, true); 
             var paper = Raphael("comp-tree_"+municipalityId+"", 160,140); 
             drawSmallTree(municipalityId, paper, tree, treeList, 600, 500);
             treeList.push(tree);
