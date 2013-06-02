@@ -63,11 +63,25 @@ function drawSmallTree(municipalityId, paper, tree, treeList, xView, yView){
    selectedTrees = treeList;
 }
 
-function setTooltips(){ 
-  $('#leaf1').tooltip({
-    content: 'I am a <b>tooltip</b>!',
-    items: 'path'
-  });
+function addTooltip(leafId, ttContent){
+   $('#'+leafId).tooltip({
+      content: ttContent,
+      items: 'path',
+      position: {
+      my: 'left center',
+      at: 'right top'
+      }
+   });
+}
+
+function setTooltips(){
+   addTooltip('leaf1', 'This is leaf1');
+   addTooltip('leaf2', 'This is leaf2');
+   addTooltip('leaf3', 'This is leaf3');
+   addTooltip('leaf4', 'This is leaf4');
+   addTooltip('leaf5', 'This is leaf5');
+   addTooltip('leaf6', 'This is leaf6');
+   
 }
 
 //Draws background elements and miscellaneous indicator visualizations
@@ -155,16 +169,20 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
 
 function drawMushrooms(paper){
    var mush1 = drawMushroom(paper, 110, 455, "#AB7200", 1);
+   mush1.node.id = 'mush1';
    var t1 = paper.text(110, 500, "PTH").attr({'font-weight': 'bold'});
    
    var mush2 =drawMushroom(paper, 50, 495, "#AB7200", 0.4);
    var t2 = paper.text(50, 540, "ESH").attr({'font-weight': 'bold'});
+   mush1.node.id = 'mush2';
    
    var mush3 = drawMushroom(paper, 200, 495, "#AB7200", 0.6);
    var t3 = paper.text(200, 540, "SESH").attr({'font-weight': 'bold'});
+   mush1.node.id = 'mush3';
    
    var mush4 = drawMushroom(paper, 480, 460, "#AB7200", 0.8);
    var mush5 = drawMushroom(paper, 550, 500, "#AB7200", 1);
+   mush1.node.id = 'mush4';
 }
 
 function drawMushroom(paper, x, y, capcolor, size){
@@ -372,13 +390,15 @@ function addIcons(paper, tree){
    
    var leafIcon1 = paper.image("./icons/terveydenedistaminen.png", 385, 45, 40, 40);
    leafIcon1.insertAfter(tree.leafList[0].leaf);
+   leafIcon1.node.id = 'node1'; // etc.
    
    var leafIcon2 = paper.image("./icons/tyottomat.png", 418, 82, 40, 40);
    leafIcon2.insertAfter(tree.leafList[1].leaf);
-   
+   leafIcon2.node.id = 'node2'; // etc.
    
    var leafIcon3 = paper.image("./icons/diabetes.png", 338, 50, 40, 40);
    leafIcon3.insertAfter(tree.leafList[2].leaf);
+   leafIcon3.node.id = 'node3'; // etc.
    
    var leafIcon4 = paper.image("./icons/tyokyvyttomyyselake.png", 420, 120, 40, 40);
    leafIcon4.insertAfter(tree.leafList[3].leaf);
@@ -639,8 +659,8 @@ function drawLegend(paper, startX, startY){
 
 function setLeafColorAndForm(indicator, municipalityId)
 {
-   var indicatorId = indicator.toString();
-   var areaNum = municipalityId.toString();
+   //var indicatorId = indicator.toString();
+   //var areaNum = municipalityId.toString();
 
    var result = get_indicator_data(indicator, municipalityId);
 
