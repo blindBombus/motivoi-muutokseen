@@ -1,5 +1,5 @@
 <?php
- $conn = new mysqli('127.0.0.1', 'root', 'O1muVie53viR-42', 'terveyspuu');
+ $conn = new mysqli('127.0.0.1', 'root', '', 'terveyspuu');
 
  //select primary value based on indicator id and municipality id
  $query = "	SELECT DISTINCT `IndicatorName` FROM `indicators`	

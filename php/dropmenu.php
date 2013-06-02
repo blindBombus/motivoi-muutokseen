@@ -1,12 +1,12 @@
 <?php
    //Creates a Drop Down List Contating Names of Municipalities
    // Create connection
-   $con=mysqli_connect("127.0.0.1","root","O1muVie53viR-42","terveyspuu");
+   $con=mysqli_connect("127.0.0.1","root","","terveyspuu");
 
    // Check connection
    if (!mysqli_connect_errno($con)) {
 
-      $query="SELECT DISTINCT `AreaName` FROM `indicators`";
+      $query="SELECT DISTINCT `AreaName` FROM `indicators` order by `ID`";
       $data=mysqli_query($con, $query);
    
       echo "<select name = \"webmenu\" id = \"select\" onchange=\"drawToMainPaper()\">";

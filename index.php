@@ -265,6 +265,20 @@
          chunk(municipalities, drawMuniTree);    
       });
 
+      var jobj = [];
+        
+      $.ajax({
+               
+               url: './php/all_db.php',
+               async: false,
+               type: 'POST',
+
+               success: function (res) {
+                  //console.log(res);
+                  jobj = $.parseJSON(res);
+                  console.log("success");
+               }
+            });
       function drawMuniTree(municipalityId){
          var leafList = [];
          var tree = new Tree(municipalityId, leafList); 

@@ -95,7 +95,6 @@
          </ul>
   
       </div>
-
    </div>
    </div>
 
@@ -200,7 +199,20 @@
          
          var treeList = [];
          var numOfTimesClicked = 0;       //number of times clicked on leafs
-         
+
+         var jobj = [];
+        
+         $.ajax({
+               
+                  url: './php/all_db.php',
+                  async: false,
+                  type: 'POST',
+
+                  success: function (res) {
+                     jobj = $.parseJSON(res);
+                     console.log("success");
+                  }
+               });
 
          //draws first selected municipality tree
          var municipalityId = $('#select').val();

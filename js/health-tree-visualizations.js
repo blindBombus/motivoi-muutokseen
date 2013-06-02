@@ -114,7 +114,7 @@ function drawRootIndicators(paper, municipalityId, mainRoot){
    indicator = 1071;
    drawRootInd(paper, rootStartPoint, indicator, municipalityId, 120);
    rootStartPoint = (rootPoint.x+1)+","+(rootPoint.y-2);
-   indicator = 1290;                      //dummy indicator
+   indicator = 4120;                      //newly added
    drawRootInd(paper, rootStartPoint, indicator, municipalityId, 241);
    
    
@@ -122,17 +122,20 @@ function drawRootIndicators(paper, municipalityId, mainRoot){
 
 function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
    var rootForm = setLeafColorAndForm(indicator, municipalityId)[1];
-   if (rootForm== 5 || rootForm == 4){
+   if (rootForm== 5 || rootForm == 4){ //best
       var root = paper.path("M"+rootStartPoint+" c0,0 -4,0 -4,-4 l2,-80 l4,80 c0,0 0,4 -4,4z");
    }
-   else if (rootForm==3 || rootForm == 2){
+   else if (rootForm==3 || rootForm == 2){   //average
       var root = paper.path("M"+rootStartPoint+" c0,0 -4,0 -4,-4 l2,-60 l4,60 c0,0 0,4 -4,4z");
    }
-   else{
+   else{ //worst
       var root = paper.path("M"+rootStartPoint+" c0,0 -4,0 -4,-4 l2,-40 l4,40 c0,0 0,4 -4,4z");
    }
    root.transform("r"+angle+","+rootStartPoint);
    root.attr({stroke: '#524132', fill:'#524132'});
+
+   //addTooltip(root);
+
 }
 
 function drawMushrooms(paper){
@@ -210,12 +213,12 @@ function drawYoungBranchLeaves(paper, municipalityId, branch, tree){
    
    branchPoint = branch.getPointAtLength(maxLength-125);
    leafStartPoint = (branchPoint.x)+","+(branchPoint.y-15);
-   indicator = 286;                                                              //dummy indicator
+   indicator = 286;                                                              //newly added
    var leaf19 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 360);
    leaf19.click(function(){clickLeafNode(tree, tree.leafList[18].leaf, tree.leafList[18].selected); tree.leafList[18].clickLeaf();});
    
    leafStartPoint = (branchPoint.x-10)+","+(branchPoint.y+12);
-   indicator = 1514;                                                             //dummy indicator
+   indicator = 1514;                                                             //newly added
    var leaf20 = drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, 190);
    leaf20.click(function(){clickLeafNode(tree, tree.leafList[19].leaf, tree.leafList[19].selected); tree.leafList[19].clickLeaf();});  
 }
@@ -510,25 +513,11 @@ function clickLeafNode (tree, leaf, selected) {
       var indicatorName; //to display in header of information table
       var areaName = [];      //to display municipality name in the information table
 
-      var value = null;
-      //find indicator value for main tree
-      $.ajax({
-         url: './php/get_indicator_value.php',
-         type: 'POST',
-         data: 'indicatorId=' + indId + '&areaNum=' + munId,
-         async: false,
-
-         success: function (res) {
-            obj = $.parseJSON(res);
-            value = parseFloat(obj[0]);
-         }
-
-      });
-
-      indicatorName = obj[2]; //indicator being selected
-      areaName[0] = obj[1];   //main tree area name
-
-
+      var data = get_indicator_data(indId, munId);
+      indicatorName = data[2];   //indicator name to show in header
+      areaName[0] = data[1];  //main tree area name
+      value = data[0]; //main tree value
+ 
       console.log("Num of Times clicked:" + numOfTimesClicked);
 
       var finalResult = [];                        //to contain values for right panel
@@ -536,20 +525,9 @@ function clickLeafNode (tree, leaf, selected) {
       for (var j = 0; j<selectedMunId.length; j++)
       {
          munId = selectedMunId[j];
-
-         $.ajax({
-            url: './php/get_indicator_value.php',
-            type: 'POST',
-            data: 'indicatorId=' + indId + '&areaNum=' + munId,
-            async: false,
-
-            success: function (res) {
-               obj = JSON.parse(res);
-               finalResult[j] = parseFloat(obj[0]);   //values of comparison municipalities
-               areaName[j+1] = obj[1];                //names of comparison municipalites
-            }
-
-         });
+         obj = get_indicator_data(indId, munId);
+         finalResult[j] = obj[0];
+         areaName[j+1] = obj[1];
       }
 
 
@@ -614,32 +592,34 @@ function drawLegend(paper, startX, startY){
    worstLeaf.attr({stroke: leafline, fill: leafcolor});
 }
 
+
+/*function addTooltip(element){
+   $('path').qtip({
+   content: {
+		text: 'My common piece of text here'
+	},
+   show: 'mouseover',
+   hide: 'mouseout',
+   style: { 
+      name: 'green', // Inherit from preset style
+      tip: 'topLeft'
+   }
+   });
+}*/
+
 function setLeafColorAndForm(indicator, municipalityId)
 {
    var indicatorId = indicator.toString();
    var areaNum = municipalityId.toString();
 
-   var obj;          //to parse JSON
-   var value = 0.0;
-
-   $.ajax({
-               url: './php/get_indicator_value.php',
-               type: 'POST',
-               data: 'indicatorId=' + indicatorId + '&areaNum=' + areaNum,
-               async: false,
-               
-               success: function(result) {
-                  console.log(result);
-                  obj = JSON.parse(result);
-                  value = parseFloat(obj[0]);
-               }
-            });
+   var result = get_indicator_data(indicator, municipalityId);
 
 
-   value = getLeafValue(value, indicator);
+   value = getLeafValue(result[0], indicator); //using only PrimaryValue
    var color = null;
    var form = null;
 
+   //form  0 is best, form 1 is average to good, form 2 is worst
    if (value == 5)
    {
       color = "#002f00"; //dark green
@@ -685,7 +665,7 @@ function getLeafValue(value, indicatorId)
    {
       //young indicators
       case 1514:
-      return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5); //dummy values
+      return setThresholdDesc(value, 12.45, 7.9, 7.3, 6.7);
 
       case 288:
       return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);
@@ -706,7 +686,7 @@ function getLeafValue(value, indicatorId)
       return setThresholdDesc(value, 17.3, 13.5, 10.9, 8.3);
 
       case 3904:
-      return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);    //dummy values 
+      return setThresholdDesc(value, 41.75, 34.5, 26.51, 18.52);
       
       case 3905:
       return setThresholdDesc(value, 38.9, 33.7, 32, 30.3);
@@ -719,13 +699,13 @@ function getLeafValue(value, indicatorId)
       return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);    //dummy values
 
       case 181:
-      return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);    //dummy values
+      return setThresholdDesc(value, 12, 10.8, 9.8, 7.8);
 
       case 1802:
-      return setThresholdDesc(value,17.45, 14.1, 12.8, 11.5);     //dummy values
+      return setThresholdDesc(value, 6.6, 5.6, 5.27, 4.94);
 
       case 306:
-      return setThresholdAsc(value, 6.7, 7.9, 9.7, 11.5);
+      return setThresholdAsc(value, 6.7, 7.9, 9.7, 11.5);      //maybe wrong
       
       case 3113:
       return setThresholdDesc(value, 8.05, 6.8, 5, 3.2);
@@ -734,18 +714,18 @@ function getLeafValue(value, indicatorId)
       return setThresholdDesc(value, 103.75, 98.1, 93.97, 89.84);
 
       case 1823:
-      return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);    //dummy values
+      return setThresholdDesc(value, 2.25, 1.8, 1.533, 1.266);
 
       case 2356:
-      return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);    //dummy values
+      return setThresholdDesc(value, 10.95, 10.7, 9.733, 8.766);
       
       case 1820:
-      return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);    //dummy values
+      return setThresholdDesc(value, 13, 11, 10.6, 10.2);
 
       case 1278:
-      return setThresholdDesc(value, 17.45, 14.1, 12.8, 11.5);    //dummy values
+      return setThresholdDesc(value, 5, 3.8, 3.3, 2.8);
 
-      //Acorn/Mushroom Indicators
+      //Acorn/Mushroom Indicators (to be decided)
       case 3224:
       return setThresholdDesc(value, 59.8, 45.8, 31.43, 17.06);
       
@@ -770,14 +750,17 @@ function getLeafValue(value, indicatorId)
       return setThresholdAsc(value, 87.2, 91.0, 91.8, 92.6);
       
       //roots indicators
+      case 4120:
+      return setThresholdAsc(value, 53, 53, 54, 89);  //to be calculated
+
       case 1290:
-      return setThresholdDesc(value, 1681.5, 1503, 1417.67, 1332.34);
+      return setThresholdAsc(value, 1452, 1452, 1453, 1657);
       
       case 1072:
-      return setThresholdDesc(value, 832.5, 606, 541, 476);
+      return setThresholdAsc(value, 707, 707, 708, 1004);
       
       case 1071:
-      return setThresholdDesc(value, 1192.5, 1066, 972, 878);
+      return setThresholdAsc(value, 962, 962, 963, 1141);
    }
 }
 
@@ -811,4 +794,23 @@ function setThresholdAsc(value, worse, average, good, excellent)
       return 5;
    else
       return -1;
+}
+
+function get_indicator_data (indicatorId, municipalityId) {
+   //all indicators of one municipality
+   
+   for(var i = municipalityId - 1 ; i < jobj.length; i = i + 26)
+   {
+      //console.log("value: " + jobj[i].PrimaryValue);
+      //console.log("area: " + jobj[i].AreaName);
+      //console.log("indicator: " + jobj[i].IndicatorName);
+      //console.log("indicator ID: " + job.[i].IndicatorID);
+      //console.log("\n");
+      if (jobj[i].IndicatorID == indicatorId)
+      {
+         //returns primary value at index 0, area name at index 1, indicator name at index 2
+         return [parseFloat(jobj[i].PrimaryValue), jobj[i].AreaName, jobj[i].IndicatorName];
+      }
+   }
+   return -1;
 }
