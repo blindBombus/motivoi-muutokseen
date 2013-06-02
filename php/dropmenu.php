@@ -6,7 +6,7 @@
    // Check connection
    if (!mysqli_connect_errno($con)) {
 
-      $query="SELECT DISTINCT `AreaName` FROM `indicators`";
+      $query="SELECT DISTINCT `AreaName` FROM `indicators` order by `ID`";
       $data=mysqli_query($con, $query);
    
       echo "<select name = \"webmenu\" id = \"select\" onchange=\"drawToMainPaper()\">";

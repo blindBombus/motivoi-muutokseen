@@ -157,13 +157,6 @@
 
          </script>   
       </div>
-
-      <script type="text/javascript">
-         $('#select').change(function(){
-            $('#info').remove();
-            $('#information-box').append('<p id="info">' +'Municipality: '+$('#select option:selected').text()+'</p>');
-         });
-      </script>
    </div>
    </div>
 
@@ -218,7 +211,20 @@
          
          var treeList = [];
          var numOfTimesClicked = 0;       //number of times clicked on leafs
-         
+
+         var jobj = [];
+        
+         $.ajax({
+               
+                  url: './php/all_db.php',
+                  async: false,
+                  type: 'POST',
+
+                  success: function (res) {
+                     jobj = $.parseJSON(res);
+                     console.log("success");
+                  }
+               });
 
          //draws first selected municipality tree
          var municipalityId = $('#select').val();
