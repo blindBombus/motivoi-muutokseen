@@ -44,7 +44,7 @@ function drawMainTree(municipalityId, paper, mainTree, treeList){
    drawBackground(paper, municipalityId);
    var trunkWidth  =  drawTrunk(paper, municipalityId, mainTree);
    drawRoots(paper, municipalityId, trunkWidth);
-   drawMushrooms(paper);
+   drawMushrooms(municipalityId, paper);
    addIcons(paper, mainTree);
    drawLegend(paper, 25, 110);
    selectedTrees = treeList;
@@ -138,25 +138,80 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
 
 }
 
-function drawMushrooms(paper){
-   drawMushroom(paper, 110, 455, "#AB7200", 1);
+function drawMushrooms(municipalityId, paper){
+   var indicator = null;
+   var size = null;
+
+   indicator = 3224;
+   var mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
+   size = getMushroomSize(mushroomForm);
+   drawMushroom(paper, 110, 455, "#AB7200", size);
    var t1 = paper.text(110, 500, "PTH").attr({'font-weight': 'bold'});
-   drawMushroom(paper, 50, 495, "#AB7200", 0.4);
+
+   indicator = 1560;
+   mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
+   size = getMushroomSize(mushroomForm);
+   drawMushroom(paper, 50, 495, "#AB7200", size);
    var t2 = paper.text(50, 540, "ESH").attr({'font-weight': 'bold'});
-   drawMushroom(paper, 200, 495, "#AB7200", 0.6);
+
+   indicator = 1259;
+   mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
+   size = getMushroomSize(mushroomForm);
+   drawMushroom(paper, 200, 495, "#AB7200", size);
    var t3 = paper.text(200, 540, "SESH").attr({'font-weight': 'bold'});
-   drawMushroom(paper, 480, 460, "#AB7200", 0.8);
-   drawMushroom(paper, 550, 500, "#AB7200", 1);
+
+
+   indicator = 2399;
+   mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
+   size = getMushroomSize(mushroomForm);
+   drawMushroom(paper, 480, 460, "#AB7200", size);
+
+   indicator = 2397;
+   mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
+   size = getMushroomSize(mushroomForm);
+   drawMushroom(paper, 550, 500, "#AB7200", size);
+}
+
+function getMushroomSize(form){
+   if (form == 5 || form == 4)
+   {
+      return 1;
+   }
+
+   else if (form == 3 || form ==2)
+   {
+      return 0.6;
+   }
+
+   else if (form == 1)
+   {
+      return 0.4;
+   }
+   else
+   {
+      return -1;
+   }
 }
 
 function drawMushroom(paper, x, y, capcolor, size){
-   var moveY = (1-size)*30;
+   var moveY;
    var leg = paper.rect(x-15, y, 30, 35, 15);
    leg.attr({fill: '#EBEF83', stroke:'#8B7616'});
    
    var cap = paper.path("M"+x+","+(y+10)+"c0,0 -40,0 -40,-10 c0,0 0,-30 40,-30 c0,0 40,0 40,30 c0,0 0,10 -40,10z");
-   cap.attr({fill: capcolor, stroke: '#442D00'});
-   cap.transform('s'+size+'t0,'+moveY);
+   if(size < 0)
+   {  
+      size = 1;
+      cap.attr({fill: '#ffffff', stroke: '#AB7200'});
+      cap.transform('s'+size+'t0,'+moveY);
+   }
+
+   else
+   {
+      moveY = (1-size)*30;
+      cap.attr({fill: capcolor, stroke: '#442D00'});
+      cap.transform('s'+size+'t0,'+moveY);
+   }
 }
 
 //Draws young branch visualizations and leaves for it to paper. 
@@ -727,13 +782,21 @@ function getLeafValue(value, indicatorId)
 
       //Acorn/Mushroom Indicators (to be decided)
       case 3224:
-      return setThresholdDesc(value, 59.8, 45.8, 31.43, 17.06);
+      return setThresholdAsc(value, 16.92, 31.14, 45.36, 59.58); // 2.7-73.8
       
       case 1560:
-      return setThresholdDesc(value, 1790, 1470, 1302.33, 1134.66);
+      return setThresholdAsc(value, 1191, 1415, 1639, 1863); //967-2087 
       
       case 1259:
-      return setThresholdAsc(value, 509.8, 651.1, 806.1, 961.1);
+      return setThresholdAsc(value, 471.6, 575.2, 678.8, 782.4); //368-886
+
+      case 2399:
+      return setThresholdAsc(value, 65.2, 128.4, 191.6, 254.8); //2-318
+
+      case 2397:
+      return setThresholdAsc(value, 204, 401, 598, 795);   //7-992
+
+      //two more to be added
 
       //elderly indicators
       
@@ -751,16 +814,16 @@ function getLeafValue(value, indicatorId)
       
       //roots indicators
       case 4120:
-      return setThresholdAsc(value, 53, 53, 54, 89);  //to be calculated
+      return setThresholdAsc(value, 41.6, 62.2, 82.8, 103.4);  //to be calculated (from tilastokeskus)   21-124
 
       case 1290:
-      return setThresholdAsc(value, 1452, 1452, 1453, 1657);
+      return setThresholdAsc(value, 1369.6, 1492.2, 1614.8, 1737.4); //1247-1860
       
       case 1072:
-      return setThresholdAsc(value, 707, 707, 708, 1004);
+      return setThresholdAsc(value, 588.4, 765.8, 943.2, 1120.6); //411-1298
       
       case 1071:
-      return setThresholdAsc(value, 962, 962, 963, 1141);
+      return setThresholdAsc(value, 891, 998, 1105, 1212); //784-1319
    }
 }
 
@@ -801,11 +864,7 @@ function get_indicator_data (indicatorId, municipalityId) {
    
    for(var i = municipalityId - 1 ; i < jobj.length; i = i + 26)
    {
-      //console.log("value: " + jobj[i].PrimaryValue);
-      //console.log("area: " + jobj[i].AreaName);
-      //console.log("indicator: " + jobj[i].IndicatorName);
-      //console.log("indicator ID: " + job.[i].IndicatorID);
-      //console.log("\n");
+
       if (jobj[i].IndicatorID == indicatorId)
       {
          //returns primary value at index 0, area name at index 1, indicator name at index 2

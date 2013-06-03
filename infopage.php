@@ -26,20 +26,21 @@
    <div class="content">
       <h1>Tietoa Terveyspuusta</h1>
       <h2>Taustaa</h2>
-      <p>Kunnan viranomaisten ja päättäjien velvollisuus on seurata kuntalaisten terveydentilaa 
-         terveyttä ja hyvinvointia kuvaavien indikaattoreiden avulla. Koska terveyteen ja hyvinvointiin 
-         vaikuttavat monet eri tekijät, tulisi Suomen hallituksen ja Maailman terveysjärjestö WHO:n 
-         terveyspoliittisten linjausten mukaisesti mahdolliset terveysvaikutukset ottaa huomioon kaikessa 
-         päätöksenteossa myös terveydenhuollon ulkopuolella. Erityisesti edelleen kasvavia sosioekonomisia 
+      <p>Kunnan viranomaisten ja päättäjien on terveydenhuoltolain perusteella seurattava kuntalaisten 
+         terveyttä ja hyvinvointia kuntakohtaisten hyvinvointi- ja terveysosoittimien (jatkossa indikaattoreiden) 
+         avulla. Koska terveyteen ja hyvinvointiin vaikuttavat monet eri tekijät, tulisi Suomen hallituksen ja Maailman 
+         terveysjärjestö WHO:n terveyspoliittisten linjausten mukaisesti mahdolliset terveysvaikutukset ottaa huomioon 
+         kaikessa päätöksenteossa myös terveydenhuollon ulkopuolella. Erityisesti edelleen kasvavia sosioekonomisia 
          terveyseroja tulisi pyrkiä vähentämään laajasti eri sektorien välisenä yhteistyönä.</p>
-      <p>Terveyspuun tarkoitus on esittää terveys- ja hyvinvointi-informaatiota helposti omaksuttavassa 
-         ja selkeässä muodossa. Terveyspuusta voi yhdellä vilkaisulla saada kuvan oman kunnan terveyden 
-         ja hyvinvoinnin tilasta, sekä vertailla useita kuntia keskenään. Tämä toivottavasti auttaa kohdentamaan 
-         terveyden edistämisen toimia niille osa-alueille, joissa on eniten tarvetta sekä seuraamaan näiden toimien 
-         vaikuttavuutta.</p>
-      <p>Terveyspuuhun on valittu 33 indikaattoria 56 Pirkanmaan hyvinvointikertomuksessa käytettävän indikaattorin 
-         joukosta, ja ne edustavat laajasti erilaisia terveyden ja hyvinvoinnin osa-alueita. Erityisenä painotuksena 
-         on ollut  nuorten ja ikäihmisten hyvinvointi. Koska terveydestä ja hyvinvoinnista on paljon tietoa saatavilla 
+      <p><b>Terveyspuun tarkoitus</b> on esittää terveys- ja hyvinvointi-informaatiota helposti omaksuttavassa ja selkeässä muodossa. 
+         Terveyspuusta voi yhdellä vilkaisulla saada kuvan oman kunnan tilanteesta, ja vertailla useita kuntia keskenään. 
+         Tämä toivottavasti auttaa kohdentamaan terveyden ja hyvinvoinnin edistämisen toimia niille osa-alueille, joissa on eniten 
+         tarvetta sekä seuraamaan näiden toimien vaikuttavuutta.</p>
+      <p>Koko Pirkanmaan tilannetta kuvaavan Terveyspuun lisäksi on rakennettu Terveyspuut Pirkanmaan sairaanhoitopiirin 
+         jäsenkunnille (v. 2013) ja Punkalaitumelle. Terveyspuuhun on valittu 33 indikaattoria Pirkanmaan alueellisessa 
+         hyvinvointikertomuksessa käytetyistä 56:sta indikaattorista, ja ne edustavat laajasti erilaisia terveyden ja 
+         hyvinvoinnin osa-alueita. Erityisenä painotuksena on ollut nuorten ja ikäihmisten hyvinvointi.</p>
+      <p>Koska terveydestä ja hyvinvoinnista on paljon tietoa saatavilla 
          ja terveyspuussa esitetään vain osa siitä, toivomme että tämän visualisoinnin avulla onnistumme herättämään 
          kiinnostuksesi laajentaa entisestään tuntemustasi kuntalaistesi terveydentilasta ja siihen vaikuttavista 
          tekijöistä.</p>    
@@ -50,29 +51,36 @@
 
       <p>Terveyspuussa käytettyjä indikaattoreita on visualisoitu kolmella eri tavalla:<p>
       <ul>
-         <li><b>Lehdet:</b> Lehdissä on visualisoitu yhteensä 24 eri indikaattoria. Nämä on jaettu kolmeen 
-            eri puun haaraan: vasemmalla on esitetty nuorten terveyttä ja hyvinvointia kuvaavat indikaattorit, 
-            keskellä yleistä kuntalaisten ja aikuisväestön terveyttä ja hyvinvointia kuvaavat indikaattorit ja 
-            oikealla ikäihmisten terveyttä ja hyvinvointia kuvaavat indikaattorit. Kaikissa puissa indikaattorit 
-            löytyvät samasta kohtaa puuta.</li>
-         <li>Lehdissä olevat indikaattorit on valittu siten, että niiden avulla on mahdollista ottaa kantaa kunnan 
-            terveystilanteeseen ja arvottaa ne asteikolla 1-5. Mitä vihreämpi puu, sitä parempi on kuntalaisten hyvinvointi 
-            näiden indikaattorien osalta. Yksittäisten kuntien osalta lehtien väri kertoo sijoittumisen vertailussa koko 
-            Pirkanmaan keskiarvoon, jota kuvastaa keskimmäinen väri. Pirkanmaan puussa arvoja on verrattu koko Suomen 
-            arvoihin sekä joidenkin indikaattorien osalta myös annettuihin tavoitearvoihin.</li>  
-
+         <li><b>Lehdet:</b> Lehdissä on visualisoitu 24 eri indikaattoria, jotka on jaettu kolmeen eri puun haaraan. Puun oksista 
+            vasemmalla on esitetty nuorten terveyttä ja hyvinvointia kuvaavat indikaattorit, keskellä yleistä kuntalaisten ja aikuisväestön 
+            terveyttä ja hyvinvointia kuvaavat indikaattorit ja oikealla ikäihmisten terveyttä ja hyvinvointia kuvaavat indikaattorit. Kaikissa 
+            Terveyspuissa indikaattorit löytyvät samasta kohtaa puuta. Lehdissä on ikonit, jotka helpottavat indikaattoreiden tunnistusta 
+            ja valintaa.</li>
+            <br>
+         <li>Lehdissä olevat indikaattorit on valittu siten, että niiden avulla on mahdollista ottaa kantaa kunnan väestön terveyden ja 
+            hyvinvoinnin tilanteeseen. Indikaattoreiden tiedot on arvotettu lehtien väreiksi asteikolla 1-5. Mitä vihreämpi puu, sitä parempi 
+            on kuntalaisten tilanne näiden indikaattoreiden osalta. Yksittäisten kuntien osalta lehtien väri kertoo sijoittumisen vertailussa koko 
+            Pirkanmaan keskiarvoon, jota kuvastaa keskimmäinen väri. Pirkanmaan Terveyspuussa arvoja on verrattu koko Suomen arvoihin sekä joidenkin 
+            indikaattoreiden osalta myös valtakunnallisissa suosituksissa annettuihin tavoitearvoihin.
+            <br>
+            Terveyspuun kehittelyssä on otettu huomioon yleisimmät värisokeudet. Väriskaalan voi erottaa mustavalkoisena 
+            ja sen lisäksi lehdillä on kolme eri muotoa. Kahta parhainta arvoa kuvaavat lehdet ovat ehjiä ja symmetrisiä, 
+            kun taas huonompia arvoja kuvaavat lehdet ovat hieman kuihtuneita.</li>  
+            <br>
          <li><b>Juuret:</b> Juuriin on valittu neljä indikaattoria, jotka kaikki kuvaavat kustannuksia terveyteen 
             ja hyvinvointiin perusterveydenhuollossa, erikoissairaanhoidossa, sosiaalitoimessa ja liikuntatoimessa. 
             Juurilla on kolme eri pituutta: mitä pidempi juuri, sitä isommat kustannukset kyseisellä osa-alueella. 
             Juuren pituus ei suoraan kerro paremmuudesta - isot kustannukset voivat heijastaa joko suurempaa palvelujen 
             tarvetta, parempaa palvelujen saatavuutta tai kunnan terveyspoliittisia painotuksia. Myös kunnan ikärakenne 
             sekä palvelujen tuotannon tehokkuus ja vaikuttavuus määräävät kustannuksia.</li>
-
-         <li><b>Sienet:</b> Puun ympärillä olevat sienet esittävät terveydenhuollon käyntejä. Mukana ovat avohoidon 
+            <br>
+         <li><b>Sienet:</b> Terveyspuun ympärillä olevat sienet esittävät terveydenhuollon käyntejä. Mukana ovat avohoidon 
             käynnit perusterveydenhuollossa, erikoissairaanhoidossa ja suun terveydenhuollossa sekä erikoissairaanhoidon 
             hoitopäivät. Sienillä on kolme eri kokoa: mitä suurempi sieni, sitä enemmän käyntejä. Myöskään näiden 
             indikaattorien kohdalla ei voi suoraan ottaa kantaa paremmuuteen, koska palvelujen käyttöä määräävät 
-            monet tekijät. Esimerkiksi hoitotakuulain noudattaminen voi lisätä hoitopäivien määrää.</li>
+            monet tekijät. Esimerkiksi hoitotakuulain noudattaminen voi lisätä hoitopäivien määrää.
+            <br>
+            Valittujen lehtien, sienten ja juurten sisältämät indikaattoritiedot näkyvät numeraalisina sivuston alareunassa.</li>
       </ul>
       <h2>Terveyspuussa käytetyt indikaattorit ja niiden kuvaukset:</h2>
 

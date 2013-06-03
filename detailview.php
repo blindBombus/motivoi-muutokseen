@@ -43,7 +43,7 @@
       <div id="comparison-list">
       
          <div class="comp_show" id="comp-list-info">
-            <p>Please select municiplaties on right for comparison</p>
+            <p>Valitse sivun oikeasta reunasta kuntia vertailuun</p>
          </div>
 
          <script>
@@ -191,11 +191,6 @@
                   }
                });
             });
-
-         $('#select').change(function(){
-            $('#info').remove();
-            $('#information-box').append('<p id="info">' +'Municipality: '+$('#select option:selected').text()+'</p>');
-         });
          
          var treeList = [];
          var numOfTimesClicked = 0;       //number of times clicked on leafs
