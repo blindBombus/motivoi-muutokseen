@@ -1,3 +1,13 @@
+.ui-tooltip {
+   postion: relative;
+   width: 180px;
+   padding: 4px;
+   background: #8bb76e;
+   color: white;
+   border: solid 2px #AbC77e;
+   border-radius: 5px;
+   
+}
 #comparison-list{
    position: static;
    width: 280px;
