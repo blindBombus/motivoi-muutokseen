@@ -170,19 +170,22 @@ function drawRootInd(paper, rootStartPoint, indicator, municipalityId, angle){
 function drawMushrooms(paper){
    var mush1 = drawMushroom(paper, 110, 455, "#AB7200", 1);
    mush1.node.id = 'mush1';
-   var t1 = paper.text(110, 500, "PTH").attr({'font-weight': 'bold'});
+   var t1 = paper.image("./icons/pth.png", 110, 500, 40, 40);
    
    var mush2 =drawMushroom(paper, 50, 495, "#AB7200", 0.4);
-   var t2 = paper.text(50, 540, "ESH").attr({'font-weight': 'bold'});
-   mush1.node.id = 'mush2';
+   var t2 = paper.image("./icons/esh.png", 50, 540, 40, 40);
+   
+   mush2.node.id = 'mush2';
    
    var mush3 = drawMushroom(paper, 200, 495, "#AB7200", 0.6);
-   var t3 = paper.text(200, 540, "SESH").attr({'font-weight': 'bold'});
-   mush1.node.id = 'mush3';
+   var t3 = paper.image("./icons/sesh.png", 200, 540, 40, 40);
+   mush3.node.id = 'mush3';
    
    var mush4 = drawMushroom(paper, 480, 460, "#AB7200", 0.8);
    var mush5 = drawMushroom(paper, 550, 500, "#AB7200", 1);
-   mush1.node.id = 'mush4';
+   var t4 = paper.image("./icons/hammas.png", 510, 480, 40, 40);
+   mush4.node.id = 'mush4';
+   mush5.node.id = 'mush5';
 }
 
 function drawMushroom(paper, x, y, capcolor, size){
@@ -403,7 +406,7 @@ function addIcons(paper, tree){
    var leafIcon4 = paper.image("./icons/tyokyvyttomyyselake.png", 420, 120, 40, 40);
    leafIcon4.insertAfter(tree.leafList[3].leaf);
    
-   var leafIcon5 = paper.image("./icons/koulukiusaaminen.png", 300, 83, 40, 40); //violence
+   var leafIcon5 = paper.image("./icons/rikokset.png", 300, 83, 40, 40); //violence
    leafIcon5.insertAfter(tree.leafList[4].leaf);
    
    var leafIcon6 = paper.image("./icons/sairastavuus.png", 420, 165, 40, 40);
@@ -418,7 +421,7 @@ function addIcons(paper, tree){
    var leafIcon9 = paper.image("./icons/sydanlaakekorvaus.png", 278, 168, 40, 40);
    leafIcon9.insertAfter(tree.leafList[8].leaf);
    
-   var leafIcon10 = paper.image("./icons/tosihumala.png", 351, 231, 40, 40);
+   var leafIcon10 = paper.image("./icons/alkoholivammat.png", 351, 231, 40, 40);
    leafIcon10.insertAfter(tree.leafList[9].leaf);
    
    //Young
@@ -435,7 +438,7 @@ function addIcons(paper, tree){
    var leafIcon14 = paper.image("./icons/tosihumala.png", 115, 325, 40, 40);
    leafIcon14.insertAfter(tree.leafList[13].leaf);
    
-   var leafIcon15 = paper.image("./icons/tyokyvyttomyyselake.png", 175, 205, 40, 40);
+   var leafIcon15 = paper.image("./icons/koulutuksenulkopuolella.png", 175, 205, 40, 40);
    leafIcon15.insertAfter(tree.leafList[14].leaf);
    
    var leafIcon16 = paper.image("./icons/tyottomat.png", 158, 346, 40, 40);
@@ -447,7 +450,7 @@ function addIcons(paper, tree){
    var leafIcon18 = paper.image("./icons/liikunta.png", 205, 340, 40, 40);
    leafIcon18.insertAfter(tree.leafList[17].leaf);
    
-   var leafIcon19 = paper.image("./icons/sairastavuus.png", 260, 250, 40, 40);
+   var leafIcon19 = paper.image("./icons/terveydentila.png", 260, 250, 40, 40);
    leafIcon19.insertAfter(tree.leafList[18].leaf);
    
    var leafIcon20 = paper.image("./icons/koulukiusaaminen.png", 250, 330, 40, 40);
