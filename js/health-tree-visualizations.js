@@ -176,14 +176,14 @@ function drawMushrooms(municipalityId, paper){
    var mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
    size = getMushroomSize(mushroomForm);
    var mush1 = drawMushroom(paper, 110, 455, "#AB7200", size);
-   var t1 = paper.image("./icons/pth.png", 110, 500, 40, 40);
+   var t1 = paper.image("./icons/pth.png", 125, 470, 40, 40);
    mush1.node.id = 'mush1';
 
    indicator = 1560;
    mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
    size = getMushroomSize(mushroomForm);
    var mush2 = drawMushroom(paper, 50, 495, "#AB7200", size);
-   var t2 = paper.image("./icons/esh.png", 50, 540, 40, 40);
+   var t2 = paper.image("./icons/esh.png", 70, 500, 40, 40);
    mush2.node.id = 'mush2';
    
 
@@ -191,16 +191,15 @@ function drawMushrooms(municipalityId, paper){
    mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
    size = getMushroomSize(mushroomForm);
    var mush3 = drawMushroom(paper, 200, 495, "#AB7200", size);
-   var t3 = paper.image("./icons/sesh.png", 200, 540, 40, 40);
+   var t3 = paper.image("./icons/sesh.png", 220, 500, 40, 40);
    mush3.node.id = 'mush3';
-
 
 
    indicator = 2399;
    mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
    size = getMushroomSize(mushroomForm);
    var mush4 = drawMushroom(paper, 480, 460, "#AB7200", size);
-   var t4 = paper.image("./icons/hammas.png", 510, 480, 40, 40);
+   var t4 = paper.image("./icons/hammas.png", 480, 500, 40, 40);
    mush4.node.id = 'mush4';
 
    indicator = 2397;
