@@ -624,7 +624,6 @@ function drawLeaf(paper, tree, leafStartPoint, indicator, municipalityId, leafAn
 function clickLeafNode (tree, leaf, selected) {
    if (!selected && tree.isComparisonView){      
       numOfTimesClicked++;
-      alert(leaf.node.id);
       var result = $.grep(tree.leafList, function(e){return e.leafId == leaf.id;});
       result = result[0];
       console.log(result);
