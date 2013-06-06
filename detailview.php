@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="author" content="Ville Hämäläinen & Qutab" />
+<meta name="author" content="Ville Hämäläinen & Muhammad Qutab" />
 <title>Terveyspuu - Terveyspuiden tarkastelu</title>
 <link type="text/css" rel="StyleSheet" href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" />
 <link type="text/css" rel="StyleSheet" href="./css/base.css" />
@@ -165,30 +165,54 @@
                      $(this).removeClass("selected");
                      $(this).addClass("hidden_tree");
 
-                     console.log($(this).val());
+                     //console.log($(this).val());
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_show");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_hidden");
 
                      var ind = selectedMunId.indexOf($(this).val());
-                     selectedMunId.splice(ind,1);
-                     console.log(selectedMunId);
+                     if (ind >=0)
+                     {
+                        selectedMunId.splice(ind,1);
+                     }
+                     //console.log(selectedMunId);
 
                   }
                   else if ($(this).hasClass("hidden_tree")){
+
+                     if (selectedMunId.length >= 3)
+                     {
+                        $("li#mun_"+selectedMunId[0]).removeClass("selected");
+                        $("li#mun_"+selectedMunId[0]).addClass("hidden_tree");
+                        $("#comparison-list div#vis_"+(selectedMunId[0])).removeClass("comp_show");
+                        $("#comparison-list div#vis_"+(selectedMunId[0])).addClass("comp_hidden");
+                        
+                        selectedMunId.splice(0,1);
+                        //console.log(selectedMunId);
+                     }
+
                      $(this).addClass("selected");
                      $("#comparison-list div#vis_"+($(this).val())).removeClass("comp_hidden");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
 
                      selectedMunId.push($(this).val());
-                     console.log(selectedMunId);
+
                   }
-                  else{
+                  else {
+                     if (selectedMunId.length >=3)
+                     {
+                        $("li#mun_"+selectedMunId[0]).removeClass("selected");
+                        $("li#mun_"+selectedMunId[0]).addClass("hidden_tree");
+                        $("#comparison-list div#vis_"+(selectedMunId[0])).removeClass("comp_show");
+                        $("#comparison-list div#vis_"+(selectedMunId[0])).addClass("comp_hidden");
+
+                        selectedMunId.splice(0,1);
+                     }
                      setComparison($(this).val());
                      $(this).addClass("selected");
                      $("#comparison-list div#vis_"+($(this).val())).addClass("comp_show");
                      $("#comparison-list div#vis_"+($(this).val())).append("<h2>"+$("#mun_"+($(this).val())+" .whole").html()+"</h2>");
                      selectedMunId.push($(this).val());
-                     console.log(selectedMunId);
+                     //console.log(selectedMunId);
                   }
                });
             });
@@ -206,13 +230,13 @@
 
                   success: function (res) {
                      jobj = $.parseJSON(res);
-                     console.log("success");
+                     //console.log("success");
                   }
                });
 
          //draws first selected municipality tree
          var municipalityId = $('#select').val();
-         console.log(municipalityId);
+         //console.log(municipalityId);
          var mainLeafList = [];
          var mainTree = new Tree(municipalityId, mainLeafList, true)
          var mainPaper = Raphael("main-tree", 600,550);

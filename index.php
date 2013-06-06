@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="author" content="Ville Hämäläinen" />
+<meta name="author" content="Ville Hämäläinen & Muhammad Qutab" />
 <title>Terveyspuu</title>
 <link href="http://necolas.github.com/normalize.css/1.1.0/normalize.css" rel="StyleSheet"/>
 <link href="./css/base.css" rel="StyleSheet"/>
@@ -276,7 +276,7 @@
                success: function (res) {
                   //console.log(res);
                   jobj = $.parseJSON(res);
-                  console.log("success");
+                  //console.log("success");
                }
             });
       function drawMuniTree(municipalityId){

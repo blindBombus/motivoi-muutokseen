@@ -199,7 +199,7 @@ function drawMushrooms(municipalityId, paper){
    mushroomForm = setLeafColorAndForm(indicator, municipalityId)[1];
    size = getMushroomSize(mushroomForm);
    var mush4 = drawMushroom(paper, 480, 460, "#AB7200", size);
-   var t4 = paper.image("./icons/hammas.png", 480, 500, 40, 40);
+   var t4 = paper.image("./icons/hammas.png", 475, 500, 40, 40);
    mush4.node.id = 'mush4';
 
    indicator = 2397;
@@ -625,7 +625,7 @@ function clickLeafNode (tree, leaf, selected) {
       numOfTimesClicked++;
       var result = $.grep(tree.leafList, function(e){return e.leafId == leaf.id;});
       result = result[0];
-      console.log(result);
+      //console.log(result);
 
       var munId = $('#select').val();//result.municipalityId;  //pass to query database
       var indId = result.indicatorId;
@@ -639,7 +639,7 @@ function clickLeafNode (tree, leaf, selected) {
       areaName[0] = data[1];  //main tree area name
       value = data[0]; //main tree value
  
-      console.log("Num of Times clicked:" + numOfTimesClicked);
+      //console.log("Num of Times clicked:" + numOfTimesClicked);
 
       var finalResult = [];                        //to contain values for right panel
 
@@ -650,7 +650,6 @@ function clickLeafNode (tree, leaf, selected) {
          finalResult[j] = obj[0];
          areaName[j+1] = obj[1];
       }
-
 
       $('#data_10').html(areaName[0]);  //main municipality
       $('#data_20').html(areaName[1]);  //1st municipality in comparison list
@@ -685,8 +684,17 @@ function clickLeafNode (tree, leaf, selected) {
          $('#data_43').html(finalResult[2]);
       }
 
-   //on clicking of leaf   
+   //on clicking of leaf  
    }
+}
+
+function clearTable () {
+   var i = 0;
+   $('#information-box tr').each(function(){
+    $(this).find('td').each(function(){
+        $(this).empty();
+   });
+});
 }
 
 function drawLegend(paper, startX, startY){
